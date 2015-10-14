@@ -151,7 +151,7 @@
               Session.set('message','email duplicates')
                         }
             else{
-              Session.set('message','response')
+              Session.set('loginUser','response')
               console.log(response);
               Router.go('main')
               

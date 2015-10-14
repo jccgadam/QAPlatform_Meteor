@@ -1,15 +1,33 @@
+SessionAmplify = _.extend({}, Session, {
+  keys: _.object(_.map(amplify.store(), function(value, key) {
+    return [key, JSON.stringify(value)]
+  })),
+  set: function (key, value) {
+    Session.set.apply(this, arguments);
+    amplify.store(key, value);
+  },
+});
 
-Template.userlogin.events({
-    
+Template.userlogin.onCreated(function(){
+  //clear all session var
+  Session.set('emailError',null);
+  Session.set('passwordError',null);
+  Session.set('message',null);
+})
+Template.userlogin.events({   
     'submit .userlogin':function(e,t){
           e.preventDefault();
+          //clear all session var
+          Session.set('emailError',null);
+          Session.set('passwordError',null);
+          Session.set('message',null);
           var email = t.$('.email').val();
           var password =t.$('.password').val(); 
           //check if email is empty
           if(email=='')
           {  
              Session.set('emailError','Please enter email');
-             // console.log(Session.get('emailError'));
+             
              return;
           }
           //check if password is empty
@@ -31,7 +49,11 @@ Template.userlogin.events({
               Session.set('message','Email not exist or wrong password')
                         }
             else{
-              Router.go('main')
+                 Session.set('emailError',null);
+                 Session.set('passwordError',null);
+                 Session.set('message',null);
+                 SessionAmplify.set('loginUser',response);
+                 Router.go('main')
               
             }
 
