@@ -1,0 +1,149 @@
+<template name='usersignup'>
+	<div class="menu-content snap-content pane" style="">
+    
+
+        <div class="bar bar-header bar-positive nav-bar-block nav-bar-transition-ios nav-bar-direction-forward" data-navbar-container="">
+    
+    <button class="buttons button button-clear back-button pull-left button-entering button-active">
+    <i class="icon ion-ios-arrow-back"></i>
+    
+      <span class="back-text">
+        Back
+      </span>
+    
+  </button>
+  
+    
+    <h1 class="title title-entering title-center title-active" style="left: 60px; right: 60px;">Create User Account</h1>
+  
+    
+  </div>
+
+        <div data-nav-container="" class="nav-view-transition-ios nav-view-direction-forward">
+    
+          
+  
+
+  
+
+  <div class="view nav-view-entering nav-view-active">
+    
+    <div class="scroll-content ionic-scroll">
+    <div class="content overflow-scroll has-header">
+      
+      
+        
+    <div class="list at-form">
+      
+      
+      
+      
+      
+      
+      
+        <div class="at-pwd-form">
+    <form role="form" id="at-pwd-form" novalidate="" action="#" method="POST">
+      
+        
+  
+    
+    
+    <div class="at-input item item-input item-text-wrap item-stacked-label"> 
+      <label class="input-label" for="at-field-email">
+        Account Email:
+      </label> 
+      <input class='email' type="email" id="at-field-email" name="at-field-email" placeholder="Email" autocapitalize="none" autocorrect="off">
+    </div> 
+   
+    {{#if validateEmail}}
+         <div class="alert alert-danger" role="alert">
+         <strong>Email</strong>{{validateEmail}}
+         </div>
+      {{/if}}
+    <div class="at-input item item-input item-text-wrap item-stacked-label">
+      <label class="input-label" for="at-field-password">
+        Password: 
+      </label>
+      <input class='password' type="password" id="at-field-password" name="at-field-password" placeholder="Password" autocapitalize="none" autocorrect="off">  
+    </div>
+
+    {{#if validatePw}}
+         <div class="alert alert-danger" role="alert">
+         <strong>Password</strong> {{validatePw}}
+         </div>    
+    {{/if}}
+    <div class="at-input item item-input item-text-wrap item-stacked-label">
+        <label class="input-label" for="at-field-password">
+          Re-enter Password: 
+        </label>
+        <input class='re-password' type="password" id="at-field-re-enter-password" name="at-field-password" placeholder="Password" autocapitalize="none" autocorrect="off">
+    </div>
+
+    {{#if validateRePw}}
+         <div class="alert alert-danger" role="alert">
+         <strong>Password</strong> {{validateRePw}}
+         </div>    
+    {{/if}}
+    <div class="at-input item item-input item-text-wrap item-stacked-label">
+        <label class="input-label" for="at-field-firstName">
+        First Name: 
+        </label>
+        <input class='fname' type="text" id="at-field-password" name="at-field-password" placeholder="FirstName" autocapitalize="none" autocorrect="off">  
+    </div>
+    {{#if validatefname}}
+         <div class="alert alert-danger" role="alert">
+         <strong>FirstName</strong> {{validatefname}}
+         </div>    
+    {{/if}}
+
+
+  <div class="at-input item item-input item-text-wrap item-stacked-label">
+      <label class="input-label" for="at-field-lastName">
+        Last Name: 
+      </label>
+      <input class='lname' type="text" id="at-field-password" name="at-field-password" placeholder="LastName" autocapitalize="none" autocorrect="off">
+  </div>
+  {{#if validatelname}}
+       <div class="alert alert-danger" role="alert">
+       <strong>LastName</strong> {{validatelname}}
+       </div>    
+  {{/if}}    
+
+      
+      
+      <div class="padding">
+    <button type="submit" class="at-btn button button-positive button-block submit active" id="at-btn">
+      Sign In
+    </button>
+  </div>
+    </form>
+  </div>
+  <div class="bs-example">
+            <input type="text" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" style="display: none;">
+          </div>
+      
+      
+      
+        <div class="at-signup-link padding text-center">
+    <p>
+      Already Have a Account?
+      <a href="/login" id="at-signUp" class="at-link at-signup positive">Login</a>
+      
+    </p>
+  </div>
+      
+      
+    </div>
+  
+      
+    
+    </div>
+  </div>
+  
+  </div>
+        
+  </div>
+
+      
+  </div>
+</template>

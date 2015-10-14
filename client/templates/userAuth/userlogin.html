@@ -1,21 +1,57 @@
 <template name="userlogin">
-<div class="bar bar-header bar-light">
-  <h1 class="title">{{message}}</h1>
-</div>
-<div class="content has-header">
-      <div class="list list-inset">
-        <label class="item item-input">
-          <input class='email' type="text" placeholder="First Name">
-        </label>
-        <label class="item item-input">
-          <input class='password' type="text" placeholder="Last Name">
-        </label>
-      </div>
-      <div class="padding">
-        <button id='login' class="button button-block button-positive activated">Submit</button>
-      </div>
-      <!-- <div class="content has-header padding">
-      <h1>{{message}}</h1>
-      </div> -->
-    </div>
+  <div class="bar bar-header bar-positive nav-bar-block nav-bar-transition-ios nav-bar-direction-forward" data-navbar-container="">
+    <h1 class="title title-entering title-center title-active" style="left: 60px; right: 60px;">Welcome to QA Platform!</h1>
+  </div>
+  <div class="at-pwd-form" style="margin-top:100px">
+      <form role="form" id="userlogIn" class='userlogin' novalidate="" action="#" method="POST">    
+         <div class="at-input item item-input item-text-wrap item-stacked-label ">
+            <label class="input-label" for="at-field-email">
+               Email 
+            </label>
+
+            <input class='email' type="email" id="at-field-email" name="at-field-email" placeholder="Email" autocapitalize="none" autocorrect="off">
+            {{#if emailError}}
+            <br>
+            <div class="alert alert-warning" role="alert" style="width:70%">
+              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+              <span class="sr-only"></span>{{emailError}}
+            </div>
+            {{/if}}
+        </div>
+           <div class="at-input item item-input item-text-wrap item-stacked-label ">
+           <label class="input-label" for="at-field-password">
+               Password 
+            </label>
+            <input class='password' type="password" id="at-field-password" name="at-field-password" placeholder="Password" autocapitalize="none" autocorrect="off">
+           {{#if passwordError}}
+            <br>
+            <div class="alert alert-warning marginblock" role="alert" style="width:70%">
+              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+              <span class="sr-only"></span>{{passwordError}}
+            </div>
+            {{/if}}    
+           </div> 
+           
+             {{#if message}}
+            <br>
+            <div class="alert alert-danger marginblock" role="alert">
+              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+              <span class="sr-only"></span>{{message}}
+            </div>
+            {{/if}} 
+           
+        <div class="padding">
+          <button type="submit" class="at-btn button button-positive button-block submit" id="at-btn">
+            Sign In
+          </button>
+        </div>
+
+      </form>
+  </div>
+  <div class="at-signup-link padding text-center">
+    <p>
+      Don't have an account?
+      <a href="{{pathFor 'usersignup'}}" id="at-signUp" class="at-link at-signup positive">Register</a>      
+    </p>
+  </div>
 </template>
