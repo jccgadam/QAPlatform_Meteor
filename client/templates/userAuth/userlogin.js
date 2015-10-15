@@ -66,7 +66,6 @@ Template.userlogin.events({
     'blur .password':function(e,t){
           Session.set('passwordError',null);
     },
-
 })
 
 Template.userlogin.helpers({
