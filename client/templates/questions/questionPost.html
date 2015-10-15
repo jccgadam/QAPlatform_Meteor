@@ -1,0 +1,110 @@
+<template name='questionsPost'>
+  <div class='container'>
+  <form  id='questionsPost' class="form-horizontal well">
+        <fieldset>
+          <legend>Post a Question:</legend>
+          <div class="control-group">
+            <label class="control-label" for="input01" >Question Title:</label>
+            <p></p>
+            <div class="controls bootstrap-tagsinput">
+              <input class='questionTitle' type="text" id="input01" maxlength='35' placeholder='Question Title' style="width:70%">
+              <!-- <p class="help-block">In addition to freeform text, any HTML5 text-based input appears like so.</p> -->
+              <p></p>
+            </div>
+          {{#if validateQuestiontitle}}
+           <div class="alert alert-danger" role="alert">
+             {{validateQuestiontitle}}
+           </div>
+           {{else}}
+            <label style='font-size:85%' class="label label-info">
+		          Briefly describe your question
+            </label>
+            {{/if}}
+          </div>
+        <!--   <div class="control-group">
+            <label class="control-label" for="optionsCheckbox">Checkbox</label>
+            <div class="controls">
+              <label class="checkbox">
+                <input type="checkbox" id="optionsCheckbox" value="option1">
+                Option one is this and that—be sure to include why it's great
+              </label>
+            </div>
+          </div> -->
+          <div class="control-group">
+            <label class="control-label" for="textarea">Question Content:</label>
+            <p></p>
+            <div class="controls">
+              <textarea class="form-control input-xlarge questionContent" id="textarea" rows="3" placeholder='Question Content'></textarea>
+            </div>
+            <p></p>
+            {{#if validateQuestionContent}}
+           <div class="alert alert-danger" role="alert">
+             {{validateQuestionContent}}
+           </div>
+           {{else}}
+            <label style='font-size:85%' class="label label-info">
+	          Please try to be more detailed to receive better answers
+            </label>
+            {{/if}}
+            <p></p>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="select01">Increase Credit to attract more answers:</label>
+            <div class="controls">
+              <select id="select01" class="form-control creditSelect">
+                <option value="0">Add Credit</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+              </select>
+            </div>
+          </div>
+          <!-- <div class="control-group">
+            <label class="control-label" for="multiSelect">Multicon-select</label>
+            <div class="controls">
+              <select multiple="multiple" id="multiSelect" class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+          </div> -->
+          <!-- <div class="control-group">
+            <label class="control-label" for="fileInput">File input</label>
+            <div class="controls">
+              <input class="form-control input-file" id="fileInput" type="file">
+            </div>
+          </div> -->
+          
+         <!--  <div class="control-group">
+            <label class="control-label" for="optionsCheckbox2">Disabled checkbox</label>
+            <div class="controls">
+              <label class="checkbox">
+                <input type="checkbox" id="optionsCheckbox2" value="option1" disabled="">
+                This is a disabled checkbox
+              </label>
+            </div>
+          </div> -->
+          <div class="control-group warning">
+            <div class="controls">
+              <span class="help-inline"></span>
+            </div>
+          </div>
+         <div class='row'>
+         <div class='col-lg-6'>
+         <label class="control-label">Add Tags:</label>
+         <input type="text" data-role="tagsinput" width='70%'>
+         </div>
+         </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="reset" class="btn">Cancel</button>
+          </div>
+        </fieldset>
+      </form>
+ </div>
+</template>
