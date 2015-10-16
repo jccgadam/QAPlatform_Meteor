@@ -11,11 +11,12 @@ Template.addTags.events({
             } else {
                 var input = document.getElementById("searchTagsField").value;
                 var tmp = [];
-                console.log(input);
-                for(i = 0; i < Session.get("questionTags").length; i ++){
-                    if(Session.get("questionTags")[i].cName.toString().indexOf(input) > -1){
-                    	console.log(Session.get('questionTags')[i])
-                        tmp.push(Session.get("questionTags")[i]);
+                
+                for(i = 0; i < Session.get("questionTmpTags").length; i ++){
+                    if(Session.get("questionTmpTags")[i].cName.toString().indexOf(input) > -1)
+                    {
+                    	
+                        tmp.push(Session.get("questionTmpTags")[i]);
                     }
                 }
                 Session.set("questionTags", tmp);
@@ -24,7 +25,9 @@ Template.addTags.events({
     },
     'click .submitTags':function(e,t){
     	e.preventDefault();
-    	t.$('input[type="checkbox"]').checked
+    	t.$('input[type="checkbox"]').checked(function(data){
+           console.log(data.value);
+    	})
     }
 })
 
@@ -44,7 +47,7 @@ Template.addTags.helpers({
 		            Session.set('questionTmpTags',arr)
 		        if(typeof Session.get('questionTags')=='undefined'){
 		        	
-		        	 Session.set('questionTags',arr);
+		        	Session.set('questionTags',arr);
 		        }
 		    }
 			})
