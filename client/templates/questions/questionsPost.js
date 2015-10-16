@@ -23,7 +23,7 @@
 	function validateTags(tags){
 	    if(tags.length==0)
 	    {
-	    	Session.set('validateTags','Please fill Question Tags');
+	    	Session.set('validateTags','Please add Question Tags');
 	    	return false;
 	    }
 	    else{
@@ -34,18 +34,18 @@
 	Template.questionsPost.onRendered(function(){
 	// Create the bootstrap tag input UI
 	  // $('input[data-role="tagsinput"]').css("width",10000);
-      $('input[data-role="tagsinput"]').tagsinput('item');
+      // $('input[data-role="tagsinput"]').tagsinput('item');
       
-      $('input[data-role="tagsinput"]').tagsinput({
+      // $('input[data-role="tagsinput"]').tagsinput({
       
-      onTagExists: function(item, $tag) {
+      // onTagExists: function(item, $tag) {
 	    
-	      $tag.hide.fadeIn();
-        }
+	     //  $tag.hide.fadeIn();
+      //   }
 
-      });
+      // });
 
-      $('.bootstrap-tagsinput').css("width",'100%')  
+       $('.bootstrap-tagsinput').css("width",'100%')  
 
 	})
 	//template helper
@@ -56,8 +56,11 @@
      validateQuestionContent:function(){
      	return Session.get('validateQuestionContent');
      },
-     validateTags:function(){
-     	return Session.get('validateTags');
+     // validateTags:function(){
+     // 	return Session.get('validateTags');
+     // },
+     tags:function(){
+      return Session.get('questionTags');
      }
 	})
 
