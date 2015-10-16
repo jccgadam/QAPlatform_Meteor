@@ -11,7 +11,6 @@
             if(!re.test(s))
             {
             	Session.set('validateEmail',' is not right formated');
-            	console.log(re.test(s));
             	return false;
             }
             else{
@@ -54,23 +53,43 @@
         }
   }
   function validatefname(fname){
-  	     if(fname==='')
-        {
-        	Session.set('validatefname','cannot be empty');
-        	return false;
+  	     var res = /^([a-zA-Z]+\s)*[a-zA-Z]+$/;
+         if(fname==='')
+        { 
+          Session.set('validatefname',' cannot be empty');
+          return false;
         }
-        else{
-        	return true;
+        else if(fname!='')
+        {
+          if(!res.test(fname))
+          { 
+            Session.set('validatefname','can only be characters');
+            return false;
+          }
+          else  
+        	{
+            return true;
+          }
         }
   }
   function validatelname(lname){
-  	    if(lname==='')
-        {
-        	Session.set('validatelname','cannot be empty');
-        	return false;
+  	   var res = /^([a-zA-Z]+\s)*[a-zA-Z]+$/;
+         if(lname==='')
+        { 
+          Session.set('validatelname',' cannot be empty');
+          return false;
         }
-        else{
-        	return true;
+        else if(lname!='')
+        {
+          if(!res.test(lname))
+          { 
+            Session.set('validatelname','can only be characters');
+            return false;
+          }
+          else  
+          {
+            return true;
+          }
         }
   }
 
