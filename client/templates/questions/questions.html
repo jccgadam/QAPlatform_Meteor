@@ -16,12 +16,29 @@
                 </button>
             </div>
         </div>
-        <div class="content">
-            <ul class="list">
+            <div class="list">
                 {{#each q in questions}}
-                <li class="item" id = {{q.qId}}>{{q.credit}} {{q.title}} {{#if q.isOpen}} Open {{else}} Closed {{/if}} </li>
+                    <a class="item">
+                        <article class="question">
+
+                            <div class="create-date">
+                                <p class="create-month">{{q.createMonth}}</p>
+                                <p class="create-day">{{q.createDay}}</p>
+                            </div>
+
+                            <div class="question-desc">
+                                <h4 class="question-desc-header" id={{q.qId}}>{{q.title}}</h4>
+                                <p class="question-desc-detail">{{q.content}}</p>
+                            </div>
+
+                        </article>
+                    </a>
                 {{/each}}
-            </ul>
-        </div>
+
+                <!--{{#each q in questions}}-->
+                <!--<li class="item" id = {{q.qId}}>{{q.credit}} {{q.title}} {{#if q.isOpen}} Open {{else}} Closed {{/if}} </li>-->
+                <!--{{/each}}-->
+            </div>
+
     </div>
 </template>

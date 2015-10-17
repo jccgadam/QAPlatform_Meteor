@@ -4,18 +4,27 @@ Template.questions.helpers({
     }
 });
 
-HTTP.get("http://52.89.233.213:9000/questions", function (error, response) {
-    if (error) {
-        Template.questions.helpers({
-            questions: ""
-        });
-    }
-    else{
-        obj = JSON.parse(response.content);
-        Session.set("questions", obj);
-        Session.set("tmpResult", obj.results);
-    }
-});
+Template.questions.onCreated(function () {
+    var url = "http://52.89.233.213:9000/userquestions/" + JSON.parse(SessionAmplify.get('loginUser').content).uId;
+    HTTP.get(url, function (error, response) {
+        if (error) {
+            Template.questions.helpers({
+                questions: ""
+            });
+        }
+        else{
+            obj = JSON.parse(response.content);
+            var tmpArray = [];
+            for(var i = 0; i < obj.results.length; i ++){
+                var createMonth = monthNumberToString(obj.results[i].createDate.split("/")[1]);
+                obj.results[i].createMonth = createMonth;
+                obj.results[i].createDay = obj.results[i].createDate.split("/")[2];
+            }
+            Session.set("questions", obj);
+            Session.set("tmpResult", obj.results);
+        }
+    });
+})
 
 Template.questions.events({
     'click .item, click .button': function (event) {
@@ -57,3 +66,45 @@ Template.questions.events({
     },
 })
 
+function monthNumberToString(createMonth){
+    switch(Number(createMonth)) {
+        case 1:
+            return "Jan";
+            break;
+        case 2:
+            return "Feb";
+            break;
+        case 3:
+            return "Mar";
+            break;
+        case 4:
+            return "Apr";
+            break;
+        case 5:
+            return "May";
+            break;
+        case 6:
+            return "Jun";
+            break;
+        case 7:
+            return "Jul";
+            break;
+        case 8:
+            return "Aug";
+            break;
+        case 9:
+            return "Sep";
+            break;
+        case 10:
+            return "Oct";
+            break;
+        case 11:
+            return "Nov";
+            break;
+        case 12:
+            return "Dec";
+            break;
+        default:
+            return "Jan";
+    }
+}
