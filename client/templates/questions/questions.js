@@ -1,6 +1,6 @@
 Template.questions.helpers({
     questions: function(){
-        return Session.get("tmpResult");
+        return Session.get("tmpResult").reverse();
     }
 });
 
@@ -19,6 +19,14 @@ Template.questions.onCreated(function () {
                 var createMonth = monthNumberToString(obj.results[i].createDate.split("/")[1]);
                 obj.results[i].createMonth = createMonth;
                 obj.results[i].createDay = obj.results[i].createDate.split("/")[2];
+                obj.results[i].displayTitle = obj.results[i].title;
+                if(obj.results[i].title.length > 18){
+                    obj.results[i].displayTitle = obj.results[i].title.substring(0, 19) + "..";
+                }
+                obj.results[i].displayContent = obj.results[i].content;
+                if(obj.results[i].content.length > 32){
+                    obj.results[i].displayContent = obj.results[i].content.substring(0, 33) + "..";
+                }
             }
             Session.set("questions", obj);
             Session.set("tmpResult", obj.results);
