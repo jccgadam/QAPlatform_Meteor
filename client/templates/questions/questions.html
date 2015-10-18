@@ -1,7 +1,7 @@
 <template name="questions">
-    <div class="bar bar-header has-tabs-top bar-positive">
+    <div class="bar bar-header has-tabs-top bar-positive" id="questionhead">
         <div class="h1 title">
-            Questions Asked
+            Questions
         </div>
     </div>
     <div class="container">
@@ -34,11 +34,17 @@
                         </article>
                     </a>
                 {{/each}}
-
-                <!--{{#each q in questions}}-->
-                <!--<li class="item" id = {{q.qId}}>{{q.credit}} {{q.title}} {{#if q.isOpen}} Open {{else}} Closed {{/if}} </li>-->
-                <!--{{/each}}-->
             </div>
+    </div>
 
+    <div class="tabs-striped tabs-color-assertive">
+        <div class="tabs" id="bottom">
+            <p class="tab-item {{#if questionsaskedactive}} active {{/if}}" id="questionsasked">
+                Questions Asked
+            </p>
+            <p class="tab-item {{#if questionsaskedactive}} {{else}} active {{/if}}" id="questionsanswered">
+                Questions Answered
+            </p>
+        </div>
     </div>
 </template>

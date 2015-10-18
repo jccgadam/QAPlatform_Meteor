@@ -1,6 +1,9 @@
 Template.questions.helpers({
     questions: function(){
         return Session.get("tmpResult").reverse();
+    },
+    questionsaskedactive: function(){
+        return Session.get("questionsaskedactive");
     }
 });
 
@@ -8,39 +11,60 @@ Template.questions.onCreated(function () {
     var url = "http://52.89.233.213:9000/userquestions/" + JSON.parse(SessionAmplify.get('loginUser').content).uId;
     HTTP.get(url, function (error, response) {
         if (error) {
-            Template.questions.helpers({
-                questions: ""
-            });
+            Session.set("tmpResult", []);
         }
         else{
-            obj = JSON.parse(response.content);
-            var tmpArray = [];
+            var obj = JSON.parse(response.content);
             for(var i = 0; i < obj.results.length; i ++){
                 var createMonth = monthNumberToString(obj.results[i].createDate.split("/")[1]);
                 obj.results[i].createMonth = createMonth;
                 obj.results[i].createDay = obj.results[i].createDate.split("/")[2];
                 obj.results[i].displayTitle = obj.results[i].title;
-                if(obj.results[i].title.length > 18){
-                    obj.results[i].displayTitle = obj.results[i].title.substring(0, 19) + "..";
+                if(obj.results[i].title.length > 16){
+                    obj.results[i].displayTitle = obj.results[i].title.substring(0, 17) + "..";
                 }
                 obj.results[i].displayContent = obj.results[i].content;
-                if(obj.results[i].content.length > 32){
-                    obj.results[i].displayContent = obj.results[i].content.substring(0, 33) + "..";
+                if(obj.results[i].content.length > 28){
+                    obj.results[i].displayContent = obj.results[i].content.substring(0, 29) + "..";
                 }
             }
             Session.set("questions", obj);
             Session.set("tmpResult", obj.results);
         }
     });
+
+    var url2 = "http://52.89.233.213:9000/answerquestions/" + JSON.parse(SessionAmplify.get('loginUser').content).uId;
+    HTTP.get(url2, function (error, response) {
+            if (error) {
+                        Session.set("tmpResult", []);
+            }
+            else{
+                var obj = JSON.parse(response.content);
+                for(var i = 0; i < obj.results.length; i ++){
+                    var createMonth = monthNumberToString(obj.results[i].createDate.split("/")[1]);
+                    obj.results[i].createMonth = createMonth;
+                    obj.results[i].createDay = obj.results[i].createDate.split("/")[2];
+                    obj.results[i].displayTitle = obj.results[i].title;
+                    if(obj.results[i].title.length > 16){
+                        obj.results[i].displayTitle = obj.results[i].title.substring(0, 17) + "..";
+                    }
+                    obj.results[i].displayContent = obj.results[i].content;
+                    if(obj.results[i].content.length > 28){
+                        obj.results[i].displayContent = obj.results[i].content.substring(0, 29) + "..";
+                    }
+                }
+                Session.set("answerQuestions", obj);
+            }
+        });
+    Session.set("questionsaskedactive", true);
 })
 
 Template.questions.events({
-    'click .item, click .button': function (event) {
-    console.log(event.target.id);
+    'click .item, click .button, click .tab-item': function (event) {
         if(Number(event.target.id) >= 1){
-            for(i = 0; i < Session.get("questions").results.length; i ++){
-                if(Session.get("questions").results[i].qId.toString() === event.target.id){
-                    Session.set("question", Session.get("questions").results[i]);
+            for(i = 0; i < Session.get("tmpResult").length; i ++){
+                if(Session.get("tmpResult")[i].qId.toString() === event.target.id){
+                    Session.set("question", Session.get("tmpResult")[i]);
                     break;
                 }
             }
@@ -52,6 +76,14 @@ Template.questions.events({
 
         } else if(event.target.id == "cancelSearch"){
             document.getElementById("searchField").value = "";
+            Session.set("tmpResult", Session.get("questionsaskedactive") ? Session.get("questions").results : Session.get("answerQuestions").results);
+        } else if(event.target.id == "questionsanswered"){
+            document.getElementById("searchField").value = "";
+            Session.set("questionsaskedactive", false);
+            Session.set("tmpResult", Session.get("answerQuestions").results);
+        } else if(event.target.id == "questionsasked"){
+            document.getElementById("searchField").value = "";
+            Session.set("questionsaskedactive", true);
             Session.set("tmpResult", Session.get("questions").results);
         }
     },
@@ -59,13 +91,13 @@ Template.questions.events({
     'keyup .searchField' : function(event){
         if(event.target.id == "searchField"){
             if(document.getElementById("searchField").value == ""){
-                Session.set("tmpResult", Session.get("questions").results);
+                Session.set("tmpResult", Session.get("questionsaskedactive") ? Session.get("questions").results : Session.get("answerQuestions").results);
             } else {
                 var input = document.getElementById("searchField").value;
                 var tmp = [];
-                for(i = 0; i < Session.get("questions").results.length; i ++){
-                    if(Session.get("questions").results[i].title.toString().indexOf(input) > -1){
-                        tmp.push(Session.get("questions").results[i]);
+                for(i = 0; i < Session.get("tmpResult").length; i ++){
+                    if(Session.get("tmpResult")[i].title.toString().indexOf(input) > -1){
+                        tmp.push(Session.get("tmpResult")[i]);
                     }
                 }
                 Session.set("tmpResult", tmp);
