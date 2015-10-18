@@ -43,9 +43,14 @@
 }
 
 #questionhead {
-  position:fixed;
+  position: fixed;
+  z-index: 9;
   left: 0px;
   top: 0px;
   height: 50px;
-  width:100%;
+  width: 100%;
+}
+
+#searchcss {
+  z-index: 1;
 }
