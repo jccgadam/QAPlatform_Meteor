@@ -58,6 +58,7 @@ meteoric:ionic-sass@0.3.0
 meteoric:ionicons-sass@0.1.7
 minifiers@1.1.7
 minimongo@1.0.10
+mizzao:bootboxjs@4.4.0
 mizzao:bootstrap-3@3.3.1_1
 mobile-experience@1.0.1
 mobile-status-bar@1.0.6
@@ -73,6 +74,7 @@ reactive-dict@1.1.2
 reactive-var@1.0.6
 reload@1.1.4
 retry@1.0.4
+richsilv:dumb-collections@1.1.5
 routepolicy@1.0.6
 session@1.1.1
 spacebars@1.0.7

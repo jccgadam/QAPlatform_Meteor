@@ -7,55 +7,94 @@ Template.addTags.events({
 		//console.log(Session.get('questionTags'));
         if(event.target.id == "searchTagsField"){
             if(document.getElementById("searchTagsField").value == ""){
-                Session.set("questionTags", Session.get("questionTmpTags"));
+                Session.set("searchTagsField",null);
             } else {
                 var input = document.getElementById("searchTagsField").value;
-                var tmp = [];
-                
-                for(i = 0; i < Session.get("questionTmpTags").length; i ++){
-                    if(Session.get("questionTmpTags")[i].cName.toString().indexOf(input) > -1)
-                    {
-                    	
-                        tmp.push(Session.get("questionTmpTags")[i]);
-                    }
-                }
-                Session.set("questionTags", tmp);
+                Session.set("searchTagsField", input);
             }
         }
     },
     'click .submitTags':function(e,t){
     	e.preventDefault();
-    	t.$('input[type="checkbox"]').checked(function(data){
-           console.log(data.value);
-    	})
-    }
-})
+        Session.set('tagsError',null);
+    	var tagCount = AllTags.find({'checked':'1'}).count();    	
+    	if(tagCount!=0)
+    	{
+    		Router.go('/questionsPost');
+    	}
+    	else
+    	{
+    		Session.set('tagsError','Please select at least one tag');
+    	}
+    },
+    'change .tagCheck':function(e,t){
+        e.preventDefault();
+        Session.set('tagsError',null);
+        var checkedTag = parseInt(e.target.value);
+        var checked = AllTags.findOne({'cId':checkedTag}).checked;
+        if(checked =='0')
+        {
+        	AllTags.update({'cId':checkedTag},{$set:{'checked':'1'}});
+        	console.log(AllTags.find({'cId':checkedTag}).fetch());
+        }
+        else if(checked=='1')
+        {
+        	AllTags.update({'cId':checkedTag},{$set:{'checked':'0'}});
+        	console.log(AllTags.find({'cId':checkedTag}).fetch());
+
+        }
+    },
+  
+    })
 
 Template.addTags.helpers({
 	tags:function(){
-
+        // AllTags.clear();
 		HTTP.get("http://52.89.233.213:9000/categories", function (error, response) {
 		    if (error) {
 		       console.log(error);
 		    }
 		    else{
-		        var obj = JSON.parse(response.content);
-		        var arr =[];
+		    	if(AllTags.find().fetch().length==0)
+		        {
+		        	var obj = JSON.parse(response.content).results;
+			        
 		        _.each(obj,function(k,v){
-		        	arr.push({'cName':JSON.parse(k).cName,'cId':JSON.parse(k).cId})
+		        	AllTags.insert({'cName':k.cName,'cId':k.cId,'checked':'0'})
 		        })
-		            Session.set('questionTmpTags',arr)
-		        if(typeof Session.get('questionTags')=='undefined'){
-		        	
-		        	Session.set('questionTags',arr);
 		        }
+		       
 		    }
 			})
 		
-		if((Session.get('questionTags').length==Session.get('questionTmpTags').length))
-		{
-			return Session.get('questionTmpTags')
-		}  
-		return Session.get('questionTags');
+        
+
+    },
+    checkedTags:function(){
+    	var searchTagsField = Session.get('searchTagsField');
+        if(searchTagsField==null)
+        	{
+        		return AllTags.find({'checked':'1'}).fetch();
+        	}	
+		else
+		    {			
+                return AllTags.find({'checked':'1',"cName":{$regex : ".*"+searchTagsField+".*"}});			
+			}
+        
+    },
+    uncheckedTags:function(){
+    	var searchTagsField = Session.get('searchTagsField');
+        if(searchTagsField==null)
+        	{
+        		return AllTags.find({'checked':'0'}).fetch();
+        	}	
+		else{			
+              return AllTags.find({'checked':'0',"cName":{$regex : ".*"+searchTagsField+".*"}});			
+			}
+        
+    },
+    tagsError:function(){
+    	
+    	return Session.get('tagsError');
     }
 })

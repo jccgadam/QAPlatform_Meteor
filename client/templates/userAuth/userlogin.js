@@ -15,6 +15,26 @@ Template.userlogin.onCreated(function(){
   Session.set('message',null);
 })
 Template.userlogin.events({   
+    'blur .email':function(e,t){
+          Session.set('emailError',null);
+          var email = t.$('.email').val();
+           if(email=='')
+          {  console.log(Session.get('emailError'));
+             Session.set('emailError','Please enter email');
+             
+             return;
+          }
+
+    },
+    'blur .password':function(e,t){
+          Session.set('passwordError',null);
+          var password =t.$('.password').val(); 
+          if(password=='')
+          { 
+            Session.set('passwordError','Please enter passord');
+            return;
+          }
+    },
     'submit .userlogin':function(e,t){
           e.preventDefault();
           //clear all session var
@@ -59,13 +79,7 @@ Template.userlogin.events({
 
 	          })
                }
-    },
-    'blur .email':function(e,t){
-          Session.set('emailError',null);
-    },
-    'blur .password':function(e,t){
-          Session.set('passwordError',null);
-    },
+    }
 })
 
 Template.userlogin.helpers({

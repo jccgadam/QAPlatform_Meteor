@@ -1,5 +1,10 @@
 <template name='questionsPost'>
-  <div class='container'>
+  <div class="bar bar-header has-tabs-top bar-positive">
+      <div class="h1 title">
+      Striped Style Tabs
+      </div>
+  </div>
+  <div class='container' style="margin-top:50px"> 
   <form  id='questionsPost' class="form-horizontal well">
         <fieldset>
           <legend>Post a Question:</legend>
@@ -7,13 +12,13 @@
             <label class="control-label" for="input01" >Question Title:</label>
             <p></p>
             <div class="controls bootstrap-tagsinput">
-              <input class='questionTitle' type="text" id="input01" maxlength='35' placeholder='Question Title' style="width:70%">
+              <input class='questionTitle'  type="text" id="input01" maxlength='35' placeholder='Question Title' style="width:70%">
               <!-- <p class="help-block">In addition to freeform text, any HTML5 text-based input appears like so.</p> -->
               <p></p>
             </div>
-          {{#if validateQuestiontitle}}
+          {{#if validateQuestionTitle}}
            <div class="alert alert-danger" role="alert">
-             {{validateQuestiontitle}}
+             {{validateQuestionTitle}}
            </div>
            {{else}}
             <label style='font-size:85%' class="label label-info">
@@ -97,13 +102,55 @@
          <div class='row'>
          <div class='col-lg-6'>
          <label class="control-label">Add Tags:</label>
+         <br>
          </div>
-         <a href={{pathFor 'addTags'}} class="button icon-right ion-chevron-right button-calm activated">Learn More</a>
          </div>
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Save changes</button>
-            <button type="reset" class="btn">Cancel</button>
+         
+         
+         {{#if tags}}
+          <div class='row'>
+          {{#each tags}}
+           <div class='col-lg-3'>
+            <div class="list card">
+            <div class="item">
+             {{cName}}
+            </div>
+            </div>
+           </div>
+          {{/each}}
           </div>
+          <div class='row'>
+            <div class='col-lg-3'> 
+              <a href={{pathFor 'addTags'}}><button type='button' class='btn btn-primary'>Edit Added Tags</button></a>
+            </div>
+          </div>
+          {{else}}
+       
+          <div class='col-lg-6'>
+          <a href={{pathFor 'addTags'}} class="button icon-right ion-chevron-right button-calm activated">
+           Add Question Tags 
+          </a>
+          </div>
+
+         {{/if}}
+         <br>
+         <!--  {{#if validateTags}}
+           <div class="alert alert-danger" role="alert">
+             {{validateTags}}
+           </div>
+           {/if} -->
+
+         <div class='row'>
+         <div class='col-lg-4'>
+         </div>
+         <div class='col-lg-3'>
+            <div class="form-actions" style="vertical-align:center">
+              <button type="submit" class="btn btn-primary">Save changes</button>
+              <button type="reset" class="btn">Cancel</button>
+            </div>
+        </div>
+
+         </div>
         </fieldset>
       </form>
  </div>

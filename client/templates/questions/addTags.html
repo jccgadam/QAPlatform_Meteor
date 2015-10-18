@@ -10,11 +10,29 @@
         </button>
 </div>
       <ul class="list">
-      {{#each tags}}
+      {{tags}}
+      <p>Checked Tags:</p>
+      {{#each checkedTags}}
       <li class="item item-toggle">
            {{cName}}
            <label class="toggle toggle-positive">
-             <input type="checkbox"  value="{{cId}}">
+          
+           <input class='tagCheck' name='{{cName}}'  checked type="checkbox"  value="{{cId}}">
+          
+             <div class="track">
+               <div class="handle"></div>
+             </div>
+           </label>
+        </li>
+        {{/each}}
+        <p>Other Tags:</p>
+        {{#each uncheckedTags}}
+      <li class="item item-toggle">
+           {{cName}}
+           <label class="toggle toggle-positive">
+          
+           <input class='tagCheck' name='{{cName}}'  type="checkbox"  value="{{cId}}">
+          
              <div class="track">
                <div class="handle"></div>
              </div>
@@ -85,6 +103,11 @@
            </label>
         </li> -->
       </ul>
+      {{#if tagsError}}
+           <div class="alert alert-danger" role="alert">
+             {{tagsError}}
+           </div>         
+      {{/if}}
       <button class='btn btn-primary submitTags'>Submit Tags</button>
     </div>
 </template>

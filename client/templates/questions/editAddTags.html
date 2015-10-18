@@ -1,0 +1,47 @@
+<template name='editAddTags'>
+
+<div class="content has-header">
+  <div class="bar bar-header item-input-inset" style="margin-top:50px">
+        <label class="item-input-wrapper">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input class="searchTagsField" id="searchTagsField" type="search" placeholder="Search">
+        </label>
+        <button id="cancelSearch" class="button button-clear">
+            Cancel
+        </button>
+  </div>
+      <ul class="list">
+      {{#each editAddTags}}
+      <li class="item item-toggle">
+           {{cName}}
+           <label class="toggle toggle-positive">
+             <input class='tagCheck' type="checkbox" checked='' name={{cName}} value="{{cId}}">
+             <div class="track">
+               <div class="handle"></div>
+             </div>
+           </label>
+        </li>
+        {{/each}}
+        {{#each uncheckedTags}}
+        <li class="item item-toggle">
+           {{cName}}
+           <label class="toggle toggle-positive">
+             <input class='tagCheck'  type="checkbox" name={{cName}} value="{{cId}}">
+             <div class="track">
+               <div class="handle"></div>
+             </div>
+           </label>
+        </li>
+        {{/each}}
+      </ul>
+
+      {{#if tagsError}}
+           <div class="alert alert-danger" role="alert">
+             {{tagsError}}
+           </div>         
+      {{/if}}
+
+	 <button class='btn btn-primary submitEditTags'>Submit Tags</button>
+     </div>
+
+</template>
