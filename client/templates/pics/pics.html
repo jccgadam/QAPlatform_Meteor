@@ -1,7 +1,12 @@
 <template name="home">
+  <div class="bar bar-header has-tabs-top bar-positive">
+      <div class="h1 title">
+      QA_Platform
+      </div>
+  </div>
     <div class="container">
         <header>
-            <h1>Meteor Upload Test</h1>
+            <h1>Upload your Question pictures</h1>
         </header>
         <div class="panel panel-default">
             <!-- Default panel contents -->
@@ -28,8 +33,8 @@
                     {{> upload_bootstrap }}
                 </li> -->
                 <li class="list-group-item">
-                    <label>Multiple files</label>
-                    <pre class="well">&#123;&#123;&gt; upload_bootstrap multiple=true  &#125;&#125;</pre>
+                    <label>Choose pictures:(Multiple files may apply)</label>
+                    <!-- <pre class="well">&#123;&#123;&gt; upload_bootstrap multiple=true  &#125;&#125;</pre> -->
                     {{> upload_bootstrap multiple=true fileTypes='image/*' callbakc = myCallbacks}}</li>
                 <!-- <li class="list-group-item">
                     <label>Extension filter: .jpg and .png only</label>, for more info go to <a
@@ -150,22 +155,31 @@ Meteor.startup(function() {
             </p>
         </div>
     </div>
+  
 </template>
 
 
 <template name="uploadedInfo">
     <div class="documentList">
         <ul class="list-inline">
+           <div class='row'> 
             {{#each this}}
+                <div class='col-lg-4'>
                 <li class="documentItem">
                     <a href="/upload/{{path}}"><img src="{{src}}"></a><br/>
                     <label>{{ name }}</label> <br/>
                     {{ size }} B<br>
                     {{#if _id}}
-                        <a class="btn btn-danger deleteUpload">Delete</a>
+                        <button class="btn btn-danger deleteUpload" data-action="showConfirm">Delete</button>
                     {{/if}}
                 </li>
+                </div>   
             {{/each}}
+           </div> 
         </ul>
     </div>
+</template>
+
+<template name='removePic'>
+<p></p>
 </template>

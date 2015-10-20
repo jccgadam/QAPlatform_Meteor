@@ -4,13 +4,13 @@ Meteor.startup(function() {
   	{   
   		pics = [];
   		file.uId = 1;
-	    pics.push(Uploads.insert(file));
+	    pics.push({'id':Uploads.insert(file),'name':file.name});
 	    SessionAmplify.set('pics',pics);
   	}
     else{
     	pics = [];
     	pics =SessionAmplify.get('pics');
-    	pics.push(Uploads.insert(file));
+    	pics.push({'id':Uploads.insert(file),'name':file.name});
         SessionAmplify.set('pics',pics);
         
     }

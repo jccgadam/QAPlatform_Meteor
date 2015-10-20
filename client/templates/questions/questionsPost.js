@@ -74,15 +74,7 @@
         var content = e.target.value;
         return validateQuestionContent(content);
     },
-    // 'blur .validateTags':function(e,t){
-
-    // 	Session.set('validateTags',null);
-    //     var tags = e.target.value;
-
-    //     return validateTags(tags);
-    // },
-
-	'submit form':function(e,t){
+	  'submit form':function(e,t){
      	e.preventDefault();
      	var title = t.$('.questionTitle').val();
      	var content    = t.$('.questionContent').val();

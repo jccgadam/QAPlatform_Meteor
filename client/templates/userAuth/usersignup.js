@@ -140,6 +140,9 @@
         return validatelname(lname);
         
      },
+     'click .back-button':function(e,t){
+        window.history.back();
+     },
      'submit form':function(e,t){
      	e.preventDefault();
      	var email = t.$('.email').val();
