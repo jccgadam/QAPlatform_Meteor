@@ -87,19 +87,19 @@
      	var title = t.$('.questionTitle').val();
      	var content    = t.$('.questionContent').val();
       var tags= [];
-      console.log(tags);
         if(AllTags.find({'checked':'1'}).count()!=0)
          {
             AllTags.find({'checked':'1'}).fetch().forEach(function(k,v){
             tags.push(k.cId);
           })
          }
-        
+         
+        // console.log(SessionAmplify.get('pics'));
         var credit = t.$('.creditSelect').val();
         var loginUser =  SessionAmplify.get('loginUser');
         var uId = loginUser.uId;
-        
-        console.log(tags);
+        // console.log(SessionAmplify.get('pics'));
+        // console.log(tags);
         if(!(validateQuestionTitle(title)&&validateQuestionContent(content)&&validateTags(tags)))     	
            {          
                        	 
@@ -118,13 +118,13 @@
           //server response callback
           function (error, response) {
             if (error) {
-              console.log(error)
+              // console.log(error)
               Session.set('message','post fails')
                         }
             else{
               Session.set('title',null);
               Session.set('content',null);
-              console.log(response);
+              // console.log(response);
               Router.go('questions');
               
             }

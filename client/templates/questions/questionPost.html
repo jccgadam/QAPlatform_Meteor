@@ -131,17 +131,16 @@
            Add Question Tags 
           </a>
           </div>
-
          {{/if}}
          <br>
-         <!--  {{#if validateTags}}
-           <div class="alert alert-danger" role="alert">
-             {{validateTags}}
-           </div>
-           {/if} -->
-
+         <a href={{pathFor 'home'}}><button class='btn btn-priamry'></button>add pictures</a> 
          <div class='row'>
          <div class='col-lg-4'>
+         {{#if message}}
+           <div class="alert alert-danger" role="alert">
+         {{message}}
+         </div>
+         {{/if}}
          </div>
          <div class='col-lg-3'>
             <div class="form-actions" style="vertical-align:center">
