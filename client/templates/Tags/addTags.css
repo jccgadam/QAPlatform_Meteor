@@ -1,0 +1,12 @@
+#addTagsHead {
+  position: fixed;
+  z-index: 9;
+  left: 0px;
+  top: 0px;
+  height: 50px;
+  width: 100%;
+}
+
+#addTagsSearch {
+  z-index: 1;
+}

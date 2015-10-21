@@ -23,7 +23,6 @@
 	}
 
 	function validateTags(tags){
-    console.log(tags);
 	    if(tags.length==0)
 	    {
 	    	Session.set('validateTags','Please add Question Tags');
@@ -39,7 +38,7 @@
        $('.questionTitle').val(Session.get('title')); 
        $('.questionContent').val(Session.get('content'));
        $('.bootstrap-tagsinput').css("width",'100%')  
-
+       document.getElementById("creditSet").innerHTML = document.getElementById("creditAmountBar").value;
 	})
 	//template helper
 	Template.questionsPost.helpers({
@@ -55,8 +54,10 @@
      	return Session.get('validateTags');
      },
      tags:function(){
-
      return AllTags.find({'checked':'1'}).fetch();
+     },
+     maxCredit: function(){
+        return JSON.parse(SessionAmplify.get('loginUser').content).credit;
      }
 	})
 
@@ -74,42 +75,42 @@
         var content = e.target.value;
         return validateQuestionContent(content);
     },
-    // 'click .add-pictures':function(){
-    //   console.log('redirect');
-    //     Router.redirect('http://54.191.134.26:3000/home');
-    // },
-	  'submit form':function(e,t){
+
+    'change .creditAmountBar': function(e){
+        document.getElementById("creditSet").innerHTML = document.getElementById("creditAmountBar").value;
+    },
+
+    'click .btn': function(e){
+        if(e.target.id == "cancleButton"){
+            Router.go('main');
+        }
+    },
+
+	'submit form':function(e,t){
      	e.preventDefault();
      	var title = t.$('.questionTitle').val();
-     	var content    = t.$('.questionContent').val();
-      var tags= [];
+     	var content = t.$('.questionContent').val();
+        var finalTags= [];
         if(AllTags.find({'checked':'1'}).count()!=0)
          {
             AllTags.find({'checked':'1'}).fetch().forEach(function(k,v){
-            tags.push(k.cId);
+            finalTags.push(k.cId);
           })
          }
-         
-        // console.log(SessionAmplify.get('pics'));
-        var credit = t.$('.creditSelect').val();
-        var loginUser =  SessionAmplify.get('loginUser');
+
+        var credit = Number(document.getElementById("creditSet").innerHTML);
+        var loginUser = JSON.parse(SessionAmplify.get('loginUser').content);
+        console.log("credit: " + credit);
         var uId = loginUser.uId;
-        // console.log(SessionAmplify.get('pics'));
-        // console.log(tags);
-        if(!(validateQuestionTitle(title)&&validateQuestionContent(content)&&validateTags(tags)))     	
-           {          
-                       	 
+
+        if(!(validateQuestionTitle(title)&&validateQuestionContent(content)&&validateTags(finalTags)))
+        {
               return false;
-           }
-           
+        }
+
      	HTTP.post("http://54.191.134.26:9000/questions",
           {
-            data: {
-            	   
-            	   uId:1,title:title,content:content
-
-                  }
-
+            data: {uId: uId, title: title, content: content, credit: credit, cIds: finalTags}
           },
           //server response callback
           function (error, response) {
@@ -120,11 +121,9 @@
             else{
               Session.set('title',null);
               Session.set('content',null);
-              // console.log(response);
               Router.go('questions');
-              
             }
           })
-  	 
+
      }
  })

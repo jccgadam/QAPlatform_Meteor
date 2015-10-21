@@ -1,19 +1,17 @@
 <template name='questionsPost'>
   <div class="bar bar-header has-tabs-top bar-positive">
       <div class="h1 title">
-      Striped Style Tabs
+      Post a Question
       </div>
   </div>
   <div class='container' style="margin-top:50px"> 
   <form  id='questionsPost' class="form-horizontal well">
         <fieldset>
-          <legend>Post a Question:</legend>
           <div class="control-group">
             <label class="control-label" for="input01" >Question Title:</label>
             <p></p>
             <div class="controls bootstrap-tagsinput">
               <input class='questionTitle'  type="text" id="input01" maxlength='35' placeholder='Question Title' style="width:70%">
-              <!-- <p class="help-block">In addition to freeform text, any HTML5 text-based input appears like so.</p> -->
               <p></p>
             </div>
           {{#if validateQuestionTitle}}
@@ -22,19 +20,11 @@
            </div>
            {{else}}
             <label style='font-size:85%' class="label label-info">
-		          Briefly describe your question
+		          Briefly describe your question.
             </label>
             {{/if}}
           </div>
-        <!--   <div class="control-group">
-            <label class="control-label" for="optionsCheckbox">Checkbox</label>
-            <div class="controls">
-              <label class="checkbox">
-                <input type="checkbox" id="optionsCheckbox" value="option1">
-                Option one is this and that—be sure to include why it's great
-              </label>
-            </div>
-          </div> -->
+
           <div class="control-group">
             <label class="control-label" for="textarea">Question Content:</label>
             <p></p>
@@ -48,52 +38,12 @@
            </div>
            {{else}}
             <label style='font-size:85%' class="label label-info">
-	          Please try to be more detailed to receive better answers
+	          Try to be more detailed to receive better answers.
             </label>
             {{/if}}
             <p></p>
           </div>
-          <div class="control-group">
-            <label class="control-label" for="select01">Increase Credit to attract more answers:</label>
-            <div class="controls">
-              <select id="select01" class="form-control creditSelect">
-                <option value="0">Add Credit</option>
-                <option value="10">10</option>
-                <option value="20">20</option>
-                <option value="30">30</option>
-                <option value="40">40</option>
-                <option value="50">50</option>
-              </select>
-            </div>
-          </div>
-          <!-- <div class="control-group">
-            <label class="control-label" for="multiSelect">Multicon-select</label>
-            <div class="controls">
-              <select multiple="multiple" id="multiSelect" class="form-control">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-          </div> -->
-          <!-- <div class="control-group">
-            <label class="control-label" for="fileInput">File input</label>
-            <div class="controls">
-              <input class="form-control input-file" id="fileInput" type="file">
-            </div>
-          </div> -->
-          
-         <!--  <div class="control-group">
-            <label class="control-label" for="optionsCheckbox2">Disabled checkbox</label>
-            <div class="controls">
-              <label class="checkbox">
-                <input type="checkbox" id="optionsCheckbox2" value="option1" disabled="">
-                This is a disabled checkbox
-              </label>
-            </div>
-          </div> -->
+
           <div class="control-group warning">
             <div class="controls">
               <span class="help-inline"></span>
@@ -101,22 +51,17 @@
           </div>
          <div class='row'>
          <div class='col-lg-6'>
-         <label class="control-label">Add Tags:</label>
+         <label class="control-label">Question Categories:</label>
          <br>
          </div>
          </div>
-         
-         
+
          {{#if tags}}
           <div class='row'>
           {{#each tags}}
-           <div class='col-lg-3'>
-            <div class="list card">
-            <div class="item">
-             {{cName}}
+            <div class="col">
+             <div class="categoryCard">{{cName}}</div>
             </div>
-            </div>
-           </div>
           {{/each}}
           </div>
           <div class='row'>
@@ -125,7 +70,6 @@
             </div>
           </div>
           {{else}}
-       
           <div class='col-lg-6'>
           <a href={{pathFor 'addTags'}} class="button icon-right ion-chevron-right button-calm activated">
            Add Question Tags 
@@ -134,6 +78,16 @@
          {{/if}}
          <br>
          <a href='http://54.191.134.26:3000/home'><button type='button' class='btn btn-priamry add-pictures'>add pictures</button></a>
+            <div class="control-group">
+                <label class="control-label">Add Credit to attract more answers: <a id="creditSet"></a></label>
+                <div class="controls">
+                    <div class="item range range-positive">
+                        <i>0</i>
+                        <input class="creditAmountBar" id="creditAmountBar" type="range" name="volume" min="0" max={{maxCredit}} value=0>
+                        <i>{{maxCredit}}</i>
+                    </div>
+                </div>
+            </div>
          <div class='row'>
          <div class='col-lg-4'>
          {{#if message}}
@@ -144,11 +98,10 @@
          </div>
          <div class='col-lg-3'>
             <div class="form-actions" style="vertical-align:center">
-              <button type="submit" class="btn btn-primary">Save changes</button>
-              <button type="reset" class="btn">Cancel</button>
+              <button type="submit" class="btn btn-primary">Ask Question</button>
+              <button type="reset" class="btn" id="cancleButton">Cancel</button>
             </div>
         </div>
-
          </div>
         </fieldset>
       </form>
