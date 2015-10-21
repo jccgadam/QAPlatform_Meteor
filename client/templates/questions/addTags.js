@@ -35,12 +35,12 @@ Template.addTags.events({
         if(checked =='0')
         {
         	AllTags.update({'cId':checkedTag},{$set:{'checked':'1'}});
-        	console.log(AllTags.find({'cId':checkedTag}).fetch());
+        	
         }
         else if(checked=='1')
         {
         	AllTags.update({'cId':checkedTag},{$set:{'checked':'0'}});
-        	console.log(AllTags.find({'cId':checkedTag}).fetch());
+        	
 
         }
     },
@@ -50,7 +50,7 @@ Template.addTags.events({
 Template.addTags.helpers({
 	tags:function(){
         // AllTags.clear();
-		HTTP.get("http://52.89.233.213:9000/categories", function (error, response) {
+		HTTP.get("http://54.191.134.26:9000/categories", function (error, response) {
 		    if (error) {
 		       console.log(error);
 		    }

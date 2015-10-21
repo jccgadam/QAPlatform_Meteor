@@ -1,4 +1,6 @@
 Meteor.startup(function() {
+   Uploader.uploadUrl = Meteor.absoluteUrl("upload");
+
   Uploader.finished = function(index, file) {
   	if(typeof SessionAmplify.get('pics')=='undefined'||(SessionAmplify.get('pics')==null))
   	{   

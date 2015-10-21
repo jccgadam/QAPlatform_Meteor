@@ -161,7 +161,7 @@
            	 //console.log(!validateEmail(email)&&validatePw(pw)&&validateRePw(pw,rpw)&&validatefname(fname)&&validatelname(lname))
              return false;
            }
-     	HTTP.post("http://52.89.233.213:9000/signup",
+     	HTTP.post("http://54.191.134.26:9000/signup",
           {
             data: {
             	email:email,password:pw,firstName:fname,lastName:lname

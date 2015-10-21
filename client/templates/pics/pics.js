@@ -13,8 +13,9 @@ Template['home'].helpers({
 
 Template['uploadedInfo'].helpers({
   src: function() {
+    console.log(this)
     if (this.type.indexOf('image') >= 0) {
-      return 'upload/' + this.path;
+      return  this.path;
     } else return 'file_icon.png';
   }
 });
@@ -46,7 +47,7 @@ Template['uploadedInfo'].events({
        
       }
    })
-   }
+   },
   }) 
 
 //   var id = this._id;

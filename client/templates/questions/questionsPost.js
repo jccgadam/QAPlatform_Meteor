@@ -74,6 +74,10 @@
         var content = e.target.value;
         return validateQuestionContent(content);
     },
+    // 'click .add-pictures':function(){
+    //   console.log('redirect');
+    //     Router.redirect('http://54.191.134.26:3000/home');
+    // },
 	  'submit form':function(e,t){
      	e.preventDefault();
      	var title = t.$('.questionTitle').val();
@@ -98,7 +102,7 @@
               return false;
            }
            
-     	HTTP.post("http://52.89.233.213:9000/questions",
+     	HTTP.post("http://54.191.134.26:9000/questions",
           {
             data: {
             	   

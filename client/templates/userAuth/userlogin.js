@@ -58,7 +58,7 @@ Template.userlogin.events({
           }
           else{
 
-            HTTP.post("http://52.89.233.213:9000/signin",
+            HTTP.post("http://54.191.134.26:9000/signin",
           {
             data: {email:email, password:password}
           },

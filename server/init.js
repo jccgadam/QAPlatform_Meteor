@@ -1,8 +1,8 @@
 Meteor.startup(function () {
   // init items collection
   UploadServer.init({
-    tmpDir: process.env.PWD + '/.uploads/tmp',
-    uploadDir: process.env.PWD + '/.uploads/',
+    tmpDir: process.env.PWD + 'client/uploads/tmp',
+    uploadDir: process.env.PWD + 'client/uploads/',
     checkCreateDirectories: true,
     // acceptFileTypes:'[^\s]+(\.(?i)(jpg|png|gif|bmp))$',
     getDirectory: function(fileInfo, formData) {
