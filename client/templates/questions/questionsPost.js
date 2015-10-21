@@ -56,9 +56,15 @@
      tags:function(){
      return AllTags.find({'checked':'1'}).fetch();
      },
+// <<<<<<< HEAD
      maxCredit: function(){
         return JSON.parse(SessionAmplify.get('loginUser').content).credit;
+// =======
+     message:function(){
+      return Session.get('message');
+// >>>>>>> update
      }
+
 	})
 
     //template events helper
@@ -121,6 +127,10 @@
             else{
               Session.set('title',null);
               Session.set('content',null);
+<<<<<<< HEAD
+=======
+              AllTags.clear();
+>>>>>>> update
               Router.go('questions');
             }
           })
