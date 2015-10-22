@@ -1,0 +1,56 @@
+.notification {
+  width: 100%;
+  display: table; }
+
+.create-date {
+  width: 6rem;
+  margin: 0 auto 1rem;
+  display: table-cell;
+  width: auto; }
+  .create-date .create-month {
+    margin: 0;
+    background: #eee;
+    padding: 0.5rem 2rem;
+    text-align: center; }
+  .create-date .create-day {
+    margin: 0;
+    border: 1px solid #eee;
+    padding: 0 2rem;
+    text-align: center;
+    font-size: 2rem; }
+
+.notification-desc {
+  width: 100%;
+  padding-left: 1rem;
+  text-align: left;
+  display: table-cell;
+  vertical-align: top; }
+  .notification-desc .notification-desc-header {
+    font-weight: bold;
+    font-size: 140%;
+    margin: 0 0 0.5rem 0;
+    padding: 0; }
+  .notification-desc .notification-desc-detail {
+    margin: 0 0 0.25rem;
+    padding: 0; }
+
+#bottom {
+  position:fixed;
+  left:0px;
+  bottom:0px;
+  height:45px;
+  width:100%;
+}
+
+#notificationhead {
+  position: fixed;
+  z-index: 9;
+  left: 0px;
+  top: 0px;
+  height: 50px;
+  width: 100%;
+}
+
+#searchcss {
+  z-index: 1;
+}
