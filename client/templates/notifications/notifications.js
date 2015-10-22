@@ -22,12 +22,15 @@ Template.notifications.onCreated(function () {
                     if(obj.results[i].qTitle.length > 16){
                        obj.results[i].displayQTitle = obj.results[i].qTitle.substring(0, 17) + "..";
                     }
-                    if(obj.results[i].type = "NEWQUESTION"){
-                       obj.results[i].title = "New question for you"
-                    } else if(obj.results[i].type = "NEWANSWER") {
-                       obj.results[i].title = "New answer for your question"
+                    if(obj.results[i].type == "NEWQUESTION"){
+                       obj.results[i].title = "New question for you";
+                       obj.results[i].bgColor = "balanced";
+                    } else if(obj.results[i].type == "NEWANSWER") {
+                       obj.results[i].title = "New answer for your question";
+                       obj.results[i].bgColor = "calm";
                     } else {
-                       obj.results[i].title = "Chosen as the best!"
+                       obj.results[i].title = "Chosen as the best!";
+                       obj.results[i].bgColor = "energized";
                     }
                     tmpResult.push(obj.results[i]);
                 }
@@ -39,15 +42,19 @@ Template.notifications.onCreated(function () {
 
 Template.notifications.events({
     'click .notification-desc-header': function(event){
+        var tmp;
         var index;
         for(var i = 0; i < Session.get("tmpResult").length; i ++){
             if(Session.get("tmpResult")[i].nId == Number(event.target.id)){
                 index = i;
+                tmp = Session.get("tmpResult")[i];
                 break;
             }
         }
         var tmpArray = Session.get("tmpResult");
-        tmpArray.splice(i, 1)
+        tmp.bgColor = "light";
+        tmpArray.splice(index, 1);
+        tmpArray.splice(index, 0, tmp);
         Session.set("tmpResult", tmpArray);
 
         var url = "http://54.191.134.26:9000/updatenotifications/" + event.target.id;
