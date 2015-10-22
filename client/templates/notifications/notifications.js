@@ -6,6 +6,7 @@ Template.notifications.helpers({
 
 Template.notifications.onCreated(function () {
     var url = "http://54.191.134.26:9000/usernotifications/" + JSON.parse(SessionAmplify.get('loginUser').content).uId;
+    var tmpResult = [];
     HTTP.get(url, function (error, response) {
         if (error) {
             Session.set("tmpResult", []);
@@ -13,24 +14,45 @@ Template.notifications.onCreated(function () {
         else{
             var obj = JSON.parse(response.content);
             for(var i = 0; i < obj.results.length; i ++){
-                var createMonth = monthNumberToString(obj.results[i].createDate.split("/")[1]);
-                obj.results[i].createMonth = createMonth;
-                obj.results[i].createDay = obj.results[i].createDate.split("/")[2];
-                obj.results[i].displayQTitle = obj.results[i].qTitle;
-                if(obj.results[i].qTitle.length > 16){
-                    obj.results[i].displayQTitle = obj.results[i].qTitle.substring(0, 17) + "..";
-                }
-                if(obj.results[i].type = "NEWQUESTION"){
-                    obj.results[i].title = "New question for you"
-                } else if(obj.results[i].type = "NEWANSWER") {
-                    obj.results[i].title = "There is a new answer for your question"
-                } else {
-                    obj.results[i].title = "Your answer has been chosen as the best!"
+                if(obj.results[i].status == "New"){
+                    var createMonth = monthNumberToString(obj.results[i].createDate.split("/")[1]);
+                    obj.results[i].createMonth = createMonth;
+                    obj.results[i].createDay = obj.results[i].createDate.split("/")[2];
+                    obj.results[i].displayQTitle = obj.results[i].qTitle;
+                    if(obj.results[i].qTitle.length > 16){
+                       obj.results[i].displayQTitle = obj.results[i].qTitle.substring(0, 17) + "..";
+                    }
+                    if(obj.results[i].type = "NEWQUESTION"){
+                       obj.results[i].title = "New question for you"
+                    } else if(obj.results[i].type = "NEWANSWER") {
+                       obj.results[i].title = "New answer for your question"
+                    } else {
+                       obj.results[i].title = "Chosen as the best!"
+                    }
+                    tmpResult.push(obj.results[i]);
                 }
             }
         }
-        Session.set("tmpResult", obj.results);
+        Session.set("tmpResult", tmpResult);
     });
+});
+
+Template.notifications.events({
+    'click .notification-desc-header': function(event){
+        var index;
+        for(var i = 0; i < Session.get("tmpResult").length; i ++){
+            if(Session.get("tmpResult")[i].nId == Number(event.target.id)){
+                index = i;
+                break;
+            }
+        }
+        var tmpArray = Session.get("tmpResult");
+        tmpArray.splice(i, 1)
+        Session.set("tmpResult", tmpArray);
+
+        var url = "http://54.191.134.26:9000/updatenotifications/" + event.target.id;
+        HTTP.get(url, function(){});
+    }
 });
 
 function monthNumberToString(createMonth){
