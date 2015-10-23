@@ -14,7 +14,6 @@ Template.notifications.onCreated(function () {
         else{
             var obj = JSON.parse(response.content);
             for(var i = 0; i < obj.results.length; i ++){
-                if(obj.results[i].status == "New"){
                     var createMonth = monthNumberToString(obj.results[i].createDate.split("/")[1]);
                     obj.results[i].createMonth = createMonth;
                     obj.results[i].createDay = obj.results[i].createDate.split("/")[2];
@@ -28,12 +27,14 @@ Template.notifications.onCreated(function () {
                     } else if(obj.results[i].type == "NEWANSWER") {
                        obj.results[i].title = "New answer for your question";
                        obj.results[i].bgColor = "calm";
-                    } else {
+                    } else if(obj.results[i].type == "BESTANSWER") {
                        obj.results[i].title = "Chosen as the best!";
                        obj.results[i].bgColor = "energized";
                     }
+                    if(obj.results[i].status == "Read"){
+                        obj.results[i].bgColor = "light";
+                    }
                     tmpResult.push(obj.results[i]);
-                }
             }
         }
         Session.set("tmpResult", tmpResult);
@@ -58,6 +59,22 @@ Template.notifications.events({
         Session.set("tmpResult", tmpArray);
 
         var url = "http://54.191.134.26:9000/updatenotifications/" + event.target.id;
+        HTTP.get(url, function(){});
+    },
+
+    'click .ion-close-round': function(event){
+        var nId = Number(event.target.id.substring(2, event.target.id.length));
+        var index;
+        for(var i = 0; i < Session.get("tmpResult").length; i ++){
+            if(Session.get("tmpResult")[i].nId == nId){
+                index = i;
+                break;
+            }
+        }
+        var tmpArray = Session.get("tmpResult");
+        tmpArray.splice(index, 1);
+        Session.set("tmpResult", tmpArray);
+        var url = "http://54.191.134.26:9000/removenotifications/" + nId;
         HTTP.get(url, function(){});
     }
 });
