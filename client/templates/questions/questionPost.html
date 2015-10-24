@@ -12,25 +12,22 @@
             <label class="control-label" for="input01" >Question Title:</label>
             <p></p>
             <div class="controls bootstrap-tagsinput">
-              <input class='questionTitle'  type="text" id="input01" maxlength='35' placeholder='Question Title' style="width:70%">
+              <input class='questionTitle'  type="text" id="input01" maxlength='100' placeholder='Question Title: Briefly describe your question.' size='150'>
               <p></p>
             </div>
           {{#if validateQuestionTitle}}
            <div class="alert alert-danger" role="alert">
              {{validateQuestionTitle}}
            </div>
-           {{else}}
-            <label style='font-size:85%' class="label label-info">
-		          Briefly describe your question.
-            </label>
-            {{/if}}
+          {{/if}}
+<!-- >>>>>>> update questionDetail -->
           </div>
 
           <div class="control-group">
             <label class="control-label" for="textarea">Question Content:</label>
             <p></p>
             <div class="controls">
-              <textarea class="form-control input-xlarge questionContent" id="textarea" rows="3" placeholder='Question Content'></textarea>
+              <textarea class="form-control input-xlarge questionContent" id="textarea" rows="5" placeholder='Question Content :Try to be more detailed to receive better answers.'></textarea>
             </div>
             <p></p>
             {{#if validateQuestionContent}}
@@ -50,36 +47,80 @@
               <span class="help-inline"></span>
             </div>
           </div>
-         <div class='row'>
+         <!-- <div class='row'>
          <div class='col-lg-6'>
          <label class="control-label">Question Categories:</label>
          <br>
          </div>
-         </div>
+         </div> -->
 
          {{#if tags}}
+
           <div class='row'>
-          {{#each tags}}
-            <div class="col">
-             <div class="categoryCard">{{cName}}</div>
+            <div class='col-lg-6'>
+            <label class="control-label">Question Categories:</label>
             </div>
+          </div> 
+          <div class='row'>  
+          {{#each tags}}       
+            <div class="col" style="max-width:200px">
+             <div class="categoryCard">{{cName}}</div>
+            </div>          
           {{/each}}
-          </div>
+          </div>  
           <div class='row'>
-            <div class='col-lg-3'> 
-              <a href={{pathFor 'addTags'}}><button type='button' class='btn btn-primary'>Edit Added Tags</button></a>
+            <div class='col-lg-3'>  
+              <a href={{pathFor 'addTags'}} style="height:30px"><button type='button' class='btn btn-primary'>Edit Added Tags</button></a>
             </div>
           </div>
           {{else}}
+          <div class='row'>
           <div class='col-lg-6'>
-          <a href={{pathFor 'addTags'}} class="button icon-right ion-chevron-right button-calm activated">
-           Add Question Tags 
-          </a>
+          <label class="control-label">Question Categories:</label>
+          <a href={{pathFor 'addTags'}} class="btn btn-primary">Add Question Tags</a>
+            {{#if validateTags}}
+              <div class="alert alert-danger" role="alert">
+                {{validateTags}}
+              </div>
+            {{/if}}
+          </div>
           </div>
          {{/if}}
          <br>
-<!-- <<<<<<< HEAD -->
-         <a href='http://54.191.134.26:3000/home'><button type='button' class='btn btn-priamry add-pictures'>add pictures</button></a>
+        
+         {{#if images}} 
+         <div class='row'>  
+           <div class='col-lg-12'>
+           <label class="control-label">Uploaded Pictures:</label>
+           <div class="documentList">
+              <ul class="list-inline">
+                 <div class="row"> 
+                    {{#each images}}
+                    <div class="col-lg-3">
+                    <li class="documentItem" style="border:none">
+                      <a href='{{url}}'><img id={{id}} src='{{url}}'></a><br> 
+                      {{name}}
+                      <br>
+                      <!-- <button class="btn btn-danger removeUpload" data-action="showConfirm">Delete</button>   -->
+                    </li>
+                    </div>
+                    {{/each}}   
+                 </div> 
+              </ul>
+           </div>
+           </div>
+         </div>  
+         
+           <!-- <a href='http://54.191.134.26:3000/home/{{uuid}}' class='btn btn-primary'>Edit pictures</a> -->
+         {{else}}
+         <div class='row'>
+           <div class='col-lg-6'>
+           <label class="control-label">Upload Pictures:</label>
+           <a href='http://54.191.134.26:3000/home/{{uuid}}' class='btn btn-primary'>Add pictures</a>
+           </div>
+         </div> 
+         {{/if}} 
+<!-- >>>>>>> update questionDetail -->
             <div class="control-group">
                 <label class="control-label">Add Credit to attract more answers: <a id="creditSet"></a></label>
                 <div class="controls">
@@ -111,15 +152,14 @@
          <div class='col-lg-3'>
             <div class="form-actions" style="vertical-align:center">
               <button type="submit" class="btn btn-primary">Ask Question</button>
-              <button type="reset" class="btn" id="cancleButton">Cancel</button>
+              <button type="reset" class="btn questionCancelBtn" id="cancleButton">Cancel</button>
             </div>
         </div>
          </div>
         </fieldset>
       </form>
      </div>
-<!-- <<<<<<< HEAD -->
-<!-- ======= -->
+<!-- <<<<<<< HEAD
      </div>
      <div class="tabs-striped tabs-color-assertive" style="height: 142px; ">
         <div class="tabs">
@@ -137,5 +177,8 @@
       </a>
         </div>
      </div>
-<!-- >>>>>>> update -->
+=======
+ -->    
+  </div>
+<!-- >>>>>>> update questionDetail -->
 </template>

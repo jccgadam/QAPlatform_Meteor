@@ -1,5 +1,69 @@
 <template name="questionDetail">
     <div class="container">
-        {{q}}
+	    <div class="bar bar-header has-tabs-top bar-positive" id="questionhead">
+	        <div class="h1 title">
+	            Questions Details
+	        </div>
+	    </div>
+
+        <div class="content padding contact-detail overflow-scroll has-header">
+        {{#with data}}
+      
+        <div class="list card">
+
+          <div class="item item-avatar">
+            <div class='row'>
+            
+	            <div class='col-lg-5'>
+	            <label class="control-label" >Question Title:</label>
+	             {{title}}
+	            </div>
+                <div class='col-lg-5'>
+                </div>
+                <div class='col-lg-2'>
+		            <a class="btn btn-primary btn-lg" href="#" role="button">Credit:{{credit}}</a>
+				</div>    
+            </div>
+
+          <div class="item item-body" style="height:200px">
+            <div class='row'>
+	            <div class='col-lg-5'>
+	            <label class="control-label" >Question Content:</label>
+	             <br>{{content}}
+	            </div>
+                <div class='col-lg-5'>
+                </div>   
+            </div>
+          </div>
+          
+          <div class="row">
+          {{#each q in imageUrls}}
+			  <div class="col-xs-6 col-md-3">
+			    <a href="{{q}}" class="thumbnail">
+			      <img src="{{q}}">
+			    </a>
+              </div>
+          {{/each}}    
+          </div>
+
+          <!-- <div class="item tabs tabs-secondary tabs-icon-left">
+            <a class="tab-item" href="#" data-action="fake">
+              <i class="icon ion-email"></i>
+              Send Email
+            </a>
+            <a class="tab-item" href="#" data-action="fake">
+              <i class="icon ion-iphone"></i>
+              Call
+            </a>
+            <a class="tab-item" href="#" data-action="fake">
+              <i class="icon ion-share"></i>
+              Share
+            </a>
+          </div> -->
+
+        </div>
+       </div>
+    {{/with}}
     </div>
+ </div>
 </template>

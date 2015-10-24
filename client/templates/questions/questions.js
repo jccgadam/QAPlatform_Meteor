@@ -60,7 +60,8 @@ Template.questions.onCreated(function () {
 })
 
 Template.questions.events({
-    'click .item, click .button, click .tab-item': function (event) {
+    // 'click .item,
+    'click .button, click .tab-item': function (event) {
         if(Number(event.target.id) >= 1){
             for(i = 0; i < Session.get("tmpResult").length; i ++){
                 if(Session.get("tmpResult")[i].qId.toString() === event.target.id){
@@ -103,7 +104,7 @@ Template.questions.events({
                 Session.set("tmpResult", tmp);
             }
         }
-    },
+    }
 })
 
 function monthNumberToString(createMonth){

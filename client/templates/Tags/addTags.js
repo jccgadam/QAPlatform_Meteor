@@ -65,10 +65,7 @@ Template.addTags.helpers({
 		        }
 		       
 		    }
-			})
-		
-        
-
+			})    
     },
     checkedTags:function(){
     	var searchTagsField = Session.get('searchTagsField');

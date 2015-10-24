@@ -20,23 +20,38 @@
                 {{#each q in questions}}
                     <a class="item">
                         <article class="question">
-
+                         <div class='row'>
+                          <div class='col-lg-1'> 
                             <div class="create-date">
                                 <p class="create-month">{{q.createMonth}}</p>
                                 <p class="create-day">{{q.createDay}}</p>
                             </div>
+                          </div>
 
+                          <div class="col-lg-9">
                             <div class="question-desc">
-                                <h4 class="question-desc-header" id={{q.qId}}>{{q.displayTitle}}</h4>
+                                <h4 class="question-desc-header" id='{{q.qId}}'>{{q.displayTitle}}</h4>
                                 <p class="question-desc-detail">{{q.displayContent}}</p>
+                                 {{#if q.imageUrls.length}}
+                                 <span class="label label-success">Images Attached</span>
+                                 {{/if}}
                             </div>
-
+                            <!-- <div class='col-lg-4'>
+                            </div> -->
+                           
+                          </div>  
+                        
+                        <div class='col-lg-2'>
+                        <a href="/question/{{q.qId}}"><button class="btn btn-primary">
+                        View Question
+                        </button></a> 
+                        </div>
+                        </div>
                         </article>
                     </a>
                 {{/each}}
             </div>
     </div>
-
     <div class="tabs-striped tabs-color-assertive">
         <div class="tabs" id="bottom">
             <p class="tab-item {{#if questionsaskedactive}} active {{/if}}" id="questionsasked">
