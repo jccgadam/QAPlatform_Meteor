@@ -48,25 +48,6 @@ Template.addTags.events({
     })
 
 Template.addTags.helpers({
-	tags:function(){
-        // AllTags.clear();
-		HTTP.get("http://54.191.134.26:9000/categories", function (error, response) {
-		    if (error) {
-		       console.log(error);
-		    }
-		    else{
-		    	if(AllTags.find().fetch().length==0)
-		        {
-		        	var obj = JSON.parse(response.content).results;
-			        
-		        _.each(obj,function(k,v){
-		        	AllTags.insert({'cName':k.cName,'cId':k.cId,'checked':'0'})
-		        })
-		        }
-		       
-		    }
-			})    
-    },
     checkedTags:function(){
     	var searchTagsField = Session.get('searchTagsField');
         if(searchTagsField==null)

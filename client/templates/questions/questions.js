@@ -88,7 +88,6 @@ Template.questions.events({
             SessionAmplify.set("tmpResult", SessionAmplify.get("questions").results);
         }
     },
-
     'keyup .searchField' : function(event){
         if(event.target.id == "searchField"){
             if(document.getElementById("searchField").value == ""){
@@ -105,10 +104,6 @@ Template.questions.events({
             }
         }
     },
-    // 'click .viewQuestion':function(e,t){
-    //   e.preventDefault();
-      
-    // },
     'click .backButton':function(e,t){
     e.preventDefault();
     window.history.back();

@@ -56,14 +56,18 @@
       return Session.get('validateTags');
      },
      tags:function(){
+      if(AllTags.find({'checked':'1'}).count()==0)
+        {
+         return SessionAmplify.get('tags');
+        }
+        console.log(AllTags.find({'checked':'1'}).fetch());
      return AllTags.find({'checked':'1'}).fetch();
      },
      maxCredit: function(){
         return JSON.parse(SessionAmplify.get('loginUser').content).credit;
-      },
+     },
      message:function(){
       return Session.get('message');
-
      },
      uuid:function(){
         return SessionAmplify.get('uuid');
@@ -71,10 +75,10 @@
      images:function(){
       var uuid = SessionAmplify.get('uuid');
       Meteor.call('Images',uuid,function(err,res){
+        // console.log(res);
         SessionAmplify.set('images',res)
       })
       return SessionAmplify.get('images');
-// >>>>>>> update questionDetail
      }
   })
 
@@ -93,16 +97,19 @@
         return validateQuestionContent(content);
     },
 
-    'change .creditAmountBar': function(e){
+    'change .creditAmountBar': function(e,t){
         document.getElementById("creditSet").innerHTML = document.getElementById("creditAmountBar").value;
     },
-
+    'click .addPictures':function(e,t){
+       var tmp = AllTags.find({'checked':'1'}).fetch();
+       SessionAmplify.set('tags',tmp);
+    },
     'click .btn': function(e){
         if(e.target.id == "cancleButton"){
             Router.go('main');
         }
     },
-  'submit form':function(e,t){
+    'submit form':function(e,t){
       e.preventDefault();
       var title = t.$('.questionTitle').val();
       var content = t.$('.questionContent').val();
@@ -124,7 +131,7 @@
         
         _.each(images,function(k,v){
           imageUrls.push(k.url);
-          console.log(k)
+          
         })
 
         if(!(validateQuestionTitle(title)&&validateQuestionContent(content)&&validateTags(finalTags)))
@@ -139,28 +146,20 @@
           //server response callback
           function (error, response) {
             if (error) {
-              console.log(error)
+              
               Session.set('message','post fails')
                         }
             else{
-// <<<<<<< HEAD
-//               Session.set('title',null);
-//               Session.set('content',null);
-// <<<<<<< HEAD
-// =======
-// =======
+
               SessionAmplify.set('title',null);
               SessionAmplify.set('content',null);
               SessionAmplify.set('uuid',null);
-// >>>>>>> update questionDetail
-              AllTags.clear();
-// >>>>>>> update
+              SessionAmplify.set('title',null);
               Router.go('questions');
             }
           })
 
      },
-
   'click .questionCancelBtn':function(e,t){
      var uuid = SessionAmplify.get('uuid')
      Meteor.call('removeImage',uuid,function(err,res){
@@ -170,6 +169,7 @@
           SessionAmplify.set('content',null);
           SessionAmplify.set('uuid',null);
           SessionAmplify.set('pics',null);
+          SessionAmplify.set('tags',null);
           AllTags.clear();
           Router.go('main')
          }

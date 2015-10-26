@@ -31,7 +31,6 @@ Meteor.methods({
             password : '12345678',
             database : 'images',
         });
-
        connection.connect();
         connection.query("select * from images where uuid='"+uuid+"';", function(err, rows, fields) {
             if (err)
@@ -39,6 +38,7 @@ Meteor.methods({
                myFuture.throw(err)
             }
             else {
+              console.log(rows);
                myFuture.return(rows);
             }
         });
@@ -68,7 +68,5 @@ Meteor.methods({
         });
          connection.end();
        return myFuture.wait();
-
-// >>>>>>> update questionDetail
   }
 })

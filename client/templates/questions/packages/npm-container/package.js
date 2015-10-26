@@ -15,7 +15,6 @@ try {
 } catch (ex) {
   console.error('ERROR: packages.json parsing error [ ' + ex.message + ' ]');
 }
-
 // Adding the app's packages.json as a used file for this package will get
 // Meteor to watch it and reload this package when it changes
 Package.onUse(function(api) {
