@@ -1,6 +1,6 @@
 Template.notifications.helpers({
     notifications: function(){
-        return Session.get("tmpResult").reverse();
+        return SessionAmplify.get("nTmpResult").reverse();
     },
 });
 
@@ -9,7 +9,7 @@ Template.notifications.onCreated(function () {
     var tmpResult = [];
     HTTP.get(url, function (error, response) {
         if (error) {
-            Session.set("tmpResult", []);
+            SessionAmplify.set("nTmpResult", []);
         }
         else{
             var obj = JSON.parse(response.content);
@@ -22,10 +22,10 @@ Template.notifications.onCreated(function () {
                        obj.results[i].displayQTitle = obj.results[i].qTitle.substring(0, 17) + "..";
                     }
                     if(obj.results[i].type == "NEWQUESTION"){
-                       obj.results[i].title = "New question for you";
+                       obj.results[i].title = "Got a new question";
                        obj.results[i].bgColor = "balanced";
                     } else if(obj.results[i].type == "NEWANSWER") {
-                       obj.results[i].title = "New answer for your question";
+                       obj.results[i].title = "Got an answer!";
                        obj.results[i].bgColor = "calm";
                     } else if(obj.results[i].type == "BESTANSWER") {
                        obj.results[i].title = "Chosen as the best!";
@@ -37,7 +37,7 @@ Template.notifications.onCreated(function () {
                     tmpResult.push(obj.results[i]);
             }
         }
-        Session.set("tmpResult", tmpResult);
+        SessionAmplify.set("nTmpResult", tmpResult);
     });
 });
 
@@ -45,18 +45,18 @@ Template.notifications.events({
     'click .notification-desc-header': function(event){
         var tmp;
         var index;
-        for(var i = 0; i < Session.get("tmpResult").length; i ++){
-            if(Session.get("tmpResult")[i].nId == Number(event.target.id)){
+        for(var i = 0; i < SessionAmplify.get("nTmpResult").length; i ++){
+            if(SessionAmplify.get("nTmpResult")[i].nId == Number(event.target.id)){
                 index = i;
-                tmp = Session.get("tmpResult")[i];
+                tmp = SessionAmplify.get("nTmpResult")[i];
                 break;
             }
         }
-        var tmpArray = Session.get("tmpResult");
+        var tmpArray = SessionAmplify.get("nTmpResult");
         tmp.bgColor = "light";
         tmpArray.splice(index, 1);
         tmpArray.splice(index, 0, tmp);
-        Session.set("tmpResult", tmpArray);
+        SessionAmplify.set("nTmpResult", tmpArray);
 
         var url = "http://54.191.134.26:9000/updatenotifications/" + event.target.id;
         HTTP.get(url, function(){});
@@ -65,15 +65,15 @@ Template.notifications.events({
     'click .ion-close-round': function(event){
         var nId = Number(event.target.id.substring(2, event.target.id.length));
         var index;
-        for(var i = 0; i < Session.get("tmpResult").length; i ++){
-            if(Session.get("tmpResult")[i].nId == nId){
+        for(var i = 0; i < SessionAmplify.get("nTmpResult").length; i ++){
+            if(SessionAmplify.get("nTmpResult")[i].nId == nId){
                 index = i;
                 break;
             }
         }
-        var tmpArray = Session.get("tmpResult");
+        var tmpArray = SessionAmplify.get("nTmpResult");
         tmpArray.splice(index, 1);
-        Session.set("tmpResult", tmpArray);
+        SessionAmplify.set("nTmpResult", tmpArray);
         var url = "http://54.191.134.26:9000/removenotifications/" + nId;
         HTTP.get(url, function(){});
     }
