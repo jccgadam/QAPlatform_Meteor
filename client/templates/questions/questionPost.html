@@ -1,9 +1,16 @@
 <template name='questionsPost'>
   <div class='body-wrap' style="">
   <div class="bar bar-header has-tabs-top bar-positive">
+    <button class="buttons button button-clear back-button pull-left button-entering button-active backButton">
+    <i class="icon ion-ios-arrow-back"></i>
+      <span class="back-text">
+       Back
+      </span> 
+    </button>
       <div class="h1 title">
       Post a Question
       </div>
+
   </div>
   <div class='container' style="margin-top:50px"> 
   <form  id='questionsPost' class="form-horizontal well" style="height:700px">
@@ -31,13 +38,9 @@
             </div>
             <p></p>
             {{#if validateQuestionContent}}
-           <div class="alert alert-danger" role="alert">
-             {{validateQuestionContent}}
-           </div>
-           {{else}}
-            <label style='font-size:85%' class="label label-info">
-	          Try to be more detailed to receive better answers.
-            </label>
+               <div class="alert alert-danger" role="alert">
+                 {{validateQuestionContent}}
+               </div>
             {{/if}}
             <p></p>
           </div>

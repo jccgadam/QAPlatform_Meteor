@@ -1,6 +1,12 @@
   Template.questionDetail.helpers({
   data:function(){
-  	console.log(this);
   	return this;
   }
+  })
+
+  Template.questionDetail.events({
+   'click .backButton':function(e,t){
+    e.preventDefault();
+    window.history.back();
+    }
   })

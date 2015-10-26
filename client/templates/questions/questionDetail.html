@@ -1,17 +1,24 @@
 <template name="questionDetail">
-    <div class="container">
-	    <div class="bar bar-header has-tabs-top bar-positive" id="questionhead">
-	        <div class="h1 title">
-	            Questions Details
-	        </div>
-	    </div>
-
-        <div class="content padding contact-detail overflow-scroll has-header">
+<!-- <div class="modal-backdrop active">
+    <div class="modal-wrapper">
+      <div class="modal"> --><!-- <div class="bar bar-header has-tabs-top bar-positive" id="questionhead">
+     <button class="buttons button button-clear back-button pull-left button-entering button-active backButton">
+            <i class="icon ion-ios-arrow-back"></i>
+              <span class="back-text">
+               Back
+              </span> 
+        </button>    
+        <div class="h1 title">
+            View Question
+        </div>
+    </div> -->
+    <!-- <div class="padding"> -->
+	 <div class="container">
+        <div class="content padding contact-detail overflow-scroll has-header" style="padding:33px;top:0px">
         {{#with data}}
       
         <div class="list card">
-
-          <div class="item item-avatar">
+          <div class="item">
             <div class='row'>
             
 	            <div class='col-lg-5'>
@@ -45,25 +52,14 @@
               </div>
           {{/each}}    
           </div>
-
-          <!-- <div class="item tabs tabs-secondary tabs-icon-left">
-            <a class="tab-item" href="#" data-action="fake">
-              <i class="icon ion-email"></i>
-              Send Email
-            </a>
-            <a class="tab-item" href="#" data-action="fake">
-              <i class="icon ion-iphone"></i>
-              Call
-            </a>
-            <a class="tab-item" href="#" data-action="fake">
-              <i class="icon ion-share"></i>
-              Share
-            </a>
-          </div> -->
-
         </div>
        </div>
     {{/with}}
-    </div>
- </div>
-</template>
+         </div>
+	    </div>
+      
+      <!-- </div>
+      </div>
+      </div>
+      </div>
+ --></template>

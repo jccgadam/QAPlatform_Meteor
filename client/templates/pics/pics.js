@@ -23,7 +23,7 @@ Template['uploadedInfo'].helpers({
 Template['uploadedInfo'].events({
   'click [data-action="showConfirm"]': function(e, t) {
     var id=this._id;
-    console.log('delete')
+    // console.log('delete')
     IonPopup.confirm({
       title: 'Are you sure?',
       template: 'Remove this picture?',

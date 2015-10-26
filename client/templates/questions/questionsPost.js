@@ -174,7 +174,10 @@
           Router.go('main')
          }
      })
-     
-
+  },
+  'click .backButton':function(e,t){
+    e.preventDefault();
+    window.history.back();
   }
+
  })

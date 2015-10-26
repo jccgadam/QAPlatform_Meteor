@@ -1,5 +1,11 @@
 <template name="questions">
     <div class="bar bar-header has-tabs-top bar-positive" id="questionhead">
+         <button class="buttons button button-clear back-button pull-left button-entering button-active backButton">
+            <i class="icon ion-ios-arrow-back"></i>
+              <span class="back-text">
+               Back
+              </span> 
+        </button>
         <div class="h1 title">
             Questions
         </div>
@@ -18,7 +24,7 @@
         </div>
             <div class="list">
                 {{#each q in questions}}
-                    <a class="item">
+                    <a class="item" href='/question/{{q.qId}}'>
                         <article class="question">
                          <div class='row'>
                           <div class='col-lg-1'> 
@@ -27,7 +33,6 @@
                                 <p class="create-day">{{q.createDay}}</p>
                             </div>
                           </div>
-
                           <div class="col-lg-9">
                             <div class="question-desc">
                                 <h4 class="question-desc-header" id='{{q.qId}}'>{{q.displayTitle}}</h4>
@@ -36,17 +41,13 @@
                                  <span class="label label-success">Images Attached</span>
                                  {{/if}}
                             </div>
-                            <!-- <div class='col-lg-4'>
-                            </div> -->
-                           
                           </div>  
-                        
+                        <!-- 
                         <div class='col-lg-2'>
-                        <a href="/question/{{q.qId}}"><button class="btn btn-primary">
-                        View Question
-                        </button></a> 
+                           
+                                <button class="btn btn-primary viewQuestion" data-ion-modal="questionDetail">View Question</button>                           
                         </div>
-                        </div>
+                         --></div>
                         </article>
                     </a>
                 {{/each}}

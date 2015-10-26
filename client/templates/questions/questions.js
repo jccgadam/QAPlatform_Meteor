@@ -104,6 +104,14 @@ Template.questions.events({
                 SessionAmplify.set("tmpResult", tmp);
             }
         }
+    },
+    // 'click .viewQuestion':function(e,t){
+    //   e.preventDefault();
+      
+    // },
+    'click .backButton':function(e,t){
+    e.preventDefault();
+    window.history.back();
     }
 })
 
