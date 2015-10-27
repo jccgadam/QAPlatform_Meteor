@@ -171,13 +171,13 @@
           SessionAmplify.set('pics',null);
           SessionAmplify.set('tags',null);
           AllTags.clear();
-          Router.go('main')
+          Router.go('main');
          }
      })
   },
   'click .backButton':function(e,t){
     e.preventDefault();
-    window.history.back();
+    Router.go('main');
   }
 
  })

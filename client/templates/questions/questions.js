@@ -105,8 +105,8 @@ Template.questions.events({
         }
     },
     'click .backButton':function(e,t){
-    e.preventDefault();
-    window.history.back();
+        e.preventDefault();
+        Router.go('main');
     }
 })
 

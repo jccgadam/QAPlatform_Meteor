@@ -80,7 +80,7 @@ Template.notifications.events({
 
     'click .backButton':function(e,t){
         e.preventDefault();
-        window.history.back();
+        Router.go('main');
     }
 });
 
