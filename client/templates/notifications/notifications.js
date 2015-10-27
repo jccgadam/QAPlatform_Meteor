@@ -76,6 +76,11 @@ Template.notifications.events({
         SessionAmplify.set("nTmpResult", tmpArray);
         var url = "http://54.191.134.26:9000/removenotifications/" + nId;
         HTTP.get(url, function(){});
+    },
+
+    'click .backButton':function(e,t){
+        e.preventDefault();
+        window.history.back();
     }
 });
 
