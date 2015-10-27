@@ -22,6 +22,7 @@
 .notification-desc {
   width: 100%;
   padding-left: 1rem;
+  padding-right: 1rem;
   text-align: left;
   display: table-cell;
   vertical-align: top; }
