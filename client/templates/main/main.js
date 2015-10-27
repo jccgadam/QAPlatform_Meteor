@@ -3,5 +3,10 @@ Template.main.events({
         if(event.target.id == "questions"){
             Router.go('questions');
         }
+    },
+
+    'click .pull-right' : function(e){
+        SessionAmplify = null;
+        Router.go('/');
     }
 })
