@@ -1,5 +1,4 @@
 <template name='questionsPost'>
-  <div class='body-wrap' style="">
   <div class="bar bar-header has-tabs-top bar-positive" id="questionPostHead">
    <a href="/"> <button class="buttons button button-clear back-button pull-left button-entering button-active backButton">
     <i class="icon ion-ios-arrow-back"></i>
@@ -11,10 +10,9 @@
       <div class="h1 title">
       Post a Question
       </div>
-
   </div>
   <div class='container' style="margin-top:44px">
-  <form  id='questionsPost' class="form-horizontal well" style="height:700px">
+  <form  id='questionsPost'>
         <fieldset>
           <div class="control-group">
             <label class="control-label" for="input01" >Question Title:</label>
@@ -28,7 +26,6 @@
              {{validateQuestionTitle}}
            </div>
           {{/if}}
-<!-- >>>>>>> update questionDetail -->
           </div>
 
           <div class="control-group">
@@ -51,15 +48,8 @@
               <span class="help-inline"></span>
             </div>
           </div>
-         <!-- <div class='row'>
-         <div class='col-lg-6'>
-         <label class="control-label">Question Categories:</label>
-         <br>
-         </div>
-         </div> -->
 
          {{#if tags}}
-
           <div class='row'>
             <div class='col-lg-6'>
             <label class="control-label">Question Categories:</label>
@@ -105,7 +95,6 @@
                       <a href='{{url}}'><img id={{id}} src='{{url}}'></a><br> 
                       {{name}}
                       <br>
-                      <!-- <button class="btn btn-danger removeUpload" data-action="showConfirm">Delete</button>   -->
                     </li>
                     </div>
                     {{/each}}   
@@ -115,7 +104,6 @@
            </div>
          </div>  
          
-           <!-- <a href='http://54.191.134.26:3000/home/{{uuid}}' class='btn btn-primary'>Edit pictures</a> -->
          {{else}}
          <div class='row'>
            <div class='col-lg-6'>
@@ -124,7 +112,6 @@
            </div>
          </div> 
          {{/if}} 
-<!-- >>>>>>> update questionDetail -->
             <div class="control-group">
                 <label class="control-label">Add Credit to attract more answers: <a id="creditSet"></a></label>
                 <div class="controls">
@@ -135,17 +122,8 @@
                     </div>
                 </div>
             </div>
-<!-- =======
-         <div class='row'>
-         <div class='col-lg-4'>
-          Upload Pictures:
-           <a href='http://54.191.134.26:3000/home'>
-             <button type='button' class='btn btn-priamry add-pictures'>add pictures</button>
-           </a>
-         </div>
-         </div>
->>>>>>> update
- -->         <div class='row'>
+
+          <div class='row'>
          <div class='col-lg-4'>
          {{#if message}}
            <div class="alert alert-danger" role="alert">
@@ -163,26 +141,4 @@
         </fieldset>
       </form>
      </div>
-<!-- <<<<<<< HEAD
-     </div>
-     <div class="tabs-striped tabs-color-assertive" style="height: 142px; ">
-        <div class="tabs">
-      <a class="tab-item active" href={{pathFor 'main'}}>
-        <i class="icon ion-home"></i>
-        Home
-      </a>
-      <a class="tab-item" href="#">
-        <i class="icon ion-star"></i>
-        Favorites
-      </a>
-      <a class="tab-item" href="#">
-        <i class="icon ion-gear-a"></i>
-        Settings
-      </a>
-        </div>
-     </div>
-=======
- -->    
-  </div>
-<!-- >>>>>>> update questionDetail -->
 </template>

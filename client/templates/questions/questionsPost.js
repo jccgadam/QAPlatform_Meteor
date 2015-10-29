@@ -35,11 +35,8 @@
   }
 
   Template.questionsPost.onRendered(function(){
-       $('body').css('height','1000px');
-       $('form').css('height','1000px');
        $('.questionTitle').val(SessionAmplify.get('title')); 
        $('.questionContent').val(SessionAmplify.get('content'));
-       $('.bootstrap-tagsinput').css("width",'100%')  
        document.getElementById("creditSet").innerHTML = document.getElementById("creditAmountBar").value;
   })
   //template helper
@@ -113,7 +110,6 @@
       e.preventDefault();
       var title = t.$('.questionTitle').val();
       var content = t.$('.questionContent').val();
-// >>>>>>> update questionDetail
         var finalTags= [];
         if(AllTags.find({'checked':'1'}).count()!=0)
          {
@@ -155,6 +151,8 @@
               SessionAmplify.set('content',null);
               SessionAmplify.set('uuid',null);
               SessionAmplify.set('title',null);
+              SessionAmplify.set('tags',null);
+              AllTags.clear();
               Router.go('questions');
             }
           })

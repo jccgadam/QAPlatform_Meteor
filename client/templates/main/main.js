@@ -24,7 +24,6 @@ Template.main.onCreated(function () {
             Session.set("notificationCount", 0);
         } else {
             var count = JSON.parse(response.content).count;
-            console.log(count);
             if(count <= 2){
                 Session.set("notificationCount", count);
             } else {

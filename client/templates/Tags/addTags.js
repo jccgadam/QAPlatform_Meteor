@@ -1,7 +1,3 @@
-Template.addTags.onCreated(function(){
-    $('body').css('height',700);
-})
-
 Template.addTags.events({
 	'keyup .searchTagsField' : function(event,template){
 		//console.log(Session.get('questionTags'));
