@@ -23,25 +23,15 @@
             <div class='row'>
             
 	            <div class='col-lg-5'>
-	            <label class="control-label" >Question Title:</label>
+	            <label class="control-label" >Question Title:</label>&nbsp;&nbsp;&nbsp;<a class="btn btn-primary btn-sm" href="#" role="button">Credit:{{credit}}</a>
+              <br>
 	             {{title}}
 	            </div>
-                <div class='col-lg-5'>
-                </div>
-                <div class='col-lg-2'>
-		            <a class="btn btn-primary btn-lg" href="#" role="button">Credit:{{credit}}</a>
-				</div>    
             </div>
 
-          <div class="item item-body" style="height:200px">
-            <div class='row'>
-	            <div class='col-lg-5'>
+          <div class="item item-body" style="height:100%px;margin-left:-15px">
 	            <label class="control-label" >Question Content:</label>
-	             <br>{{content}}
-	            </div>
-                <div class='col-lg-5'>
-                </div>   
-            </div>
+	             <br>{{abbr}}{{content}}{{content}}{{content}}{{content}}{{content}}{{content}}{{content}}{{content}}{{content}}{{content}}
           </div>
           
           <div class="row">
@@ -56,11 +46,29 @@
         </div>
        </div>
     {{/with}}
-         </div>
-	    </div>
+
+      {{#with answers}}
+      <details>
+        <summary>{{abbr}}</summary>
+        <p>{{detail}}</p>
+        <button class='btn btn-primary btn-sm'>View Answer Detail</button>
+      </details>
+        {{/with}}
       
-      <!-- </div>
+      <br>
+
+      {{#with answers}}
+      <details>
+        <summary>{{content}}</summary>
+        <p> - by Refsnes Data. All Rights Reserved.</p>
+        <p>All content and graphics on this web site are the property of the company Refsnes Data.</p>
+        <button class='btn btn-primary btn-sm'>View Answer Detail</button>
+      </details>
+        {{/with}}  
       </div>
-      </div>
-      </div>
- --></template>
+     <!-- {{#if answers}} -->
+      
+      <!-- {{/if}}      -->
+	    </div>
+
+   </template>
