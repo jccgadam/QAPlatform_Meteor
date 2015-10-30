@@ -12,7 +12,8 @@ Template.main.events({
     },
 
     'click .pull-right' : function(e){
-        SessionAmplify = null;
+        // console.log(SessionAmplify);
+        SessionAmplify.clear();
         Router.go('/');
     }
 });

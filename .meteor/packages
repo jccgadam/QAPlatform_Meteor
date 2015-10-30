@@ -26,7 +26,6 @@ aldeed:autoform
 ajduke:bootstrap-tagsinput@=0.5.0
 mizzao:bootstrap-3
 manuel:reactivearray
-amplify
 mizzao:bootboxjs
 richsilv:dumb-collections
 tomi:upload-server
@@ -37,3 +36,5 @@ meteorhacks:npm
 
 npm-container
 peppelg:bootstrap-3-modal
+amplify
+mrt:session-amplify
