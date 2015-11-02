@@ -1,5 +1,9 @@
 <template name="layout">
  {{#ionBody}}
+   {{#ionView}}
+    {{#ionContent}}
   {{>yield}}
+    {{/ionContent}}
+   {{/ionView}}
  {{/ionBody}}
 </template>

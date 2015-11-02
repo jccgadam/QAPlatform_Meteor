@@ -7,7 +7,7 @@ div.marginblock{
 .documentList
 {
     overflow-x:auto;
-    overflow-y:hidden;
+    overflow-y:scroll;
     height:260px;
     width:100%;
     padding: 0 15px;

@@ -57,7 +57,6 @@
         {
          return SessionAmplify.get('tags');
         }
-        console.log(AllTags.find({'checked':'1'}).fetch());
      return AllTags.find({'checked':'1'}).fetch();
      },
      maxCredit: function(){
@@ -123,7 +122,7 @@
         MeteorCamera.getPicture(function(err,res){
          // var name =  
          if(res)
-          { 
+          {  console.log(res.length);
             var imgs=[];
             imgs = SessionAmplify.get('cameraImages')
             imgs.push(res);
@@ -142,6 +141,12 @@
             finalTags.push(k.cId);
           })
          }
+         else{
+         var array =  SessionAmplify.get('tags');
+          _.each(array,function(k,v){
+            finalTags.push(k.cId);
+          })
+         }
 
         var credit = Number(document.getElementById("creditSet").innerHTML);
         var loginUser = JSON.parse(SessionAmplify.get('loginUser').content);
@@ -149,14 +154,14 @@
         var uuid = SessionAmplify.get('uuid');
         var imageUrls = [];
         var images = SessionAmplify.get('images');
-        
+        var data = SessionAmplify.get('cameraImages');
         _.each(images,function(k,v){
           imageUrls.push(k.url);
           
         })
 
         if(!(validateQuestionTitle(title)&&validateQuestionContent(content)&&validateTags(finalTags)))
-        {
+        {     console.log('error');
               return false;
         }
 
@@ -171,12 +176,15 @@
               Session.set('message','post fails')
                         }
             else{
-
+              Meteor.call('addImage',uuid,data)
               SessionAmplify.set('title',null);
               SessionAmplify.set('content',null);
               SessionAmplify.set('uuid',null);
               SessionAmplify.set('title',null);
               SessionAmplify.set('tags',null);
+              SessionAmplify.set('images',null);
+              SessionAmplify.set('cameraImages',null);
+              SessionAmplify.set('cameraImagesList',null);
               AllTags.clear();
               Router.go('questions');
             }
@@ -184,19 +192,22 @@
 
      },
   'click .questionCancelBtn':function(e,t){
-     var uuid = SessionAmplify.get('uuid')
-     Meteor.call('removeImage',uuid,function(err,res){
-       if(res)
-         {
+     // var uuid = SessionAmplify.get('uuid')
+     // Meteor.call('removeImage',uuid,function(err,res){
+     //   if(res)
+     //     {
           SessionAmplify.set('title',null);
           SessionAmplify.set('content',null);
           SessionAmplify.set('uuid',null);
-          SessionAmplify.set('pics',null);
+          SessionAmplify.set('images',null);
           SessionAmplify.set('tags',null);
+          SessionAmplify.set('cameraImages',null);
+          SessionAmplify.set('cameraImagesList',null);
+          
           AllTags.clear();
           Router.go('main');
-         }
-     })
+     //     }
+     // })
   },
   'click .backButton':function(e,t){
     e.preventDefault();

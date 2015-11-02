@@ -17,7 +17,6 @@
 	 <div class="container">
         <div class="content padding contact-detail overflow-scroll has-header" style="padding:33px;top:0px">
         {{#with data}}
-      
         <div class="list card">
           <div class="item">
             <div class='row'>
@@ -36,26 +35,35 @@
           
           <div class="row">
           {{#each q in imageUrls}}
-			  <div class="col-xs-6 col-md-3">
-			    <a href="{{q}}" class="thumbnail">
-			      <img src="{{q}}">
-			    </a>
-              </div>
-          {{/each}}    
+			       <div class="col-xs-6 col-md-3">
+    			    <a href="{{q}}" class="thumbnail">
+    			      <img src="{{q}}" height='40%'>
+    			    </a>
+             </div>
+          {{/each}}  
+           {{#each cameraImages}}
+             <div class="col-xs-6 col-md-3">
+              <a class='singleImg' href='/img/{{id}}'><img src="{{img64}}" height='100%' width="100%"></a>
+             </div>
+        {{/each}}
           </div>
         </div>
        </div>
     {{/with}}
 
+
       {{#each answers}}
         <details>
+         {{#if abbr}}
           <summary style='font-size:110%'>{{abbr}}...</summary>
+          {{else}}
+          <summary style='font-size:110%'>{{detail}}</summary>
+          {{/if}}
           <div class="item row" style="margin-left:0px">
             <div class='col-lg-2'>
             <div class=' col-lg-8'>
-            <p>{{detail}}</p>
             <br>
-            <a href='/answer/{{aId}}'><button style="height:50%;width:75%" class='btn btn-primary btn-sm'>View Answer</button></a>
+            <a href='/answer/{{aId}}'><p>{{detail}}</p></a>
             </div>
             </div>
           </div>
