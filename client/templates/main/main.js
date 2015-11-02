@@ -11,9 +11,10 @@ Template.main.events({
         }
     },
 
-    'click .pull-right' : function(e){
-        // console.log(SessionAmplify);
-        SessionAmplify.clear();
+    'click .logoutbutton' : function(e){
+        console.log("Log out button clicked");
+        SessionAmplify = null;
+        console.log("SessionAmplify cleared");
         Router.go('/');
     }
 });
