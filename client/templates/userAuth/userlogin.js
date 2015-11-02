@@ -2,7 +2,8 @@ Template.userlogin.onCreated(function(){
   //clear all session var
   SessionAmplify = _.extend({}, Session, {
     keys: _.object(_.map(amplify.store(), function(value, key) {
-      return [key, JSON.stringify(value)]
+      value = null;
+      return [key, null];
     })),
     set: function (key, value) {
       Session.set.apply(this, arguments);
