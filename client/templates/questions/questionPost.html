@@ -112,6 +112,40 @@
            </div>
          </div> 
          {{/if}} 
+
+         {{#if cameraImages}}
+          <div class='row' style="margin-top:30px">  
+           <div class='col-lg-12'>
+           <label class="control-label">Camera Taken Pictures:</label>
+           <a class='btn btn-primary takePictures'>Take pictures</a>
+           <div class="documentList">
+              <ul class="list-inline">
+                 {{#each cameraImages}}
+                 <div class="row"> 
+                    <div class="col-lg-6">
+                    <li class="documentItem" style="border:none">
+                       <img src='{{this}}'/> 
+                      <!-- {{name}} -->
+                      <br>
+                    </li>
+                    </div>
+                 </div>
+                    {{/each}}   
+              </ul>
+           </div>
+           </div>
+         </div>  
+         
+         {{else}}
+         <div class='row'>
+           <div class='col-lg-6'>
+           <label class="control-label">Take Pictures:</label>
+           <a class='btn btn-primary takePictures'>Take pictures</a>
+           </div>
+         </div> 
+
+         {{/if}}
+
             <div class="control-group">
                 <label class="control-label">Add Credit to attract more answers: <a id="creditSet"></a></label>
                 <div class="controls">

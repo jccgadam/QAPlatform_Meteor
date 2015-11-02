@@ -76,6 +76,11 @@
         SessionAmplify.set('images',res)
       })
       return SessionAmplify.get('images');
+     },
+     cameraImages:function(){
+      // var uuid = SessionAmplify.get('cameraImages');
+      return SessionAmplify.get('cameraImages');
+
      }
   })
 
@@ -105,6 +110,26 @@
         if(e.target.id == "cancleButton"){
             Router.go('main');
         }
+    },
+    'click .takePictures':function(e,t){
+        // var cameraOptions = {
+        //     width: 400,
+        //     height: 300
+        // };
+        if(SessionAmplify.get('cameraImages')==null||(typeof SessionAmplify.get('cameraImages')=='undefined'))
+          {
+            SessionAmplify.set('cameraImages',[]);
+          }
+        MeteorCamera.getPicture(function(err,res){
+         // var name =  
+         if(res)
+          { 
+            var imgs=[];
+            imgs = SessionAmplify.get('cameraImages')
+            imgs.push(res);
+            SessionAmplify.set('cameraImages',imgs);
+          }
+        })
     },
     'submit form':function(e,t){
       e.preventDefault();

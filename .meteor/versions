@@ -48,9 +48,11 @@ iron:router@1.0.12
 iron:url@1.0.11
 jquery@1.11.4
 launch-screen@1.0.4
+less@2.5.1
 livedata@1.0.15
 logging@1.0.8
 manuel:reactivearray@1.0.5
+mdg:camera@1.2.0
 meteor@1.1.10
 meteor-base@1.0.1
 meteorhacks:async@1.0.0

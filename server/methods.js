@@ -45,7 +45,7 @@ Meteor.methods({
          connection.end();
        return myFuture.wait();
   },
-  'removeImage':function(uuid){
+  'addImage':function(uuid,imgData){
   	var mysql = Meteor.npmRequire('mysql');
     Future = Npm.require('fibers/future');
     var myFuture = new Future();
@@ -57,7 +57,7 @@ Meteor.methods({
             database : 'images',
         });
        connection.connect();
-        connection.query("delete from images where uuid='"+uuid+"';", function(err, rows, fields) {
+        connection.query("insert into imgCamera (img64,uuid) values('"+imgData+"',"+"'"+uuid+"');", function(err, rows, fields) {
             if (err)
             {
                myFuture.throw(err)

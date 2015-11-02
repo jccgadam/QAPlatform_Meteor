@@ -28,3 +28,7 @@ Package.onUse(function(api) {
     });
   }
 });
+
+Cordova.depends({
+    'cordova-plugin-camera': '1.2.0'
+});

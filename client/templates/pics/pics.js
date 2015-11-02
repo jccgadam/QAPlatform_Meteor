@@ -1,6 +1,6 @@
-Template.home.onRendered(function(){
-  $('body').css('heigh',700);
-})
+// Template.home.onRendered(function(){
+//   $('body').css('heigh',700);
+// })
 Template['home'].helpers({
   myFormData: function() {
     return { directoryName: 'images', prefix: this._id, _id: this._id }
