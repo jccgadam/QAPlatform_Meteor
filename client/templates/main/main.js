@@ -33,4 +33,14 @@ Template.main.onCreated(function () {
             }
         }
     });
+
+    var url2 = "http://54.191.134.26:9000/categories";
+    HTTP.get(url2, function (error, response) {
+        if(error){
+            SessionAmplify.set("categories", null);
+        } else{
+            var cats = JSON.parse(response.content).results;
+            SessionAmplify.set("categories", cats);
+        }
+    });
 });

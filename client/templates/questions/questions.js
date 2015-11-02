@@ -27,6 +27,18 @@ Template.questions.onCreated(function () {
                 if(obj.results[i].content.length > 28){
                     obj.results[i].displayContent = obj.results[i].content.substring(0, 29) + "..";
                 }
+
+                //Get categories names for each question
+                var cats = [];
+                for(var k = 0; k < obj.results[i].cIds.length; k ++){
+                    for(var j = 0; j < SessionAmplify.get("categories").length; j ++){
+                        if(obj.results[i].cIds[k] == SessionAmplify.get("categories")[j].cId){
+                            cats.push(SessionAmplify.get("categories")[j].cName);
+                            break;
+                        }
+                    }
+                }
+                obj.results[i].catNames = cats;
             }
             SessionAmplify.set("questions", obj);
             SessionAmplify.set("tmpResult", obj.results);
@@ -56,6 +68,7 @@ Template.questions.onCreated(function () {
                 SessionAmplify.set("answerQuestions", obj);
             }
         });
+
     SessionAmplify.set("questionsaskedactive", true);
 })
 

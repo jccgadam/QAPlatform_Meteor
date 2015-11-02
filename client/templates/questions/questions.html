@@ -42,13 +42,15 @@
                                  {{/if}}
                             </div>
                           </div>  
-                        <!-- 
-                        <div class='col-lg-2'>
-                           
-                                <button class="btn btn-primary viewQuestion" data-ion-modal="questionDetail">View Question</button>                           
                         </div>
-                         --></div>
                         </article>
+                        <div class='row'>
+                            {{#each cN in q.catNames}}
+                            <div class="col" style="max-width:200px">
+                                <div class="categoryCard">{{cN}}</div>
+                            </div>
+                            {{/each}}
+                        </div>
                     </a>
                 {{/each}}
             </div>
