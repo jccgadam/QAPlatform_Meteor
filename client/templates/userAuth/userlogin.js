@@ -78,10 +78,6 @@ Template.userlogin.events({
 
 	          })
                }
-    },
-
-    'click .pushNotification' : function(e, t){
-        Meteor.call("serverNotification");
     }
 })
 
