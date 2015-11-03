@@ -12,10 +12,12 @@ Template.main.events({
     },
 
     'click .logoutbutton' : function(e){
-        console.log("Log out button clicked");
-        SessionAmplify = null;
-        console.log("SessionAmplify cleared");
-        Router.go('/');
+        $.each(amplify.store(), function (storeKey) {
+            amplify.store(storeKey, null);
+            SessionAmplify.set(storeKey, null);
+        });
+        console.log("amplify.store() cleared");
+        Router.go('/login');
     }
 });
 

@@ -1,15 +1,15 @@
 Template.userlogin.onCreated(function(){
+    SessionAmplify = _.extend({}, Session, {
+      keys: _.object(_.map(amplify.store(), function(value, key) {
+          value = null;
+          return [key, null];
+      })),
+      set: function (key, value) {
+          Session.set.apply(this, arguments);
+          amplify.store(key, value);
+      },
+    });
   //clear all session var
-  SessionAmplify = _.extend({}, Session, {
-    keys: _.object(_.map(amplify.store(), function(value, key) {
-      value = null;
-      return [key, null];
-    })),
-    set: function (key, value) {
-      Session.set.apply(this, arguments);
-      amplify.store(key, value);
-    },
-  });
   Session.set('emailError',null);
   Session.set('passwordError',null);
   Session.set('message',null);
@@ -74,11 +74,14 @@ Template.userlogin.events({
                  Session.set('message',null);
                  SessionAmplify.set('loginUser',response);
                  Router.go('main')
-              
             }
 
 	          })
                }
+    },
+
+    'click .pushNotification' : function(e, t){
+        Meteor.call("serverNotification");
     }
 })
 
