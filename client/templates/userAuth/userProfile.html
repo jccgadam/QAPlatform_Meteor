@@ -31,32 +31,42 @@
                         <td contenteditable="true" class='lastName'>{{lastName}}</td>
                       </tr>
                       <tr>
-                        <td>E-mail Address:</td>
+                        <td>E-mail:</td>
                         <td contenteditable="true" class='email'>{{email}}</td>
                       </tr>
-                         <tr>
-                        </tr><tr>
-                        <td>Credit</td>
+                      <tr>
+                        <td>Credit:</td>
                         <td>{{credit}}</td>
                       </tr>
                         <tr>
-                        <td>Experience</td>
+                        <td>Experience:</td>
                         <td>{{exp}}</td>
                       </tr>
-                      
-                        <tr><td>Expertises:</td>
-                        <td>{{categories}}
-                          <br>
-                          <a href='/editUserTags/2'>Update Tags</a>
-                        </td>
-                           
+                        <tr>
+                            <td>Expertise:</td>
+                        </tr>
+
+                      <tr>
+                          <td colspan="2">
+                            <div class='row'>
+                            {{#each c in categories}}
+                            <div class="col" style="max-width:200px">
+                                <div class="categoryCard">{{c}}</div>
+                            </div>
+                            {{/each}}
+                            </div>
+                          </td>
                       </tr>
-                     
+                      <tr>
+                          <td colspan="2">
+                            <a href='/editUserTags/2'>Update your expertise</a>
+                          </td>
+                      </tr>
                     </tbody>
                   </table>
+                    
                   <div style="margin-left:45%">
                   <a href="#" class="btn btn-primary saveChanges">Save Changes</a>
-                  <!-- <a href="#" class="btn btn-primary">Cnacel</a> -->
                   </div>
                 </div>
               </div>

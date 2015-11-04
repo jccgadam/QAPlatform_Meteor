@@ -28,7 +28,7 @@ Template.userProfile.helpers({
 Template.userProfile.events({
  'click .backButton':function(e,t){
    e.preventDefault();
-   window.history.back();
+   Router.go("/main");
  },
  'click .saveChanges':function(e,t){
  	e.preventDefault();
@@ -50,13 +50,10 @@ Template.userProfile.events({
         },
     	function (error, response) {
         if (error) {
-
            console.log(error)
-
         }
         else{
-        	Router.go('/userProfile')
-
+        	Router.go('/main')
         }
 
     })
