@@ -24,19 +24,18 @@
                     <tbody>
                       <tr>
                         <td>First Name:</td>
-                        <td>{{firstName}}</td>
+                        <td contenteditable="true" class="firstName">{{firstName}}</td>
                       </tr>
                       <tr>
                         <td>Last Name:</td>
-                        <td>{{lastName}}</td>
+                        <td contenteditable="true" class='lastName'>{{lastName}}</td>
                       </tr>
                       <tr>
                         <td>E-mail Address:</td>
-                        <td>{{email}}</td>
+                        <td contenteditable="true" class='email'>{{email}}</td>
                       </tr>
-                   
                          <tr>
-                             </tr><tr>
+                        </tr><tr>
                         <td>Credit</td>
                         <td>{{credit}}</td>
                       </tr>
@@ -44,21 +43,21 @@
                         <td>Experience</td>
                         <td>{{exp}}</td>
                       </tr>
-                      <!-- <tr>
-                        <td>Email</td>
-                        <td><a href="mailto:info@support.com">info@support.com</a></td>
-                      </tr> -->
+                      
                         <tr><td>Expertises:</td>
-                        <td>123-4567-890(Landline)<br><br>555-4567-890(Mobile)
+                        <td>{{categories}}
+                          <br>
+                          <a href='/editUserTags/2'>Update Tags</a>
                         </td>
                            
                       </tr>
                      
                     </tbody>
                   </table>
-                  
-                  <a href="#" class="btn btn-primary">My Sales Performance</a>
-                  <a href="#" class="btn btn-primary">Team Sales Performance</a>
+                  <div style="margin-left:45%">
+                  <a href="#" class="btn btn-primary saveChanges">Save Changes</a>
+                  <!-- <a href="#" class="btn btn-primary">Cnacel</a> -->
+                  </div>
                 </div>
               </div>
             </div>
