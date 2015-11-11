@@ -58,26 +58,25 @@ Template.userlogin.events({
           }
           else{
 
-            HTTP.post("http://54.191.134.26:9000/signin",
-          {
-            data: {email:email, password:password}
-          },
-          //server response callback
-          function (error, response) {
-            if (error) {
-              console.log(error);
-              Session.set('message','Email not exist or wrong password')
-                        }
-            else{
-                 Session.set('emailError',null);
-                 Session.set('passwordError',null);
-                 Session.set('message',null);
-                 SessionAmplify.set('loginUser',response);
-                 Router.go('main')
-            }
-
-	          })
-               }
+            Meteor.loginWithPassword(email, password, function(err){
+                if(err){
+                   Session.set('message','Email not exist or wrong password')
+                } else {
+                var url = "http://54.191.134.26:9000/usersbyumid/" + Meteor.userId();
+                   HTTP.get( url, function (error, response) {
+                    if (error) {
+                        Session.set('message','Network is down')
+                    } else {
+                        Session.set('emailError',null);
+                        Session.set('passwordError',null);
+                        Session.set('message',null);
+                        SessionAmplify.set('loginUser',response);
+                        Router.go('main')
+                    }
+                   });
+                }
+            });
+          }
     }
 })
 

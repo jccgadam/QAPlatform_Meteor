@@ -122,5 +122,30 @@ Meteor.methods({
         });
          connection.end();
        return myFuture.wait();
-  }
+  },
+
+    'serverNotification': function(uMId, type){
+        var title = "";
+        if(type == "NEWQUESTION"){
+            title = "You got a new question";
+        } else if(type == "NEWANSWER"){
+            title = "You got a new answer";
+        } else {
+            title = "Your answer is chonsen as the best";
+        }
+        Push.debug = true;
+        Push.send({
+           from: 'push',
+           title: title,
+           text: title,
+           badge: 1,
+           payload: {
+           title: title,
+           },
+           query: {
+              userId: uMId
+           }
+        });
+        console.log("Done push notification to " + uMId);
+    },
 })

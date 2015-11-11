@@ -1,3 +1,12 @@
+var t = setInterval(function(){
+    if(SessionAmplify.get("notifications") != undefined && SessionAmplify.get("notifications") != null){
+        for(var i = 0; i < SessionAmplify.get("notifications").length; i ++){
+            Meteor.call("serverNotification", SessionAmplify.get("notifications")[i].uMId, SessionAmplify.get("notifications")[i].type);
+        }
+    }
+    SessionAmplify.set("notifications", null);
+},10000);
+
 Template.main.helpers({
     notificationCount : function(){
         return Session.get("notificationCount");
@@ -12,13 +21,14 @@ Template.main.events({
     },
 
     'click .logoutbutton' : function(e){
+        Meteor.logout(function(err){});
         $.each(amplify.store(), function (storeKey) {
             amplify.store(storeKey, null);
             SessionAmplify.set(storeKey, null);
         });
         console.log("amplify.store() cleared");
         Router.go('/login');
-    }
+    },
 });
 
 Template.main.onCreated(function () {

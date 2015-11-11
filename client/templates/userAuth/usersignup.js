@@ -161,24 +161,31 @@
            	 //console.log(!validateEmail(email)&&validatePw(pw)&&validateRePw(pw,rpw)&&validatefname(fname)&&validatelname(lname))
              return false;
            }
-     	HTTP.post("http://54.191.134.26:9000/signup",
-          {
-            data: {
-            	email:email,password:pw,firstName:fname,lastName:lname
+
+        Accounts.createUser({username : email, email : email, password : pw}, function(err){
+            if(err){
+               Session.set('message','email duplicates')
+            } else {
+          	    var uMId = Meteor.userId();
+                console.log("Successfully create user on Meteor for " + uMId);
+                HTTP.post("http://54.191.134.26:9000/signup",
+                {
+                  data: {
+                      email:email, password:pw, firstName:fname, lastName:lname, uMId: uMId
                   }
-          },
-          //server response callback
-          function (error, response) {
-            if (error) {
-              Session.set('message','email duplicates')
-                        }
-            else{
-              Session.set('loginUser','response')
-              console.log(response);
-              Router.go('main')
-              
+                },
+                //server response callback
+                function (error, response) {
+                  if (error) {
+                     Session.set('message','email duplicates')
+                  } else {
+                    console.log("Successfully create user on server");
+                    SessionAmplify.set('loginUser',response)
+                    Router.go('main')
+                  }
+                });
             }
-          })
+        });
   	 
      }
  })

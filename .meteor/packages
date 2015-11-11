@@ -39,3 +39,6 @@ peppelg:bootstrap-3-modal
 amplify
 mrt:session-amplify
 mdg:camera
+raix:push
+accounts-password
+insecure

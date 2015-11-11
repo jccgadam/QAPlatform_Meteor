@@ -157,12 +157,12 @@
         var data = SessionAmplify.get('cameraImages');
         _.each(images,function(k,v){
           imageUrls.push(k.url);
-          
         })
 
         if(!(validateQuestionTitle(title)&&validateQuestionContent(content)&&validateTags(finalTags)))
-        {     console.log('error');
-              return false;
+        {
+            console.log('error');
+            return false;
         }
 
         HTTP.post("http://54.191.134.26:9000/questions",
@@ -172,10 +172,8 @@
           //server response callback
           function (error, response) {
             if (error) {
-              
               Session.set('message','post fails')
-                        }
-            else{
+            } else {
               Meteor.call('addImage',uuid,data)
               SessionAmplify.set('title',null);
               SessionAmplify.set('content',null);
@@ -186,6 +184,16 @@
               SessionAmplify.set('cameraImages',null);
               SessionAmplify.set('cameraImagesList',null);
               AllTags.clear();
+
+              var targets = JSON.parse(response.content).results;
+              var ns = SessionAmplify.get("notifications");
+              if(ns == 'undefined' || ns == null){
+                ns = [];
+              }
+              for(var i = 0; i < targets.length; i ++){
+                ns.push({uMId: targets[i].uMId, type: "NEWQUESTION"});
+              }
+              SessionAmplify.set("notifications", ns);
               Router.go('questions');
             }
           })
