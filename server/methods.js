@@ -1,16 +1,6 @@
 Meteor.methods({
   'deleteFile': function(_id) {
     check(_id, String);
-// <<<<<<< HEAD
-
-//     var upload = Uploads.findOne(_id);
-//     if (upload == null) {
-//       throw new Meteor.Error(404, 'Upload not found'); // maybe some other code
-//     }
-
-//     UploadServer.delete(upload.path);
-//     Uploads.remove(_id);
-// =======
 
     var upload = Uploads.findOne(_id);
     if (upload == null) {
@@ -70,7 +60,7 @@ Meteor.methods({
         });
       })
          connection.end();
-       return myFuture.wait();
+//       return myFuture.wait();
   },
   'cameraImages':function(uuid){
    
@@ -140,7 +130,7 @@ Meteor.methods({
            text: title,
            badge: 1,
            payload: {
-           title: title,
+              title: title,
            },
            query: {
               userId: uMId

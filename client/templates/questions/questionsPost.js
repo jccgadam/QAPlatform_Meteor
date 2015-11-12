@@ -186,14 +186,9 @@
               AllTags.clear();
 
               var targets = JSON.parse(response.content).results;
-              var ns = SessionAmplify.get("notifications");
-              if(ns == 'undefined' || ns == null){
-                ns = [];
-              }
               for(var i = 0; i < targets.length; i ++){
-                ns.push({uMId: targets[i].uMId, type: "NEWQUESTION"});
+                Meteor.call("serverNotification", targets[i].uMId, "NEWQUESTION");
               }
-              SessionAmplify.set("notifications", ns);
               Router.go('questions');
             }
           })

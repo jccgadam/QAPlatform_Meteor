@@ -1,12 +1,3 @@
-var t = setInterval(function(){
-    if(SessionAmplify.get("notifications") != undefined && SessionAmplify.get("notifications") != null){
-        for(var i = 0; i < SessionAmplify.get("notifications").length; i ++){
-            Meteor.call("serverNotification", SessionAmplify.get("notifications")[i].uMId, SessionAmplify.get("notifications")[i].type);
-        }
-    }
-    SessionAmplify.set("notifications", null);
-},10000);
-
 Template.main.helpers({
     notificationCount : function(){
         return Session.get("notificationCount");
