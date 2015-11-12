@@ -1,7 +1,7 @@
   Template.questionDetail.helpers({
   data:function(){
      
-
+    console.log(this);
   	return this;
   },
   cameraImages:function(){
@@ -18,9 +18,13 @@
      })
      return SessionAmplify.get('cameraImagesList');
   },
+  uuid:function(){
+
+    return SessionAmplify.get('uuid');
+
+  },
   answers:function(){
     var qId = this.qId;
-    // console.log(this.qId);
     var url = "http://54.191.134.26:9000/questionanswers/"+qId;
     HTTP.get(url, function (error, response) {
         if (error) {
