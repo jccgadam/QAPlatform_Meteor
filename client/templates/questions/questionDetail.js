@@ -1,7 +1,7 @@
   Template.questionDetail.helpers({
   data:function(){
      
-    console.log(this);
+     console.log(this);
   	return this;
   },
   cameraImages:function(){
@@ -17,11 +17,6 @@
        }      
      })
      return SessionAmplify.get('cameraImagesList');
-  },
-  uuid:function(){
-
-    return SessionAmplify.get('uuid');
-
   },
   answers:function(){
     var qId = this.qId;
