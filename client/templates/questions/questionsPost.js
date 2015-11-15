@@ -70,10 +70,12 @@
      },
      images:function(){
       var uuid = SessionAmplify.get('uuid');
-      Meteor.call('Images',uuid,function(err,res){
-        // console.log(res);
-        SessionAmplify.set('images',res)
-      })
+      if(uuid){
+          Meteor.call('Images',uuid,function(err,res){
+            // console.log(res);
+            SessionAmplify.set('images',res)
+          });
+      }
       return SessionAmplify.get('images');
      },
      cameraImages:function(){
@@ -115,12 +117,11 @@
         //     width: 400,
         //     height: 300
         // };
-        if(SessionAmplify.get('cameraImages')==null||(typeof SessionAmplify.get('cameraImages')=='undefined'))
+        if(SessionAmplify.get('cameraImages') == null||(SessionAmplify.get('cameraImages') == 'undefined'))
           {
             SessionAmplify.set('cameraImages',[]);
           }
         MeteorCamera.getPicture(function(err,res){
-         // var name =  
          if(res)
           {  console.log(res.length);
             var imgs=[];
@@ -172,9 +173,17 @@
           //server response callback
           function (error, response) {
             if (error) {
-              Session.set('message','post fails')
+              Session.set('message','post fails');
             } else {
-              Meteor.call('addImage',uuid,data)
+              Meteor.call('addImage',uuid,data, function(){
+
+              });
+              var targets = JSON.parse(response.content).results;
+              for(var i = 0; i < targets.length; i ++){
+                Meteor.call("serverNotification", targets[i].uMId, "NEWQUESTION");
+              }
+              Router.go('questions');
+            }
               SessionAmplify.set('title',null);
               SessionAmplify.set('content',null);
               SessionAmplify.set('uuid',null);
@@ -183,22 +192,11 @@
               SessionAmplify.set('images',null);
               SessionAmplify.set('cameraImages',null);
               SessionAmplify.set('cameraImagesList',null);
+              SessionAmplify.set('uuid', null);
               AllTags.clear();
-
-              var targets = JSON.parse(response.content).results;
-              for(var i = 0; i < targets.length; i ++){
-                Meteor.call("serverNotification", targets[i].uMId, "NEWQUESTION");
-              }
-              Router.go('questions');
-            }
-          })
-
+          });
      },
   'click .questionCancelBtn':function(e,t){
-     // var uuid = SessionAmplify.get('uuid')
-     // Meteor.call('removeImage',uuid,function(err,res){
-     //   if(res)
-     //     {
           SessionAmplify.set('title',null);
           SessionAmplify.set('content',null);
           SessionAmplify.set('uuid',null);
@@ -209,8 +207,6 @@
           
           AllTags.clear();
           Router.go('main');
-     //     }
-     // })
   },
   'click .backButton':function(e,t){
     e.preventDefault();

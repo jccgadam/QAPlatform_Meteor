@@ -1,3 +1,12 @@
+Meteor.setInterval(function(){
+    if(SessionAmplify.get('loginUser')){
+        var url = "http://54.191.134.26:9000/heartbeat/" + JSON.parse(SessionAmplify.get('loginUser').content).uId;
+        HTTP.get(url, function(error, response){
+            console.log("Heartbeat sent");
+        });
+    }
+}, 10000);
+
 Template.main.helpers({
     notificationCount : function(){
         return Session.get("notificationCount");
@@ -12,6 +21,10 @@ Template.main.events({
     },
 
     'click .logoutbutton' : function(e){
+        var url = "http://54.191.134.26:9000/logoff/" + JSON.parse(SessionAmplify.get('loginUser').content).uId;
+            HTTP.get(url, function(error, response){
+            console.log("Logoff sent");
+        });
         Meteor.logout(function(err){});
         $.each(amplify.store(), function (storeKey) {
             amplify.store(storeKey, null);

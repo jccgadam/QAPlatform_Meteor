@@ -36,8 +36,6 @@ Meteor.methods({
   },
   'addImage':function(uuid,imgData){
   	var mysql = Meteor.npmRequire('mysql');
-    Future = Npm.require('fibers/future');
-    var myFuture = new Future();
 
         var connection = mysql.createConnection({
             host     : 'uploadimages.cbwgrfnpfxqv.us-west-2.rds.amazonaws.com',
@@ -49,18 +47,17 @@ Meteor.methods({
        _.each(imgData,function(k,v)
        { 
          var imgData = k;
+         console.log("insert into imgCamera (img64,uuid) values('"+imgData+"',"+"'"+uuid+"');");
         connection.query("insert into imgCamera (img64,uuid) values('"+imgData+"',"+"'"+uuid+"');", function(err, rows, fields) {
             if (err)
             {
-               myFuture.throw(err)
+                console.log(err);
             }
             else {
-               myFuture.return(rows);
             }
         });
       })
          connection.end();
-//       return myFuture.wait();
   },
   'cameraImages':function(uuid){
    
@@ -75,13 +72,15 @@ Meteor.methods({
             database : 'images',
         });
        connection.connect();
+       console.log("select * from imgCamera where uuid='"+uuid+"';");
         connection.query("select * from imgCamera where uuid='"+uuid+"';", function(err, rows, fields) {
             if (err)
-            {  console.log(err);
+            {
+               console.log(err);
                myFuture.throw(err)
             }
             else {
-             
+               console.log(rows);
                myFuture.return(rows);
             }
         });
@@ -184,7 +183,8 @@ Meteor.methods({
            },
            query: {
               userId: uMId
-           }
+           },
+           notId: Math.floor((Math.random() * 10000) + 1)
         });
         console.log("Done push notification to " + uMId);
     },
