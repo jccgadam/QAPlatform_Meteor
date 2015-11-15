@@ -10,6 +10,9 @@ Meteor.setInterval(function(){
 Template.main.helpers({
     notificationCount : function(){
         return Session.get("notificationCount");
+    },
+    userEmail: function(){
+        return JSON.parse(SessionAmplify.get('loginUser').content).email;
     }
 });
 
