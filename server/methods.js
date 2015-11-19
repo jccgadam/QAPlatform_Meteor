@@ -169,6 +169,8 @@ Meteor.methods({
             title = "You got a new question";
         } else if(type == "NEWANSWER"){
             title = "You got a new answer";
+        } else if(type = "CHATREQUEST"){
+            title = "Someone wants to chat with you"
         } else {
             title = "Your answer is chonsen as the best";
         }

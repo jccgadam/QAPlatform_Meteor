@@ -24,12 +24,19 @@ Template.notifications.onCreated(function () {
                     if(obj.results[i].type == "NEWQUESTION"){
                        obj.results[i].title = "Got a new question";
                        obj.results[i].bgColor = "balanced";
+                       obj.results[i].url = "/question/" + obj.results[i].qId;
                     } else if(obj.results[i].type == "NEWANSWER") {
                        obj.results[i].title = "Got an answer!";
                        obj.results[i].bgColor = "calm";
+                       obj.results[i].url = "/question/" + obj.results[i].qId;
                     } else if(obj.results[i].type == "BESTANSWER") {
                        obj.results[i].title = "Chosen as the best!";
                        obj.results[i].bgColor = "energized";
+                       obj.results[i].url = "/question/" + obj.results[i].qId;
+                    } else if(obj.results[i].type == "CHAT"){
+                       obj.results[i].title = "Chatting request";
+                       obj.results[i].bgColor = "royal";
+                       obj.results[i].url = "http://54.191.134.26:3000/chat/" + obj.results[i].comment;
                     }
                     if(obj.results[i].status == "Read"){
                         obj.results[i].bgColor = "light";

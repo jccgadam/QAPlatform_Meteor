@@ -145,25 +145,22 @@
      },
      'submit form':function(e,t){
      	e.preventDefault();
+        console.log("Sign up button tapped");
      	var email = t.$('.email').val();
      	var pw    = t.$('.password').val();
      	var rpw   = t.$('.re-password').val();
      	var fname = t.$('.fname').val();
      	var lname  = t.$('.lname').val();
-     	// console.log(validateEmail(email));
-     	// console.log(validatePw(pw));
-     	// console.log(validateRePw(pw,rpw));
-     	// console.log(validatefname(fname));
-     	// console.log(validatelname(lname));
         if(!(validateEmail(email)&&validatePw(pw)&&validateRePw(pw,rpw)&&validatefname(fname)&&validatelname(lname)))
            {          
-           	 
            	 //console.log(!validateEmail(email)&&validatePw(pw)&&validateRePw(pw,rpw)&&validatefname(fname)&&validatelname(lname))
+           	 console.log("Input validation failed");
              return false;
            }
 
         Accounts.createUser({username : email, email : email, password : pw}, function(err){
             if(err){
+               console.log(err);
                Session.set('message','email duplicates')
             } else {
           	    var uMId = Meteor.userId();
@@ -177,6 +174,7 @@
                 //server response callback
                 function (error, response) {
                   if (error) {
+                     console.log(error);
                      Session.set('message','email duplicates')
                   } else {
                     console.log("Successfully create user on server");
