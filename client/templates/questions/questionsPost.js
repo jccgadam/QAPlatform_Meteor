@@ -35,6 +35,9 @@
   }
 
   Template.questionsPost.onRendered(function(){
+        if(!SessionAmplify.get("userCredit")){
+           SessionAmplify.set("userCredit", JSON.parse(SessionAmplify.get('loginUser').content).credit);
+        }
        $('.questionTitle').val(SessionAmplify.get('title')); 
        $('.questionContent').val(SessionAmplify.get('content'));
        document.getElementById("creditSet").innerHTML = document.getElementById("creditAmountBar").value;
@@ -60,6 +63,9 @@
      return AllTags.find({'checked':'1'}).fetch();
      },
      maxCredit: function(){
+        if(SessionAmplify.get("userCredit")){
+            return SessionAmplify.get("userCredit");
+        }
         return JSON.parse(SessionAmplify.get('loginUser').content).credit;
      },
      message:function(){
@@ -175,25 +181,24 @@
             if (error) {
               Session.set('message','post fails');
             } else {
-              Meteor.call('addImage',uuid,data, function(){
-
-              });
+                SessionAmplify.set("userCredit", SessionAmplify.get("userCredit") - credit);
+                SessionAmplify.set('title',null);
+                SessionAmplify.set('content',null);
+                SessionAmplify.set('uuid',null);
+                SessionAmplify.set('title',null);
+                SessionAmplify.set('tags',null);
+                SessionAmplify.set('images',null);
+                SessionAmplify.set('cameraImages',null);
+                SessionAmplify.set('cameraImagesList',null);
+                SessionAmplify.set('uuid', null);
+                AllTags.clear();
+                Meteor.call('addImage',uuid,data, function(){});
               var targets = JSON.parse(response.content).results;
               for(var i = 0; i < targets.length; i ++){
                 Meteor.call("serverNotification", targets[i].uMId, "NEWQUESTION");
               }
               Router.go('questions');
             }
-              SessionAmplify.set('title',null);
-              SessionAmplify.set('content',null);
-              SessionAmplify.set('uuid',null);
-              SessionAmplify.set('title',null);
-              SessionAmplify.set('tags',null);
-              SessionAmplify.set('images',null);
-              SessionAmplify.set('cameraImages',null);
-              SessionAmplify.set('cameraImagesList',null);
-              SessionAmplify.set('uuid', null);
-              AllTags.clear();
           });
      },
   'click .questionCancelBtn':function(e,t){

@@ -52,8 +52,9 @@
     {{/with}}
 
 
+            <div class="card">
       {{#each answers}}
-        <details>
+        <details class="item item-text-wrap">
          {{#if abbr}}
           <summary style='font-size:110%'>{{abbr}}...</summary>
           <!-- <a href='http://54.191.134.26:3000/chat/{{fId}}/{{tId}}{{uuid}}'><button >chat</button></a> -->
@@ -72,7 +73,7 @@
         </details>        
         <br>
       {{/each}}
-      
+      </div>
       <br>
       </div>
      <!-- {{#if answers}} -->

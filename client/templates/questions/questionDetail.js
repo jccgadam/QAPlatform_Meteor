@@ -32,7 +32,7 @@
           _.each(res,function(k){
              if(k.content.length>22)
             {
-             modifiedAnswer ={abbr:k.content.substring(0,22),detail:k.content,aId:k.aId}; 
+             modifiedAnswer ={abbr:k.content.substring(0,22), detail:k.content, aId:k.aId};
              results.push(modifiedAnswer);
             }
             else{
