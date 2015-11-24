@@ -30,13 +30,15 @@
           var results =[];
           var modifiedAnswer;
           _.each(res,function(k){
+            var answererId = k.u;
+
              if(k.content.length>22)
             {
-             modifiedAnswer ={abbr:k.content.substring(0,22), detail:k.content, aId:k.aId};
+             modifiedAnswer ={abbr:k.content.substring(0,22), detail:k.content, aId:k.aId, isBest: k.isBest, hasImage: k.hasImage, hasVoice: k.hasVoice, createDate: k.createDate.substring(1, k.createDate.length), answerer: k.uEmail};
              results.push(modifiedAnswer);
             }
             else{
-              modifiedAnswer = {detail:k.content,aId:k.aId}
+              modifiedAnswer = {detail:k.content, aId:k.aId, isBest: k.isBest, hasImage: k.hasImage, hasVoice: k.hasVoice, createDate: k.createDate.substring(1, k.createDate.length), answerer: k.uEmail};
               results.push(modifiedAnswer);
             }
           })

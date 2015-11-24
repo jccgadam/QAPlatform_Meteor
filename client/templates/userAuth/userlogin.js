@@ -36,6 +36,7 @@ Template.userlogin.events({
           }
     },
     'submit .userlogin':function(e,t){
+          console.log("Login button tapped");
           e.preventDefault();
           //clear all session var
           Session.set('emailError',null);
@@ -45,28 +46,34 @@ Template.userlogin.events({
           var password =t.$('.password').val(); 
           //check if email is empty
           if(email=='')
-          {  
+          {
+             console.log("Email empty");
              Session.set('emailError','Please enter email');
-             
              return;
           }
           //check if password is empty
           else if(password=='')
-          { 
+          {
+            console.log("Password empty");
             Session.set('passwordError','Please enter passord');
             return;
           }
           else{
-
+            console.log("Line 60");
             Meteor.loginWithPassword(email, password, function(err){
+                console.log("Line 64");
                 if(err){
+                   console.log(err);
                    Session.set('message','Email not exist or wrong password')
                 } else {
-                var url = "http://54.191.134.26:9000/usersbyumid/" + Meteor.userId();
+                   console.log("Login to Meteor");
+                   var url = "http://54.191.134.26:9000/usersbyumid/" + Meteor.userId();
                    HTTP.get( url, function (error, response) {
                     if (error) {
+                        console.log(error);
                         Session.set('message','Network is down')
                     } else {
+                        console.log("Login to Play");
                         Session.set('emailError',null);
                         Session.set('passwordError',null);
                         Session.set('message',null);

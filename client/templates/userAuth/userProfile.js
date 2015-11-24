@@ -26,7 +26,7 @@ Template.userProfile.helpers({
 })
 
 Template.userProfile.events({
- 'click .backButton':function(e,t){
+ 'click .backButton, click .cancelButton':function(e,t){
    e.preventDefault();
    Router.go("/main");
  },

@@ -171,6 +171,8 @@ Meteor.methods({
             title = "You got a new answer";
         } else if(type = "CHATREQUEST"){
             title = "Someone wants to chat with you"
+        } else if(type == "VIDEOREQUEST"){
+            title = "Someone wants to video chat with you";
         } else {
             title = "Your answer is chonsen as the best";
         }

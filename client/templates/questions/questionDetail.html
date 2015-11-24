@@ -56,11 +56,25 @@
       {{#each answers}}
         <details class="item item-text-wrap">
          {{#if abbr}}
-          <summary style='font-size:110%'>{{abbr}}...</summary>
+          <summary style='font-size:110%'>{{abbr}}
+              <div class="answer pull-right">
+                  {{#if isBest}}
+                  <div class="ion-ribbon-b"></div>
+                  {{/if}}
+                  <div>&nbsp;&nbsp;{{answerer}}&nbsp;&nbsp;{{createDate}}</div>
+              </div>
+          </summary>
           <!-- <a href='http://54.191.134.26:3000/chat/{{fId}}/{{tId}}{{uuid}}'><button >chat</button></a> -->
           {{else}}
           <!-- <a href='http://54.191.134.26:3000/chat/{fId}/{{tId}}/{{uuid}}'><button >chat</button></a> -->
-          <summary style='font-size:110%'>{{detail}}</summary>
+          <summary style='font-size:110%'>{{detail}}
+              <div class="answer pull-right">
+                  {{#if isBest}}
+                  <div class="ion-ribbon-b"></div>
+                  {{/if}}
+                  <div>&nbsp;&nbsp;{{answerer}}&nbsp;&nbsp;{{createDate}}</div>
+              </div>
+          </summary>
           {{/if}}
           <div class="item row" style="margin-left:0px">
             <div class='col-lg-2'>

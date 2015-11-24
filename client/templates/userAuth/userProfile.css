@@ -31,3 +31,8 @@
 .toppad
 {margin-top:20px;
 }
+
+.userProfileButton div{
+    float: left;
+    clear: none;
+}

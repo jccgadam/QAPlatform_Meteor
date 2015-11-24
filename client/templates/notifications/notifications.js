@@ -37,6 +37,10 @@ Template.notifications.onCreated(function () {
                        obj.results[i].title = "Chatting request";
                        obj.results[i].bgColor = "royal";
                        obj.results[i].url = "http://54.191.134.26:3000/chat/" + obj.results[i].comment;
+                    } else if(obj.results[i].type == "VIDEO"){
+                       obj.results[i].title = "Video chat request";
+                       obj.results[i].bgColor = "assertive";
+                       obj.results[i].url = "http://54.191.134.26:3000/room/" + obj.results[i].comment;
                     }
                     if(obj.results[i].status == "Read"){
                         obj.results[i].bgColor = "light";
