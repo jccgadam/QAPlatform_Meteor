@@ -15,22 +15,23 @@
     </div>
     <!-- <div class="padding"> -->
 	 <div class="container">
-        <div class="content padding contact-detail overflow-scroll has-header" style="padding:33px;top:0px">
+        <div class="content padding contact-detail overflow-scroll has-header" style="padding:6px;top:44px">
+            {{#each c in categories}}
+            <div class="col" style="max-width:200px">
+                <div class="categoryCard">{{c}}</div>
+            </div>
+            {{/each}}
         {{#with data}}
         <div class="list card">
           <div class="item">
             <div class='row'>
-            
-	            <div class='col-lg-5'>
-	            <label class="control-label" >Question Title:</label>
-              <br>
+	            <div class='col-lg-5 h1 title item item-text-wrap'>
 	             {{title}}
 	            </div>
             </div>
 
-          <div class="item item-body" style="height:100%px;margin-left:-15px">
-	            <label class="control-label" >Question Content:</label>
-	             <br>{{content}}
+          <div class="item item-body item-text-wrap" style="height:100%px;margin-left:-15px">
+	             {{content}}
           </div>
           
           <div class="row">
@@ -51,7 +52,9 @@
        </div>
     {{/with}}
 
-
+            <div class="card">
+                <p style="color:grey">{{answerCount}} ANSWERS</p>
+            </div>
             <div class="card">
       {{#each answers}}
         <details class="item item-text-wrap">
@@ -61,7 +64,7 @@
                   {{#if isBest}}
                   <div class="ion-ribbon-b"></div>
                   {{/if}}
-                  <div>&nbsp;&nbsp;{{answerer}}&nbsp;&nbsp;{{createDate}}</div>
+                  <div style="color:grey;font-size:x-small">&nbsp;&nbsp;{{answerer}}&nbsp;&nbsp;{{createDate}}</div>
               </div>
           </summary>
           <!-- <a href='http://54.191.134.26:3000/chat/{{fId}}/{{tId}}{{uuid}}'><button >chat</button></a> -->
@@ -72,7 +75,7 @@
                   {{#if isBest}}
                   <div class="ion-ribbon-b"></div>
                   {{/if}}
-                  <div>&nbsp;&nbsp;{{answerer}}&nbsp;&nbsp;{{createDate}}</div>
+                  <div style="color:grey;font-size:x-small">&nbsp;&nbsp;{{answerer}}&nbsp;&nbsp;{{createDate}}</div>
               </div>
           </summary>
           {{/if}}
@@ -80,19 +83,14 @@
             <div class='col-lg-2'>
             <div class=' col-lg-8'>
             <br>
-            <a href='/answer/{{aId}}'><p>{{detail}}</p></a>
+            <a href='/answer/{{aId}}'><p class="item item-text-wrap">{{detail}}</p></a>
             </div>
             </div>
           </div>
-        </details>        
-        <br>
+        </details>
       {{/each}}
       </div>
-      <br>
       </div>
-     <!-- {{#if answers}} -->
-      
-      <!-- {{/if}}      -->
 	    </div>
 
    </template>

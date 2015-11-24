@@ -18,6 +18,24 @@
      })
      return SessionAmplify.get('cameraImagesList');
   },
+
+  answerCount: function(){
+    return Session.get("answerCount");
+  },
+
+  categories: function(){
+    var categories = [];
+    for(var i = 0; i < this.cIds.length; i ++){
+        for(var j = 0; j < SessionAmplify.get("categories").length; j ++){
+            if(this.cIds[i] == SessionAmplify.get("categories")[j].cId){
+                categories.push(SessionAmplify.get("categories")[j].cName);
+                break;
+            }
+        }
+    }
+    return categories;
+  },
+
   answers:function(){
     var qId = this.qId;
     var url = "http://54.191.134.26:9000/questionanswers/"+qId;
@@ -27,6 +45,7 @@
         }
         else{
           var res = response.data.results;
+          Session.set("answerCount", res.length);
           var results =[];
           var modifiedAnswer;
           _.each(res,function(k){
