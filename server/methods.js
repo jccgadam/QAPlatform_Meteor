@@ -28,6 +28,7 @@ Meteor.methods({
                myFuture.throw(err)
             }
             else {
+              
                myFuture.return(rows);
             }
         });
@@ -47,7 +48,7 @@ Meteor.methods({
        _.each(imgData,function(k,v)
        { 
          var imgData = k;
-         console.log("insert into imgCamera (img64,uuid) values('"+imgData+"',"+"'"+uuid+"');");
+         // console.log("insert into imgCamera (img64,uuid) values('"+imgData+"',"+"'"+uuid+"');");
         connection.query("insert into imgCamera (img64,uuid) values('"+imgData+"',"+"'"+uuid+"');", function(err, rows, fields) {
             if (err)
             {
@@ -72,7 +73,7 @@ Meteor.methods({
             database : 'images',
         });
        connection.connect();
-       console.log("select * from imgCamera where uuid='"+uuid+"';");
+       // console.log("select * from imgCamera where uuid='"+uuid+"';");
         connection.query("select * from imgCamera where uuid='"+uuid+"';", function(err, rows, fields) {
             if (err)
             {
@@ -80,7 +81,7 @@ Meteor.methods({
                myFuture.throw(err)
             }
             else {
-               console.log(rows);
+               // console.log(rows);
                myFuture.return(rows);
             }
         });
@@ -192,5 +193,8 @@ Meteor.methods({
         });
         console.log("Done push notification to " + uMId);
     },
+  'callonStop':function(){
+    console.log('on call onStop log');
+  }
 
 })

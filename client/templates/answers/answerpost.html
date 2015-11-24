@@ -1,0 +1,138 @@
+<template name='answerpost'>
+ <div class="bar bar-header has-tabs-top bar-positive" id="questionPostHead">
+   <a href="/"> <button class="buttons button button-clear back-button pull-left button-entering button-active backButton">
+    <i class="icon ion-ios-arrow-back"></i>
+      <span class="back-text">
+       Back
+      </span> 
+    </button>
+    </a>
+      <div class="h1 title">
+      Post a Question
+      </div>
+  </div>
+  <div class='container' style="margin-top:48px">
+  <form  id='answerPost' class="form-horizontal well">
+        <fieldset>
+          <legend>Reply to a Question:</legend>
+          <div class="control-group">
+            <label class="control-label" for="input01" >Question Title:</label>
+            <p></p>
+
+            <div class=" ">
+              {{questionsTitle}}
+              <p></p>
+            </div>
+          </div>      
+          <div class="control-group">
+            <label class="control-label" for="textarea">Your Answer:</label>
+            <p></p>
+            <div class="controls">
+              <textarea class="form-control input-xlarge answerContent" id="textarea" rows="3" placeholder='Answer Content'></textarea>
+            </div>
+            <p></p>
+            {{#if validateAnswerContent}}
+           <div class="alert alert-danger" role="alert">
+             {{validateAnswerContent}}
+           </div>
+           {{else}}
+            <label style='font-size:85%' class="label label-info">
+
+              
+	          More details could increase your rates as best answer
+            </label>
+            {{/if}}
+            <p></p>
+          </div>
+
+          <div>
+       <label style='font-size:85%' class="label label-info">             
+           You can also UPLOAD or TAKE A PICTURE to explain your answer
+            </label>        
+            <p></p>
+          </div>
+        <br>      
+         {{#if images}} 
+         <div class='row'>  
+           <div class='col-lg-12'>
+           <label class="control-label">Uploaded Pictures:</label>
+           <div class="documentList">
+              <ul class="list-inline">
+                 <div class="row"> 
+                    {{#each images}}
+                    <div class="col-lg-3">
+                    <li class="documentItem" style="border:none">
+                      <a href='{{url}}'><img id={{id}} src='{{url}}'></a><br> 
+                      {{name}}
+                      <br>
+                    </li>
+                    </div>
+                    {{/each}}   
+                 </div> 
+              </ul>
+           </div>
+           </div>
+         </div>           
+         {{else}}
+         <div class='row'>
+           <div class='col-lg-6'>
+           <label class="control-label">Upload Pictures:</label>
+           <a href='http://54.191.134.26:3000/home/{{auuid}}' class='btn btn-primary addPictures'>Add pictures</a>
+           </div>
+         </div> 
+         {{/if}} 
+         {{#if cameraImages}}
+          <div class='row' style="margin-top:30px">  
+           <div class='col-lg-12'>
+           <label class="control-label">Camera Taken Pictures:</label>
+           <br>
+           <a class='btn btn-primary takePictures'>Take pictures</a>
+           <div class="documentList">
+              <ul class="list-inline">
+                 {{#each cameraImages}}
+                 <div class="row"> 
+                    <div class="col-lg-6">
+                    <li class="documentItem" style="border:none">
+                       <img src='{{this}}'/> 
+                      <!-- {{name}} -->
+                      <br>
+                    </li>
+                    </div>
+                 </div>
+                      {{/each}}   
+              </ul>
+           </div>
+           </div>
+         </div>          
+         {{else}}
+         <div class='row'>
+           <div class='col-lg-6'>
+           <br>
+           <label class="control-label">Take Pictures:</label>
+           <a class='btn btn-primary takePictures'>Take pictures</a>
+           </div>
+         </div> 
+         {{/if}}
+          <div class="control-group">
+            <label class="control-label" for="select01">You may be able to earn:</label>
+            {{creditEarn}}
+          </div>
+          <div class="control-group warning">
+            <div class="controls">
+              <span class="help-inline"></span>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Post Answer</button>
+            <button type="reset" class="btn answerCancelBtn">Cancel</button>
+          </div>
+        </fieldset>
+      </form>
+
+ </div>
+</template>
+
+
+
+
+

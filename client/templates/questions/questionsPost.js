@@ -109,15 +109,10 @@
     'change .creditAmountBar': function(e,t){
         document.getElementById("creditSet").innerHTML = document.getElementById("creditAmountBar").value;
     },
-    'click .addPictures':function(e,t){
-       var tmp = AllTags.find({'checked':'1'}).fetch();
-       SessionAmplify.set('tags',tmp);
-    },
-    'click .btn': function(e){
-        if(e.target.id == "cancleButton"){
-            Router.go('main');
-        }
-    },
+    // 'click .addPictures':function(e,t){
+    //    var tmp = AllTags.find({'checked':'1'}).fetch();
+    //    SessionAmplify.set('tags',tmp);
+    // },
     'click .takePictures':function(e,t){
         // var cameraOptions = {
         //     width: 400,
@@ -129,7 +124,7 @@
           }
         MeteorCamera.getPicture(function(err,res){
          if(res)
-          {  console.log(res.length);
+          {  
             var imgs=[];
             imgs = SessionAmplify.get('cameraImages')
             imgs.push(res);
