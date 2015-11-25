@@ -32,7 +32,7 @@ Template.editUserTags.events({
     	e.preventDefault();
     	var uId = SessionAmplify.get('loginUser').data.uId;
     	var cIds = UserTags.find({'checked':'1'},{fields:{cId:1}}).fetch();
-        var url = "http://54.191.134.26:9000/users/"+uId;
+        var url = "http://52.34.229.35:9000/users/"+uId;
         var res = [];
         if(cIds.length===0)
 	        {   

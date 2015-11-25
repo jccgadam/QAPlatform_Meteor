@@ -167,7 +167,7 @@
             return false;
         }
 
-        HTTP.post("http://54.191.134.26:9000/questions",
+        HTTP.post("http://52.34.229.35:9000/questions",
           {
             data: {uId: uId, title: title, content: content, credit: credit, cIds: finalTags,UUID:uuid,imageUrls:imageUrls}
           },

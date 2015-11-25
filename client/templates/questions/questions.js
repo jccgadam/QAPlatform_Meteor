@@ -8,7 +8,7 @@ Template.questions.helpers({
 });
 
 Template.questions.onCreated(function () {
-    var url = "http://54.191.134.26:9000/userquestions/" + JSON.parse(SessionAmplify.get('loginUser').content).uId;
+    var url = "http://52.34.229.35:9000/userquestions/" + JSON.parse(SessionAmplify.get('loginUser').content).uId;
     HTTP.get(url, function (error, response) {
         if (error) {
             SessionAmplify.set("tmpResult", []);
@@ -45,7 +45,7 @@ Template.questions.onCreated(function () {
         }
     });
 
-    var url2 = "http://54.191.134.26:9000/answerquestions/" + JSON.parse(SessionAmplify.get('loginUser').content).uId;
+    var url2 = "http://52.34.229.35:9000/answerquestions/" + JSON.parse(SessionAmplify.get('loginUser').content).uId;
     HTTP.get(url2, function (error, response) {
             if (error) {
                         SessionAmplify.set("tmpResult", []);

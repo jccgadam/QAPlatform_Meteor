@@ -36,11 +36,11 @@ Template.notifications.onCreated(function () {
                     } else if(obj.results[i].type == "CHAT"){
                        obj.results[i].title = "Chatting request";
                        obj.results[i].bgColor = "royal";
-                       obj.results[i].url = "http://54.191.134.26:3000/chat/" + obj.results[i].comment;
+                       obj.results[i].url = "http://52.34.229.35:3000/chat/" + obj.results[i].comment;
                     } else if(obj.results[i].type == "VIDEO"){
                        obj.results[i].title = "Video chat request";
                        obj.results[i].bgColor = "assertive";
-                       obj.results[i].url = "http://54.191.134.26:3000/room/" + obj.results[i].comment;
+                       obj.results[i].url = "http://52.34.229.35:3000/room/" + obj.results[i].comment;
                     }
                     if(obj.results[i].status == "Read"){
                         obj.results[i].bgColor = "light";
@@ -69,7 +69,7 @@ Template.notifications.events({
         tmpArray.splice(index, 0, tmp);
         SessionAmplify.set("nTmpResult", tmpArray);
 
-        var url = "http://54.191.134.26:9000/updatenotifications/" + event.target.id;
+        var url = "http://52.34.229.35:9000/updatenotifications/" + event.target.id;
         HTTP.get(url, function(){});
     },
 
@@ -85,7 +85,7 @@ Template.notifications.events({
         var tmpArray = SessionAmplify.get("nTmpResult");
         tmpArray.splice(index, 1);
         SessionAmplify.set("nTmpResult", tmpArray);
-        var url = "http://54.191.134.26:9000/removenotifications/" + nId;
+        var url = "http://52.34.229.35:9000/removenotifications/" + nId;
         HTTP.get(url, function(){});
     },
 

@@ -1,6 +1,6 @@
 Meteor.setInterval(function(){
     if(SessionAmplify.get('loginUser')){
-        var url = "http://54.191.134.26:9000/heartbeat/" + JSON.parse(SessionAmplify.get('loginUser').content).uId;
+        var url = "http://52.34.229.35:9000/heartbeat/" + JSON.parse(SessionAmplify.get('loginUser').content).uId;
         HTTP.get(url, function(error, response){
             console.log("Heartbeat sent");
         });
@@ -24,7 +24,7 @@ Template.main.events({
     },
 
     'click .logoutbutton' : function(e){
-        var url = "http://54.191.134.26:9000/logoff/" + JSON.parse(SessionAmplify.get('loginUser').content).uId;
+        var url = "http://52.34.229.35:9000/logoff/" + JSON.parse(SessionAmplify.get('loginUser').content).uId;
             HTTP.get(url, function(error, response){
             console.log("Logoff sent");
         });
@@ -39,7 +39,7 @@ Template.main.events({
 });
 
 Template.main.onCreated(function () {
-    var url = "http://54.191.134.26:9000/userunreadnotificationsN/" + JSON.parse(SessionAmplify.get('loginUser').content).uId;
+    var url = "http://52.34.229.35:9000/userunreadnotificationsN/" + JSON.parse(SessionAmplify.get('loginUser').content).uId;
     HTTP.get(url, function (error, response) {
         if (error) {
             Session.set("notificationCount", 0);
@@ -53,7 +53,7 @@ Template.main.onCreated(function () {
         }
     });
 
-    var url2 = "http://54.191.134.26:9000/categories";
+    var url2 = "http://52.34.229.35:9000/categories";
     HTTP.get(url2, function (error, response) {
         if(error){
             SessionAmplify.set("categories", null);

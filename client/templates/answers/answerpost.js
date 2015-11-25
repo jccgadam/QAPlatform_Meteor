@@ -125,7 +125,7 @@
               return false;
         }
 
-     	HTTP.post("http://54.191.134.26:9000/answers",
+     	HTTP.post("http://52.34.229.35:9000/answers",
           {
             data: {u: uId,q: qId,content: content}
           },

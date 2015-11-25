@@ -3,7 +3,7 @@ Template.userProfile.helpers({
 		return this;
 	},
 	categories:function(){
-    var url2 = "http://54.191.134.26:9000/categories";
+    var url2 = "http://52.34.229.35:9000/categories";
     HTTP.get(url2, function (error, response) {
         if(error){
             SessionAmplify.set("categories", null);
@@ -33,7 +33,7 @@ Template.userProfile.events({
  'click .saveChanges':function(e,t){
  	e.preventDefault();
      var uId = SessionAmplify.get('loginUser').data.uId
- 	   var url = "http://54.191.134.26:9000/users/"+uId;
+ 	   var url = "http://52.34.229.35:9000/users/"+uId;
      var firstName = t.$('.firstName')[0].innerHTML;
      var lastName  = t.$('.lastName')[0].innerHTML
      var email = t.$('.email')[0].innerHTML

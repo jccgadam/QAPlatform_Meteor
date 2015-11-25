@@ -5,7 +5,7 @@ BrowserPolicy.content.setPolicy(constructedCsp +" media-src blob:;");
 BrowserPolicy.content.allowOriginForAll('http://meteor.local');
 BrowserPolicy.content.allowImageOrigin('http://meteor.local');
 BrowserPolicy.content.allowImageOrigin('http://localhost');
-BrowserPolicy.content.allowImageOrigin('http://54.191.134.26:3000/');
+BrowserPolicy.content.allowImageOrigin('http://52.34.229.35:3000/');
 
 
 }

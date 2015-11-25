@@ -67,7 +67,7 @@ Template.userlogin.events({
                    Session.set('message','Email not exist or wrong password')
                 } else {
                    console.log("Login to Meteor");
-                   var url = "http://54.191.134.26:9000/usersbyumid/" + Meteor.userId();
+                   var url = "http://52.34.229.35:9000/usersbyumid/" + Meteor.userId();
                    HTTP.get( url, function (error, response) {
                     if (error) {
                         console.log(error);

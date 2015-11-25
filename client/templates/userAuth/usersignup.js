@@ -165,7 +165,7 @@
             } else {
           	    var uMId = Meteor.userId();
                 console.log("Successfully create user on Meteor for " + uMId);
-                HTTP.post("http://54.191.134.26:9000/signup",
+                HTTP.post("http://52.34.229.35:9000/signup",
                 {
                   data: {
                       email:email, password:pw, firstName:fname, lastName:lname, uMId: uMId

@@ -38,7 +38,7 @@
 
   answers:function(){
     var qId = this.qId;
-    var url = "http://54.191.134.26:9000/questionanswers/"+qId;
+    var url = "http://52.34.229.35:9000/questionanswers/"+qId;
     HTTP.get(url, function (error, response) {
         if (error) {
             SessionAmplify.set("answers", []);
