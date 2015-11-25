@@ -11,12 +11,10 @@
       Post a Question
       </div>
   </div>
-  <div class='container' style="margin-top:44px">
+  <div class='container' style="margin-top:50px">
   <form  id='questionsPost'>
         <fieldset>
           <div class="control-group">
-            <label class="control-label" for="input01" >Question Title:</label>
-            <p></p>
             <div class="controls bootstrap-tagsinput">
               <input class='questionTitle'  type="text" id="input01" maxlength='100' placeholder='Question Title: Briefly describe your question.' size='150'>
               <p></p>
@@ -29,8 +27,6 @@
           </div>
 
           <div class="control-group">
-            <label class="control-label" for="textarea">Question Content:</label>
-            <p></p>
             <div class="controls">
               <textarea class="form-control input-xlarge questionContent" id="textarea" rows="5" placeholder='Question Content :Try to be more detailed to receive better answers.'></textarea>
             </div>
@@ -50,9 +46,6 @@
           </div>
          {{#if tags}}
           <div class='row'>
-            <div class='col-lg-6'>
-            <label class="control-label">Question Categories:</label>
-            </div>
           </div> 
           <div class='row'>  
           {{#each tags}}       
@@ -69,7 +62,6 @@
           {{else}}
           <div class='row'>
           <div class='col-lg-6'>
-          <label class="control-label">Question Categories:</label>
           <a href={{pathFor 'addTags'}} class="btn btn-primary">Add Question Tags</a>
             {{#if validateTags}}
               <div class="alert alert-danger" role="alert">
@@ -80,7 +72,7 @@
           </div>
          {{/if}}
          <br>
-        
+
          {{#if images}} 
          <div class='row'>  
            <div class='col-lg-12'>
@@ -106,8 +98,7 @@
          {{else}}
          <div class='row'>
            <div class='col-lg-6'>
-           <label class="control-label">Upload Pictures:</label>
-           <a href='http://52.34.229.35:3000/home/{{uuid}}' class='btn btn-primary addPictures'>Add pictures</a>
+           <a href='http://52.34.229.35:3000/home/{{uuid}}' class='btn btn-primary addPictures'>Upload pictures</a>
            </div>
          </div> 
          {{/if}} 
@@ -115,7 +106,7 @@
          {{#if cameraImages}}
           <div class='row' style="margin-top:30px">  
            <div class='col-lg-12'>
-           <label class="control-label">Camera Taken Pictures:</label>
+           <label class="control-label">Pictures Taken:</label>
            <br>
            <a class='btn btn-primary takePictures'>Take pictures</a>
            <div class="documentList">
@@ -137,18 +128,17 @@
          </div>  
          
          {{else}}
-         <div class='row'>
+         <div class='row' style="margin-top:3px">
            <div class='col-lg-6'>
            <br>
-           <label class="control-label">Take Pictures:</label>
            <a class='btn btn-primary takePictures'>Take pictures</a>
            </div>
          </div> 
 
          {{/if}}
 
-            <div class="control-group">
-                <label class="control-label">Add Credit to attract more answers: <a id="creditSet"></a></label>
+            <div class="control-group" style="margin:6px 0px 6px 0px">
+                <label class="control-label">Credit for this question: <a id="creditSet"></a></label>
                 <div class="controls">
                     <div class="item range range-positive">
                         <i>0</i>

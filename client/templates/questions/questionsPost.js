@@ -174,7 +174,8 @@
           //server response callback
           function (error, response) {
             if (error) {
-              Session.set('message','post fails');
+              console.log(error);
+              Session.set('message',error);
             } else {
                 SessionAmplify.set("userCredit", SessionAmplify.get("userCredit") - credit);
                 SessionAmplify.set('title',null);

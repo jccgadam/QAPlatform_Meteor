@@ -1,6 +1,6 @@
 .question {
   width: 100%;
-  display: table; }
+  }
 
 .create-date {
   width: 6rem;
@@ -21,6 +21,7 @@
 
 .question-desc {
   width: 100%;
+  display:table-row;
   padding-left: 1rem;
   text-align: left;
   display: table-cell;
@@ -63,4 +64,11 @@ div.body-wrap{
 .ellipsisQuestionContent{
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+.questionDecContainer{
+  display:table-row;
+  width: 100% !important;
+  overflow: hidden;
+  padding-left: 3px;
 }

@@ -24,8 +24,8 @@
         </div>
             <div class="list" style="margin-bottom:65px">
                 {{#each q in questions}}
-                    <a class="item" href='/question/{{q.qId}}'>
-                        <article class="question">
+                    <div class="item">
+                        <div class="question">
                          <div class='row'>
                           <div class='col-lg-1'> 
                             <div class="create-date">
@@ -33,17 +33,17 @@
                                 <p class="create-day">{{q.createDay}}</p>
                             </div>
                           </div>
-                          <div class="col-lg-9">
-                            <div class="question-desc">
-                                <h4 class="question-desc-header ellipsisQuestionContent" id='{{q.qId}}'>{{q.title}}</h4>
-                                <p class="question-desc-detail ellipsisQuestionContent">{{q.content}}</p>
+                          <div class="questionDecContainer">
+                            <div class="question-desc questionDecContainer">
+                                <h4 class="question-desc-header" id='{{q.qId}}'><a href='/question/{{q.qId}}'>{{q.title}}</a></h4>
+                                <p class="question-desc-detail" >{{q.content}}</p>
                                  {{#if q.imageUrls.length}}
                                  <span class="label label-success">Images Attached</span>
                                  {{/if}}
                             </div>
                           </div>  
                         </div>
-                        </article>
+                        </div>
                         <div class='row'>
                             {{#each cN in q.catNames}}
                             <div class="col" style="max-width:200px">
@@ -51,7 +51,7 @@
                             </div>
                             {{/each}}
                         </div>
-                    </a>
+                    </div>
                 {{/each}}
             </div>
     </div>
