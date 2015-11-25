@@ -35,8 +35,8 @@
                           </div>
                           <div class="col-lg-9">
                             <div class="question-desc">
-                                <h4 class="question-desc-header" id='{{q.qId}}'>{{q.displayTitle}}</h4>
-                                <p class="question-desc-detail">{{q.displayContent}}</p>
+                                <h4 class="question-desc-header ellipsisQuestionContent" id='{{q.qId}}'>{{q.title}}</h4>
+                                <p class="question-desc-detail ellipsisQuestionContent">{{q.content}}</p>
                                  {{#if q.imageUrls.length}}
                                  <span class="label label-success">Images Attached</span>
                                  {{/if}}

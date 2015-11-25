@@ -59,9 +59,7 @@ Template.userlogin.events({
             return;
           }
           else{
-            console.log("Line 60");
             Meteor.loginWithPassword(email, password, function(err){
-                console.log("Line 64");
                 if(err){
                    console.log(err);
                    Session.set('message','Email not exist or wrong password')

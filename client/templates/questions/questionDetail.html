@@ -16,13 +16,15 @@
     <!-- <div class="padding"> -->
 	 <div class="container">
         <div class="content padding contact-detail overflow-scroll has-header" style="padding:6px;top:44px">
+            <div class='row'>
             {{#each c in categories}}
             <div class="col" style="max-width:200px">
                 <div class="categoryCard">{{c}}</div>
             </div>
             {{/each}}
+                </div>
         {{#with data}}
-        <div class="list card">
+        <div class="list card" id="questionDetailList">
           <div class="item">
             <div class='row'>
 	            <div class='col-lg-5 h1 title item item-text-wrap'>

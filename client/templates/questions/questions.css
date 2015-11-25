@@ -59,3 +59,8 @@ div.body-wrap{
   /* equal to footer height */
   margin-bottom: -142px;  
 }
+
+.ellipsisQuestionContent{
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
