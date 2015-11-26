@@ -28,7 +28,7 @@ Meteor.methods({
                myFuture.throw(err)
             }
             else {
-               console.log(rows);
+               // console.log(rows);
                myFuture.return(rows);
             }
         });

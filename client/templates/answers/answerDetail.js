@@ -3,6 +3,13 @@
    
   	return this;
   },
+  owns:function(){
+    var uId = SessionAmplify.get('loginUser').data.uId;
+    return (uId===this.u);
+  },
+  isOpen:function(){
+    return this.isOpen;
+  },
   uuid:function(){
   	return SessionAmplify.get('uuid');
   },
@@ -25,24 +32,27 @@
        }
        else if (res)
        {  
-          SessionAmplify.set('cameraImagesList',res)
+          SessionAmplify.set('aCameraImagesList',res)
        }      
      })
-     return SessionAmplify.get('cameraImagesList');
+     return SessionAmplify.get('aCameraImagesList');
   },
   images:function(){
     var aUUID = this.aUUID;
       if(aUUID){
           Meteor.call('Images',aUUID,function(err,res){
-            SessionAmplify.set('images',res)
+            SessionAmplify.set('aImages',res)
           });
-          return SessionAmplify.get('images');
+          return SessionAmplify.get('aImages');
       }
   }
    });
 
  Template.answerDetail.events({
  	'click .backButton':function(){
+    SessionAmplify.set('aImages',null);
+    SessionAmplify.set('answerDetail',null);
+    SessionAmplify.set('aCameraImagesList',null);
  		window.history.back();
  	},
   'click .asBestAnswer':function(){
