@@ -33,19 +33,22 @@
 	//     }
 	// }
 
-	// Template.answerpost.onRendered(function(){
-	     
- //       $('.questionTitle').val(Session.get('title')); 
- //       $('.questionContent').val(Session.get('content'));
- //       $('.bootstrap-tagsinput').css("width",'100%')  
- //       document.getElementById("creditSet").innerHTML = document.getElementById("creditAmountBar").value;
-	// })
+	Template.answerpost.onRendered(function(){
+    var answerContent = SessionAmplify.get('answerContent');
+    var auuid = SessionAmplify.get('auuid');
+     if(answerContent.auuid === auuid)
+      {
+        $('.answerContent').val(SessionAmplify.get('answerContent').content); 
+      }
+	}) 
 	//template helper
 	Template.answerpost.helpers({
-     // validateQuestionTitle:function(){
-     //  // console.log(Session.get('validateQuestionTitle'))
-     // 	return Session.get('validateQuestionTitle');
-     // },
+     questionTitle:function(){
+       return SessionAmplify.get('questionDetail').title
+     },
+     questionContent:function(){
+       return SessionAmplify.get('questionDetail').content;
+     },
      validateAnswerContent:function(){
      	return Session.get('validateAnswerContent');
      },
@@ -73,10 +76,11 @@
 
     //template events helper
 	Template.answerpost.events({
-    'blur .questionContent':function(e,t){
-
+    'blur .answerContent':function(e,t){
     	  Session.set('validateAnswerContent',null);
         var content = e.target.value;
+        var auuid = SessionAmplify.get('auuid');
+        SessionAmplify.set('answerContent',{auuid:auuid,content:content})
         return validateAnswerContent(content);
     },
     'change .creditAmountBar': function(e){
@@ -116,18 +120,18 @@
 	'submit form':function(e,t){
      	e.preventDefault();
         var loginUser = JSON.parse(SessionAmplify.get('loginUser').content);
+        var aUUID = SessionAmplify.get('auuid');
         var content = t.$('.answerContent').val();
         var uId = loginUser.uId;
         var qId =  SessionAmplify.get('questionDetail').qId;
-
-        if(validateAnswerContent(content))
-        {
+        var data = SessionAmplify.get('aCameraImages');
+        if(!validateAnswerContent(content))
+        {     console.log('content false')
               return false;
         }
-
      	HTTP.post("http://52.34.229.35:9000/answers",
           {
-            data: {u: uId,q: qId,content: content}
+            data: {uId: uId,qId: qId,content: content,aUUID:aUUID}
           },
           //server response callback
           function (error, response) {
@@ -136,11 +140,25 @@
               Session.set('message','post fails')
                         }
             else{
-              Session.set('content',null);
-              Router.go('questions');
+                Meteor.call('addImage',aUUID,data, function(){});
+                SessionAmplify.set('content',null);
+                SessionAmplify.set('auuid',null);
+                SessionAmplify.set('aImages',null);
+                SessionAmplify.set('aCameraImages',null);
+                SessionAmplify.set('aCameraImagesList',null);
+                Router.go('questions');
             }
           })
 
+     },
+     'click .backButton':function(e,t){
+          e.preventDefault();
+          SessionAmplify.set('content',null);
+          SessionAmplify.set('auuid',null);
+          SessionAmplify.set('aImages',null);
+          SessionAmplify.set('aCameraImages',null);
+          SessionAmplify.set('aCameraImagesList',null);
+          Router.go('main')
      }
  })
 

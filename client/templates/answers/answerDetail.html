@@ -22,7 +22,7 @@
                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{content}}{{content}}{{content}}{{content}}{{content}}{{content}}{{content}}{{content}}{{content}}{{content}}</p>
                  <!--<a href='http://54.191.134.26:3000/chat/{{fId}}/{{tId}}/{{uuid}}'><button >chat</button></a>-->
 
-                   Contact the answerer:
+                   Contact Expertise:
                    <div class="contactAerButton">
                  <button class="chatlink icon ion-ios-email button button-calm">Text</button>
                  <button class="videolink icon ion-ios-camera button button-calm">Video</button>
@@ -32,7 +32,59 @@
               </div>
              </div>    
           {{/with}}
-        </div>
+         <div class='row' style="margin-top:30px">
+          <div class='col-lg-2'>
+            <h4>Uploaded Images:</h4>
+          </div>
+          </div>
+
+          <div class='row'>
+          {{#if images}}
+           <div class='col-lg-10'>
+           <br>
+           <div class="documentList">
+              <ul class="list-inline">
+                 {{#each images}}
+                    <div class="col-lg-6">
+                    <li class="documentItem" style="border:none">
+                       <a href={{url}}><img src='{{url}}'/></a> 
+                      <br>
+                    </li>
+                    </div>              
+                 {{/each}}   
+              </ul>
+           </div>
+           </div>
+           {{/if}}
+
+           {{#if cameraImages}}
+           <div class='col-lg-6'>
+           <br>
+           <div class="documentList">
+              <ul class="list-inline">
+                 {{#each cameraImages}}
+                 <div class="row"> 
+                    <div class="col-lg-6">
+                    <li class="documentItem" style="border:none">
+                       <img src='{{this.img64}}'/> 
+                      <br>
+                    </li>
+                    </div>
+                 </div>
+                 {{/each}}   
+              </ul>
+           </div>
+           </div>
+           {{/if}}
+          </div>
+         </div>
+           <div class='row'>
+             <div class='col-lg-2'>
+               <button class='btn btn-success asBestAnswer'>Best Answer</button>
+             </div>
+           </div> 
+         </div>
+         
     </div>
-    </div>  
+  
 </template>

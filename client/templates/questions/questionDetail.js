@@ -1,8 +1,10 @@
   Template.questionDetail.helpers({
   data:function(){
      
-     console.log(this);
   	return this;
+  },
+  isOpen:function(){
+    return this.isOpen
   },
   cameraImages:function(){
      SessionAmplify.set('uuid',this.UUID)
@@ -73,6 +75,7 @@
   Template.questionDetail.events({
    'click .backButton':function(e,t){
     e.preventDefault();
+    
     window.history.back();
     }
   })

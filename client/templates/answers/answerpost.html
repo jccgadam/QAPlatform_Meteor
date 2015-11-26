@@ -8,21 +8,22 @@
     </button>
     </a>
       <div class="h1 title">
-      Post a Question
+      Answer Question
       </div>
   </div>
   <div class='container' style="margin-top:48px">
   <form  id='answerPost' class="form-horizontal well">
         <fieldset>
-          <legend>Reply to a Question:</legend>
-          <div class="control-group">
-            <label class="control-label" for="input01" >Question Title:</label>
-            <p></p>
-
+          <!-- <legend>Reply to a Question:</legend> -->
+          <div class="item item-body">
             <div class=" ">
-              {{questionsTitle}}
+              <br>
+              <label>{{questionTitle}}</label>
               <p></p>
-            </div>
+            </div>           
+              <div class="bs-callout bs-callout-danger">
+               <p>{{questionContent}}</p>
+              </div>
           </div>      
           <div class="control-group">
             <label class="control-label" for="textarea">Your Answer:</label>
@@ -124,7 +125,7 @@
           </div>
           <div class="form-actions">
             <button type="submit" class="btn btn-primary">Post Answer</button>
-            <button type="reset" class="btn answerCancelBtn">Cancel</button>
+            <button type="reset" class="btn answerCancelBtn">Reset Form</button>
           </div>
         </fieldset>
       </form>

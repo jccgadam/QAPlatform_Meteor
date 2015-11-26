@@ -31,7 +31,18 @@
 	             {{title}}
 	            </div>
             </div>
+            {{#unless isOpen}}
+            <div class="alert alert-danger" style="width:20%">
+              <div class='row'>
+               <div class='col-lg-4'>
+               </div>
+                <div class='col-lg-8'>
+                  Question Closed
+                </div>
+              </div>
+            </div>
 
+            {{/unless}}
           <div class="item item-body item-text-wrap" style="height:100%px;margin-left:-15px">
 	             {{content}}
           </div>
@@ -53,10 +64,15 @@
         </div>
        </div>
     {{/with}}
-
+           
             <div class="card">
                 <p style="color:grey">{{answerCount}} ANSWERS</p>
             </div>
+            {{#if isOpen}}
+            <div class="card">
+              <a href='/answerpost'><button class='btn btn-success'>I could help</button></a>
+            </div>
+            {{/if}}
             <div class="card">
       {{#each answers}}
         <details class="item item-text-wrap">

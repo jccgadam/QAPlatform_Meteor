@@ -1,6 +1,6 @@
  Template.answerDetail.helpers({
   data:function(){
-  	console.log(this);
+   
   	return this;
   },
   uuid:function(){
@@ -10,20 +10,59 @@
   	return SessionAmplify.get('loginUser').data.uId;
   },
   tId:function(){
-  	console.log(this);
+  	
   	return this.u;
   },
   videoRoomId: function(){
   	return SessionAmplify.get("videoRoomId");
+  },
+  cameraImages:function(){
+   
+      var auuid = this.aUUID;
+     Meteor.call('cameraImages',auuid,function(err,res){
+       if(err){
+           console.log('error');
+       }
+       else if (res)
+       {  
+          SessionAmplify.set('cameraImagesList',res)
+       }      
+     })
+     return SessionAmplify.get('cameraImagesList');
+  },
+  images:function(){
+    var aUUID = this.aUUID;
+      if(aUUID){
+          Meteor.call('Images',aUUID,function(err,res){
+            SessionAmplify.set('images',res)
+          });
+          return SessionAmplify.get('images');
+      }
   }
-  });
+   });
 
  Template.answerDetail.events({
  	'click .backButton':function(){
- 		console.log('back');
  		window.history.back();
  	},
-
+  'click .asBestAnswer':function(){
+    var qId = SessionAmplify.get('answerDetail').q;
+    var aId = SessionAmplify.get('answerDetail').aId;
+    var url = "http://52.34.229.35:9000/questions/"+qId;
+    console.log(url)
+    HTTP.put(url,{
+      data:{
+        answerId:aId
+      }
+    }
+      ,
+      function(error,response){
+        if(error){
+          console.log(error)
+        }
+      
+    })
+  },
  	'click .chatlink': function(){
  	  var url0 = "http://52.34.229.35:9000/chat";
  	  var tUId = this.u;
