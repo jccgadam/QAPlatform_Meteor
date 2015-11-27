@@ -40,6 +40,9 @@
                                  {{#if q.imageUrls.length}}
                                  <span class="label label-success">Images Attached</span>
                                  {{/if}}
+                                {{#unless q.isOpen}}
+                                &nbsp;&nbsp;<span class="label label-default">Closed</span>
+                                {{/unless}}
                             </div>
                           </div>  
                         </div>

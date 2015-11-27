@@ -6,6 +6,9 @@
   isOpen:function(){
     return this.isOpen
   },
+  isNotSelf: function(){
+    return this.uId != JSON.parse(SessionAmplify.get('loginUser').content).uId;
+  },
   cameraImages:function(){
      SessionAmplify.set('uuid',this.UUID)
       var uuid = SessionAmplify.get('uuid');
