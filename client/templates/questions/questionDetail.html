@@ -25,9 +25,9 @@
                 </div>
         {{#with data}}
         <div class="list card" id="questionDetailList">
-          <div class="item">
+          <div class="item" style="padding:0px">
             <div class='row'>
-	            <div class='col-lg-5 h1 title item item-text-wrap'>
+	            <div class='col-lg-5 h1 title item item-text-wrap' style="padding-top:0px">
 	             {{title}}
 	            </div>
             </div>
@@ -64,9 +64,8 @@
         </div>
        </div>
     {{/with}}
-           
-            <div class="card">
-                <p style="color:grey">{{answerCount}} ANSWERS</p>
+            <div class="card" style="margin-top:10px;margin-bottom:10px">
+                <p style="color:grey;margin-bottom:0px">{{answerCount}} ANSWERS</p>
             </div>
             {{#if isOpen}}
             <div class="card">
@@ -76,19 +75,19 @@
             <div class="card">
       {{#each answers}}
         <details class="item item-text-wrap">
-         {{#if abbr}}
-          <summary style='font-size:110%'>{{abbr}}
-              <div class="answer pull-right">
-                  {{#if isBest}}
-                  <div class="ion-ribbon-b"></div>
-                  {{/if}}
-                  <div style="color:grey;font-size:x-small">&nbsp;&nbsp;{{answerer}}&nbsp;&nbsp;{{createDate}}</div>
-              </div>
-          </summary>
-          <!-- <a href='http://54.191.134.26:3000/chat/{{fId}}/{{tId}}{{uuid}}'><button >chat</button></a> -->
-          {{else}}
+         <!--{{#if abbr}}-->
+          <!--<summary style='font-size:110%'>{{abbr}}-->
+              <!--<div class="answer pull-right">-->
+                  <!--{{#if isBest}}-->
+                  <!--<div class="ion-ribbon-b"></div>-->
+                  <!--{{/if}}-->
+                  <!--<div style="color:grey;font-size:x-small">&nbsp;&nbsp;{{answerer}}&nbsp;&nbsp;{{createDate}}</div>-->
+              <!--</div>-->
+          <!--</summary>-->
+          <!--&lt;!&ndash; <a href='http://54.191.134.26:3000/chat/{{fId}}/{{tId}}{{uuid}}'><button >chat</button></a> &ndash;&gt;-->
+          <!--{{else}}-->
           <!-- <a href='http://54.191.134.26:3000/chat/{fId}/{{tId}}/{{uuid}}'><button >chat</button></a> -->
-          <summary style='font-size:110%'>{{detail}}
+          <summary style='font-size:110%;white-space: nowrap;'>{{detail}}
               <div class="answer pull-right">
                   {{#if isBest}}
                   <div class="ion-ribbon-b"></div>
@@ -96,12 +95,12 @@
                   <div style="color:grey;font-size:x-small">&nbsp;&nbsp;{{answerer}}&nbsp;&nbsp;{{createDate}}</div>
               </div>
           </summary>
-          {{/if}}
+          <!--{{/if}}-->
           <div class="item row" style="margin-left:0px">
             <div class='col-lg-2'>
             <div class=' col-lg-8'>
             <br>
-            <a href='/answer/{{aId}}'><p class="item item-text-wrap">{{detail}}</p></a>
+            <a href='/answer/{{aId}}'><p class="item item-text-wrap" style="padding:0px;color:black">{{detail}}</p></a>
             </div>
             </div>
           </div>
