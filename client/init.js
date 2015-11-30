@@ -17,5 +17,6 @@ Meteor.startup(function() {
         SessionAmplify.set('pics',pics);
         
     }
-  }
+  };
+  Push.debug = true;
 });

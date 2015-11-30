@@ -5,7 +5,7 @@ Template.notifications.helpers({
 });
 
 Template.notifications.onCreated(function () {
-    var url = "http://54.191.134.26:9000/usernotifications/" + JSON.parse(SessionAmplify.get('loginUser').content).uId;
+    var url = "http://52.34.229.35:9000/usernotifications/" + JSON.parse(SessionAmplify.get('loginUser').content).uId;
     var tmpResult = [];
     HTTP.get(url, function (error, response) {
         if (error) {
@@ -18,8 +18,8 @@ Template.notifications.onCreated(function () {
                     obj.results[i].createMonth = createMonth;
                     obj.results[i].createDay = obj.results[i].createDate.split("/")[2];
                     obj.results[i].displayQTitle = obj.results[i].qTitle;
-                    if(obj.results[i].qTitle.length > 16){
-                       obj.results[i].displayQTitle = obj.results[i].qTitle.substring(0, 17) + "..";
+                    if(obj.results[i].qTitle.length > 30){
+                       obj.results[i].displayQTitle = obj.results[i].qTitle.substring(0, 31) + "..";
                     }
                     if(obj.results[i].type == "NEWQUESTION"){
                        obj.results[i].title = "Got a new question";

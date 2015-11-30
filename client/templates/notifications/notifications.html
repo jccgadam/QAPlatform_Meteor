@@ -14,13 +14,13 @@
         <div class="list">
             {{#each n in notifications}}
             <a class="item">
-                <article class="notification">
+                <div class="notification" style="display:table-row">
                     <div class="create-date">
                         <p class="create-month">{{n.createMonth}}</p>
                         <p class="create-day">{{n.createDay}}</p>
                     </div>
 
-                    <div class="notification-desc">
+                    <div class="notification-desc" style="display:table-cell">
                         <a href='{{n.url}}'>
                           <h4 class="notification-desc-header" id='{{n.nId}}'>{{n.title}}</h4>
                         </a>
@@ -29,7 +29,7 @@
 
                     <p class="ion-close-round" data-pack="default" data-tags="delete, trash, kill, x" id="rb{{n.nId}}"></p>
                     <span class="smallSquare {{n.bgColor}}-bg {{n.bgColor}}-border"></span>
-                </article>
+                </div>
             </a>
             {{/each}}
         </div>

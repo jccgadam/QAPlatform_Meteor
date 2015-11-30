@@ -15,8 +15,8 @@
     </div>
     <!-- <div class="padding"> -->
 	 <div class="container">
-        <div class="content padding contact-detail overflow-scroll has-header" style="padding:6px;top:44px">
-            <div class='row'>
+        <div class="content padding contact-detail overflow-scroll has-header" style="padding:6px;top:40px">
+            <div class='row' style="padding-top:0px">
             {{#each c in categories}}
             <div class="col" style="max-width:200px">
                 <div class="categoryCard">{{c}}</div>
@@ -36,16 +36,10 @@
               <img class="img-responsive img-center" src="closeImage.png" style="height:70px">
                   </div>
             {{/unless}}
-          <div class="item item-body item-text-wrap" style="height:100%px;margin-left:-15px">
+          <div class="item-body item-text-wrap" style="height:100%px;margin-left:-15px;padding:0px 16px 0px 16px">
 	             {{content}}
           </div>
-              {{#if isOpen}}
-              {{#if isNotSelf}}
-              <div class="card">
-                  <a href='/answerpost'><button class='ion-ios-compose button button-positive'>Write Answer</button></a>
-              </div>
-              {{/if}}
-              {{/if}}
+
           
           <div class="row">
           {{#each q in imageUrls}}
@@ -61,27 +55,25 @@
              </div>
         {{/each}}
           </div>
+              {{#if isOpen}}
+              {{#if isNotSelf}}
+              <a href='/answerpost' style="padding:0px 5px 5px 5px">
+                  <button class='ion-ios-compose button button-positive' style="margin-bottom:5px">
+                      Write Answer
+                  </button>
+              </a>
+              {{/if}}
+              {{/if}}
         </div>
        </div>
     {{/with}}
             <div class="card" style="margin-top:10px;margin-bottom:10px">
                 <p style="color:grey;margin-bottom:0px">{{answerCount}} ANSWERS</p>
             </div>
+            {{#if answers}}
             <div class="card">
       {{#each answers}}
         <details class="item item-text-wrap">
-         <!--{{#if abbr}}-->
-          <!--<summary style='font-size:110%'>{{abbr}}-->
-              <!--<div class="answer pull-right">-->
-                  <!--{{#if isBest}}-->
-                  <!--<div class="ion-ribbon-b"></div>-->
-                  <!--{{/if}}-->
-                  <!--<div style="color:grey;font-size:x-small">&nbsp;&nbsp;{{answerer}}&nbsp;&nbsp;{{createDate}}</div>-->
-              <!--</div>-->
-          <!--</summary>-->
-          <!--&lt;!&ndash; <a href='http://54.191.134.26:3000/chat/{{fId}}/{{tId}}{{uuid}}'><button >chat</button></a> &ndash;&gt;-->
-          <!--{{else}}-->
-          <!-- <a href='http://54.191.134.26:3000/chat/{fId}/{{tId}}/{{uuid}}'><button >chat</button></a> -->
           <summary style='font-size:110%;white-space: nowrap;'>{{detail}}
               <div class="answer pull-right">
                   {{#if isBest}}
@@ -102,6 +94,7 @@
         </details>
       {{/each}}
       </div>
+            {{/if}}
       </div>
 	    </div>
 
