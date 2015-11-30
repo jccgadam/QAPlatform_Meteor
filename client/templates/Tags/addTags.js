@@ -16,6 +16,11 @@ Template.addTags.events({
     	var tagCount = AllTags.find({'checked':'1'}).count();    	
     	if(tagCount!=0)
     	{
+            var tags= [];
+            AllTags.find({'checked':'1'}).fetch().forEach(function(k,v){
+                tags.push(k);
+            });
+            SessionAmplify.set("tags", tags);
     		Router.go('/questionsPost');
     	}
     	else
@@ -36,8 +41,6 @@ Template.addTags.events({
         else if(checked=='1')
         {
         	AllTags.update({'cId':checkedTag},{$set:{'checked':'0'}});
-        	
-
         }
     },
   

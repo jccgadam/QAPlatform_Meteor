@@ -205,7 +205,6 @@
           SessionAmplify.set('tags',null);
           SessionAmplify.set('cameraImages',null);
           SessionAmplify.set('cameraImagesList',null);
-          
           AllTags.clear();
           Router.go('main');
   },
