@@ -68,10 +68,6 @@
       return SessionAmplify.get('aCameraImages');
 
      }
-
-
-
-    
 	})
 
     //template events helper

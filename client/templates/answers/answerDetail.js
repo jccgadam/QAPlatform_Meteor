@@ -5,10 +5,11 @@
   },
   owns:function(){
     var uId = SessionAmplify.get('loginUser').data.uId;
-    return (uId===this.u);
+    var qUId = SessionAmplify.get("questionDetail").uId;
+    return uId === qUId;
   },
   isOpen:function(){
-    return this.isOpen;
+    return SessionAmplify.get("questionDetail").isOpen;
   },
   uuid:function(){
   	return SessionAmplify.get('uuid');
@@ -17,7 +18,6 @@
   	return SessionAmplify.get('loginUser').data.uId;
   },
   tId:function(){
-  	
   	return this.u;
   },
   videoRoomId: function(){
