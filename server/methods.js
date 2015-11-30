@@ -170,7 +170,7 @@ Meteor.methods({
             title = "You got a new question";
         } else if(type == "NEWANSWER"){
             title = "You got a new answer";
-        } else if(type = "CHATREQUEST"){
+        } else if(type == "CHATREQUEST"){
             title = "Someone wants to chat with you"
         } else if(type == "VIDEOREQUEST"){
             title = "Someone wants to video chat with you";

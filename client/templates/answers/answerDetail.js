@@ -23,6 +23,11 @@
   videoRoomId: function(){
   	return SessionAmplify.get("videoRoomId");
   },
+
+  answererIsOnline: function(){
+    return SessionAmplify.get("answererIsOnLine");
+  },
+
   cameraImages:function(){
    
       var auuid = this.aUUID;
@@ -59,19 +64,27 @@
     var qId = SessionAmplify.get('answerDetail').q;
     var aId = SessionAmplify.get('answerDetail').aId;
     var url = "http://52.34.229.35:9000/questions/"+qId;
-    console.log(url)
+    var tUId = this.u;
     HTTP.put(url,{
       data:{
         answerId:aId
       }
-    }
-      ,
+    },
       function(error,response){
         if(error){
           console.log(error)
-        }
-      
-    })
+        } else {
+          var url2 = "http://52.34.229.35:9000/users/" + tUId;
+       	  HTTP.get(url2, function(error, response){
+       	    if(error){
+       	      console.log(error);
+       	    } else {
+       	      console.log(JSON.parse(response.content).uMId);
+       	      Meteor.call("serverNotification", JSON.parse(response.content).uMId, "BESTANSWER");
+       	    }
+       	  });
+       	}
+    });
   },
  	'click .chatlink': function(){
  	  var url0 = "http://52.34.229.35:9000/chat";
@@ -135,4 +148,6 @@
  			console.log("Get videoRoomId: " + JSON.parse(response.content).videoRoomId);
  		}
  	});
+
+
  });

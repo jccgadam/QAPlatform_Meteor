@@ -21,11 +21,19 @@
                  <p style="color:black">{{content}}</p>
                    <!--<a href='http://54.191.134.26:3000/chat/{{fId}}/{{tId}}/{{uuid}}'><button >chat</button></a>-->
 
+                   {{#if answererIsOnline}}
                    Contact Expertise:
                    <div class="contactAerButton">
                  <button class="chatlink icon ion-ios-email button button-calm">Text</button>
                  <button class="videolink icon ion-ios-camera button button-calm">Video</button>
                     </div>
+                   {{else}}
+                   The answerer is off line:
+                   <div class="contactAerButton">
+                       <button class="chatlink icon ion-ios-email button button-calm">Text</button>
+                       <button class="videolink icon ion-ios-camera button button-calm">Video</button>
+                   </div>
+                   {{/if}}
                </div>
               </div>
               </div>
@@ -81,7 +89,7 @@
           {{#if owns}}
            <div class='row'>
              <div class='col-lg-2'>
-               <button class='button button-energized ion-trophy asBestAnswer'>Choose as the Best</button>
+               <button class='button button-energized ion-trophy asBestAnswer'>Best Answer</button>
              </div>
            </div>
            {{/if}} 
