@@ -50,6 +50,10 @@
           });
           return SessionAmplify.get('aImages');
       }
+  },
+
+  hasImage: function(){
+    return SessionAmplify.get('aImages') || SessionAmplify.get('aCameraImagesList');
   }
    });
 

@@ -5,7 +5,10 @@
               <span class="back-text">
                Back
               </span> 
-        </button>    
+        </button>
+          <div class="h1 title">
+              Answer
+          </div>
     </div>
     <!-- <div class="padding"> -->
 	 <div class="container">
@@ -20,7 +23,7 @@
                  <br>
                  <p style="color:black">{{content}}</p>
                    <!--<a href='http://54.191.134.26:3000/chat/{{fId}}/{{tId}}/{{uuid}}'><button >chat</button></a>-->
-
+                    {{#if isOpen}}
                    {{#if answererIsOnline}}
                    Contact Expertise:
                    <div class="contactAerButton">
@@ -28,22 +31,18 @@
                  <button class="videolink icon ion-ios-camera button button-calm">Video</button>
                     </div>
                    {{else}}
-                   The answerer is off line:
+                   Answerer is off line
                    <div class="contactAerButton">
-                       <button class="chatlink icon ion-ios-email button button-calm">Text</button>
-                       <button class="videolink icon ion-ios-camera button button-calm">Video</button>
+                       <button class="chatlink icon ion-ios-email button button-stable" disabled>Text</button>
+                       <button class="videolink icon ion-ios-camera button button-stable" disabled>Video</button>
                    </div>
+                   {{/if}}
                    {{/if}}
                </div>
               </div>
               </div>
              </div>    
           {{/with}}
-         <div class='row'>
-          <div class='col-lg-2'>
-            <h4>Uploaded Images:</h4>
-          </div>
-          </div>
 
           <div class='row'>
           {{#if images}}

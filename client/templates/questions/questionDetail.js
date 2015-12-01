@@ -10,8 +10,8 @@
     return this.uId != JSON.parse(SessionAmplify.get('loginUser').content).uId;
   },
   cameraImages:function(){
-     SessionAmplify.set('uuid',this.UUID)
-      var uuid = SessionAmplify.get('uuid');
+     SessionAmplify.set('quuid',this.UUID)
+      var uuid = SessionAmplify.get('quuid');
      Meteor.call('cameraImages',uuid,function(err,res){
        if(err){
 
