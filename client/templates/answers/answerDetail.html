@@ -24,6 +24,7 @@
                  <p style="color:black">{{content}}</p>
                    <!--<a href='http://54.191.134.26:3000/chat/{{fId}}/{{tId}}/{{uuid}}'><button >chat</button></a>-->
                     {{#if isOpen}}
+                   {{#if owns}}
                    {{#if answererIsOnline}}
                    Contact Expertise:
                    <div class="contactAerButton">
@@ -36,6 +37,7 @@
                        <button class="chatlink icon ion-ios-email button button-stable" disabled>Text</button>
                        <button class="videolink icon ion-ios-camera button button-stable" disabled>Video</button>
                    </div>
+                   {{/if}}
                    {{/if}}
                    {{/if}}
                </div>
