@@ -1,7 +1,11 @@
 <template name='main'>
 
     <div class="bar bar-header has-tabs-top bar-positive" id="mainHead">
-      <p class="pull-left" style="margin-bottom:3px;margin-top:7px">{{userEmail}}</p>
+        <button class="buttons button pull-left button-active" id="userProfile">
+              <span class="back-text">
+               {{userEmail}}
+              </span>
+        </button>
         <div class="h1 title">
           Q&A Patform
       </div>
@@ -12,75 +16,162 @@
               </span>
         </button>
     </div>
-    <div class="row" style="margin-top:80px">
-        <div class='col-sm-4' style="margin-left:35px">
-        </div>
-        <div class="col-sm-4">
-           <div class='col-sm-3'>
-            <a href={{pathFor 'questionsPost'}}> 
-              <img class="img-circle img-responsive img-center" src="createQuestion.png" alt="" style="height:100px">
-            </a>
-           </div>
-        </div>
-        <div class="col-sm-4">
-          <div class='col-sm-3'>
-            <a>
-              <img id="questions" class="img-circle img-responsive img-center" src="questions.png" alt="" style="height:100px">
-            </a>  
-          </div>
-        </div>
-    </div>
-    <div class="row" style="margin-top:30px">
-        <div class='col-sm-4' style="margin-left:35px">
-        </div>
-        <div class="col-sm-4">
-          <div class='col-sm-3'>
-           <a href={{pathFor 'notifications'}}>
-              <img class="img-circle img-responsive img-center" src="notifications{{notificationCount}}.png" alt="" style="height:100px">
-            </a>
-          </div> 
-        </div>
-        <div class="col-sm-4">
-         <div class='col-sm-3'>
-            <a href={{pathFor 'userProfile'}}>
-              <img class="img-circle img-responsive img-center" src="settings.png" alt="" style="height:100px">
-            </a>
-         </div>
-        </div>
-    </div>
-    <div class="row" style="margin-top:30px">
-        <div class='col-sm-4' style="margin-left:35px">
-        </div>
-        <div class="col-sm-4">
-          <div class='col-sm-3'>
-            <a href='/login'> 
-              <img class="img-circle img-responsive img-center" src="-text.png" alt="" style="height:100px">
-            </a>
+
+
+    {{#if homeActive}}
+    <div class="container">
+        <div class="header">
+            <div class="bar bar-header item-input-inset" style="margin-top:46px" id="searchcss2">
+                <label class="item-input-wrapper">
+                    <i class="icon ion-ios-search placeholder-icon"></i>
+                    <input class="searchField" id="searchFieldMain" type="search" placeholder="Search">
+                </label>
+                <div class="searchBarButton">
+                <button id="cancelSearchMain" class="button button-clear">
+                    Cancel
+                </button>
+                <button class="askQuestion icon ion-ios-compose button button-calm">Ask</button>
+                </div>
             </div>
-            <!-- <h2>Ask a Question:</h2> -->
         </div>
-        <div class="col-sm-4">
-           <div class='col-sm-3'> 
-            <a herf='/login'>
-              <img class="img-circle img-responsive img-center" src="-text.png" alt="" style="height:100px">
-            </a>
-            </div>  
-            <!-- <h2>Answer a Question</h2> -->
+        <div class="list" style="margin-bottom:65px">
+            {{#each q in subscribedQuestions}}
+            <div class="item" style="padding-top:6px;padding-bottom:0px;padding-left:6px">
+                <div class="question">
+                    <div class='row'>
+                        <div class='col-lg-1'>
+                            <div class="create-date">
+                                <p class="create-month">{{q.createMonth}}</p>
+                                <p class="create-day">{{q.createDay}}</p>
+                            </div>
+                        </div>
+                        <div class="questionDecContainer">
+                            <div class="question-desc questionDecContainer">
+                                <h4 class="question-desc-header" id='main{{q.qId}}'><a href='/question/{{q.qId}}'>{{q.title}}</a></h4>
+                                <p class="question-desc-detail" >{{q.content}}</p>
+                                {{#if q.imageUrls.length}}
+                                <span class="label label-success">Images Attached</span>
+                                {{/if}}
+                                {{#unless q.isOpen}}
+                                &nbsp;&nbsp;<span class="label label-default">Closed</span>
+                                {{/unless}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    {{#each cN in q.catNames}}
+                    <div class="col" style="max-width:200px">
+                        <div class="categoryCard">{{cN}}</div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            {{/each}}
         </div>
     </div>
+    {{/if}}
+
+    {{#if questionsActive}}
+    <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
+        <div class="tabs">
+            <p class="tab-item {{#if questionsaskedactive}} active {{/if}}" id="questionsasked">
+                Questions Asked
+            </p>
+            <p class="tab-item {{#if questionsaskedactive}} {{else}} active {{/if}}" id="questionsanswered">
+                Questions Answered
+            </p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <div class="bar bar-header item-input-inset" style="margin-top:92px" id="searchcss">
+                <label class="item-input-wrapper">
+                    <i class="icon ion-ios-search placeholder-icon"></i>
+                    <input class="searchField" id="searchField" type="search" placeholder="Search">
+                </label>
+                <button id="cancelSearch" class="button button-clear">
+                    Cancel
+                </button>
+            </div>
+        </div>
+        <div class="list" style="margin-bottom:65px">
+            {{#each q in questions}}
+            <div class="item" style="padding-top:6px;padding-bottom:0px;padding-left:6px">
+                <div class="question">
+                    <div class='row'>
+                        <div class='col-lg-1'>
+                            <div class="create-date">
+                                <p class="create-month">{{q.createMonth}}</p>
+                                <p class="create-day">{{q.createDay}}</p>
+                            </div>
+                        </div>
+                        <div class="questionDecContainer">
+                            <div class="question-desc questionDecContainer">
+                                <h4 class="question-desc-header" id='{{q.qId}}'><a href='/question/{{q.qId}}'>{{q.title}}</a></h4>
+                                <p class="question-desc-detail" >{{q.content}}</p>
+                                {{#if q.imageUrls.length}}
+                                <span class="label label-success">Images Attached</span>
+                                {{/if}}
+                                {{#unless q.isOpen}}
+                                &nbsp;&nbsp;<span class="label label-default">Closed</span>
+                                {{/unless}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    {{#each cN in q.catNames}}
+                    <div class="col" style="max-width:200px">
+                        <div class="categoryCard">{{cN}}</div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    {{/if}}
+
+    {{#if notificationsActive}}
+    <div class="container" style="margin-top:44px">
+        <div class="list" style="margin-bottom:65px">
+            {{#each n in notifications}}
+            <a class="item">
+                <div class="notification" style="display:table-row">
+                    <div class="create-date">
+                        <p class="create-month">{{n.createMonth}}</p>
+                        <p class="create-day">{{n.createDay}}</p>
+                    </div>
+
+                    <div class="notification-desc" style="display:table-cell">
+                        <a href='{{n.url}}'>
+                            <h4 class="notification-desc-header" id='{{n.nId}}'>{{n.title}}</h4>
+                        </a>
+                        <p class="notification-desc-detail">{{n.displayQTitle}}</p>
+                    </div>
+
+                    <p class="ion-close-round" data-pack="default" data-tags="delete, trash, kill, x" id="rb{{n.nId}}"></p>
+                    <span class="smallSquare {{n.bgColor}}-bg {{n.bgColor}}-border"></span>
+                </div>
+            </a>
+            {{/each}}
+        </div>
+    </div>
+    {{/if}}
   
-  <div class="tabs-striped tabs-color-assertive" id="mainBottom">
-    <div class="tabs">
-      <a class="tab-item active" href="#">
-        <i class="icon ion-home"></i>
+  <div class="tabs-striped tabs-color-assertive">
+    <div class="tabs" style="position:fixed;left:0px;bottom:0px;height:45px;width:100%;">
+      <a class="tab-item {{#if homeActive}} active {{/if}}" href="#">
+        <i class="icon ion-home homeTab" id="idHome"></i>
         Home
       </a>
-      <a class="tab-item" href="#">
-        <i class="icon ion-star"></i>
+      <a class="tab-item {{#if questionsActive}} active {{/if}}" href="#">
+        <i class="icon ion-star homeTab" id="idQuestions"></i>
         Questions
       </a>
-      <a class="tab-item" href="#">
-        <i class="icon ion-ios-bell"></i>
+      <a class="tab-item {{#if notificationsActive}} active {{/if}}" href="#">
+        <i class="icon ion-ios-bell homeTab" id="idNotifications"></i>
         Notifications
       </a>
     </div>

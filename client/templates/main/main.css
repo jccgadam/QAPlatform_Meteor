@@ -14,3 +14,8 @@
   height: 44px;
   width: 100%;
 }
+
+.searchBarButton div{
+    float: left;
+    clear: none;
+}

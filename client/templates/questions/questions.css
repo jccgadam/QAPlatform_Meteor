@@ -55,6 +55,11 @@
 #searchcss {
   z-index: 1;
 }
+
+#searchcss2 {
+  z-index: 1;
+}
+
 div.body-wrap{
   min-height: 100%;
   /* equal to footer height */
