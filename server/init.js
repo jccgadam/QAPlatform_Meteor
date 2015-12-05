@@ -1,5 +1,10 @@
 Meteor.startup(function () {
   // init items collection
+Meteor.absoluteUrl.defaultOptions.rootUrl = "http://52.34.229.35:4000";
+process.env.ROOT_URL = "http://52.34.229.35:4000";
+process.env.MOBILE_ROOT_URL = "http://52.34.229.35:4000";
+process.env.MOBILE_DDP_URL = "http://52.34.229.35:4000";
+
   if(Meteor.isServer) {
     BrowserPolicy.content.allowOriginForAll("http://meteor.local");
   }
