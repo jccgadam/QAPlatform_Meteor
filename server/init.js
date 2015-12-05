@@ -1,5 +1,8 @@
 Meteor.startup(function () {
   // init items collection
+  if(Meteor.isServer) {
+    BrowserPolicy.content.allowOriginForAll("http://meteor.local");
+  }
   UploadServer.init({
     tmpDir: process.env.PWD + 'client/uploads/tmp',
     uploadDir: process.env.PWD + 'client/uploads/',
