@@ -11,9 +11,9 @@
   isOpen:function(){
     return SessionAmplify.get("questionDetail").isOpen;
   },
-  uuid:function(){
-  	return SessionAmplify.get('uuid');
-  },
+//  uuid:function(){
+//  	return SessionAmplify.get('uuid');
+//  },
   fId:function(){
   	return SessionAmplify.get('loginUser').data.uId;
   },
@@ -95,7 +95,7 @@
  	  var tUId = this.u;
  	  HTTP.post(url0,
  	   {
-          data: {aId: this.aId, fUId: SessionAmplify.get('loginUser').data.uId, tUId: tUId, uuid: SessionAmplify.get('uuid')}
+          data: {aId: this.aId, fUId: SessionAmplify.get('loginUser').data.uId, tUId: tUId, uuid: SessionAmplify.get("answerDetail").aUUID}
        },
  	   function(error, response){
  	    if(error){
@@ -108,7 +108,7 @@
        	    } else {
        	      console.log(JSON.parse(response.content).uMId);
        	      Meteor.call("serverNotification", JSON.parse(response.content).uMId, "CHATREQUEST");
-       	      window.open("http://52.34.229.35:3000/chat/" + SessionAmplify.get('loginUser').data.uId + "/" + tUId + "/" + SessionAmplify.get("uuid"));
+       	      window.open("http://52.34.229.35:3000/chat/" + SessionAmplify.get('loginUser').data.uId + "/" + tUId + "/" + SessionAmplify.get("answerDetail").aUUID);
        	    }
        	  });
  	    }
