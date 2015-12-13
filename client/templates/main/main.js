@@ -40,7 +40,7 @@ Template.main.helpers({
     },
 
     subscribedQuestions: function(){
-        return SessionAmplify.get("tmpSubscribedResult");
+        return SessionAmplify.get("tmpSubscribedResult").reverse();
     }
 });
 
