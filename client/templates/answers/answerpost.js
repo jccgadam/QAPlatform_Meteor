@@ -121,6 +121,7 @@
         var uId = loginUser.uId;
         var qId =  SessionAmplify.get('questionDetail').qId;
         var data = SessionAmplify.get('aCameraImages');
+        var tUId = SessionAmplify.get('questionDetail').uId;
         if(!validateAnswerContent(content))
         {     console.log('content false')
               return false;
@@ -136,6 +137,17 @@
               Session.set('message','post fails')
                         }
             else{
+
+             var url2 = "http://52.34.229.35:9000/users/" + tUId;
+        	  HTTP.get(url2, function(error, response){
+        	    if(error){
+        	      console.log(error);
+        	    } else {
+        	      console.log(JSON.parse(response.content).uMId);
+        	      Meteor.call("serverNotification", JSON.parse(response.content).uMId, "NEWANSWER");
+        	    }
+        	  });
+
                 Meteor.call('addImage',aUUID,data, function(){});
                 SessionAmplify.set('content',null);
                 SessionAmplify.set('auuid',null);
