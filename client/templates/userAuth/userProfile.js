@@ -38,10 +38,7 @@ Template.userProfile.events({
      var lastName  = t.$('.lastName')[0].innerHTML
      var email = t.$('.email')[0].innerHTML
      var cIds = t.data.expertises;
-     console.log(cIds);
-     console.log(firstName);
-     console.log(lastName);
-     console.log(email);
+
      HTTP.put(url, 
     	{
     	data:{
@@ -57,5 +54,30 @@ Template.userProfile.events({
         }
 
     })
-  }
+  },
+  'keyup .searchTagsField' : function(event,template){
+  		//console.log(Session.get('questionTags'));
+          if(event.target.id == "searchTagsField"){
+              if(document.getElementById("searchTagsField").value == ""){
+                  Session.set("searchTagsField",null);
+              } else {
+                  var input = document.getElementById("searchTagsField").value;
+                  Session.set("searchTagsField", input);
+              }
+          }
+      },
+  	'change .tagCheck':function(e,t){
+          e.preventDefault();
+          Session.set('tagsError',null);
+          var checkedTag = parseInt(e.target.value);
+          var checked = UserTags.findOne({'cId':checkedTag}).checked;
+          if(checked =='0')
+          {
+          	UserTags.update({'cId':checkedTag},{$set:{'checked':'1'}});
+          }
+          else if(checked=='1')
+          {
+          	UserTags.update({'cId':checkedTag},{$set:{'checked':'0'}});
+          }
+      },
 })

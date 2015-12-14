@@ -67,6 +67,7 @@ Template.main.events({
             amplify.store(storeKey, null);
             SessionAmplify.set(storeKey, null);
         });
+        UserTags.clear();
         console.log("amplify.store() cleared");
         Router.go('/login');
     },

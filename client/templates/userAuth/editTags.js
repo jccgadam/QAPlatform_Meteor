@@ -1,9 +1,24 @@
 Template.editUserTags.helpers({
 	checkedTags:function(){
-		return UserTags.find({'checked':'1'}).fetch();
+		var searchTagsField = Session.get('searchTagsField');
+                if(searchTagsField==null)
+                	{
+                		return UserTags.find({'checked':'1'}).fetch();
+                	}
+        		else
+        		    {
+                        return UserTags.find({'checked':'1',"cName":{$regex : ".*"+searchTagsField+".*"}});
+        			}
 	},
 	uncheckedTags:function(){
-		return UserTags.find({'checked':'0'}).fetch();
+		var searchTagsField = Session.get('searchTagsField');
+                if(searchTagsField==null)
+                	{
+                		return UserTags.find({'checked':'0'}).fetch();
+                	}
+        		else{
+                      return UserTags.find({'checked':'0',"cName":{$regex : ".*"+searchTagsField+".*"}});
+        			}
 	},
 	tagsError:function(){
 		return Session.get('tagsError');
@@ -14,6 +29,24 @@ Template.editUserTags.helpers({
 })
 
 Template.editUserTags.events({
+     'click .button-clear':function(e,t){
+        e.preventDefault();
+        document.getElementById("searchTagsField").value ='';
+        Session.set("searchTagsField", null);
+
+        },
+	'keyup .searchTagsField' : function(event,template){
+		//console.log(Session.get('questionTags'));
+        if(event.target.id == "searchTagsField"){
+            if(document.getElementById("searchTagsField").value == ""){
+                Session.set("searchTagsField",null);
+            } else {
+                var input = document.getElementById("searchTagsField").value;
+                Session.set("searchTagsField", input);
+            }
+        }
+    },
+
 	'change .tagCheck':function(e,t){
         e.preventDefault();
         Session.set('tagsError',null);

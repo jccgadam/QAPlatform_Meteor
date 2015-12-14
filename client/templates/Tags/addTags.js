@@ -13,7 +13,7 @@ Template.addTags.events({
     'click .submitTags':function(e,t){
     	e.preventDefault();
         Session.set('tagsError',null);
-    	var tagCount = AllTags.find({'checked':'1'}).count();    	
+    	var tagCount = AllTags.find({'checked':'1'}).count();
     	if(tagCount!=0)
     	{
             var tags= [];
@@ -43,6 +43,13 @@ Template.addTags.events({
         	AllTags.update({'cId':checkedTag},{$set:{'checked':'0'}});
         }
     },
+    'click .button-clear':function(e,t){
+    e.preventDefault();
+    document.getElementById("searchTagsField").value ='';
+    Session.set("searchTagsField", null);
+
+
+    }
   
     })
 
@@ -52,26 +59,26 @@ Template.addTags.helpers({
         if(searchTagsField==null)
         	{
         		return AllTags.find({'checked':'1'}).fetch();
-        	}	
+        	}
 		else
-		    {			
-                return AllTags.find({'checked':'1',"cName":{$regex : ".*"+searchTagsField+".*"}});			
+		    {
+                return AllTags.find({'checked':'1',"cName":{$regex : ".*"+searchTagsField+".*"}});
 			}
-        
+
     },
     uncheckedTags:function(){
     	var searchTagsField = Session.get('searchTagsField');
         if(searchTagsField==null)
         	{
         		return AllTags.find({'checked':'0'}).fetch();
-        	}	
-		else{			
-              return AllTags.find({'checked':'0',"cName":{$regex : ".*"+searchTagsField+".*"}});			
+        	}
+		else{
+              return AllTags.find({'checked':'0',"cName":{$regex : ".*"+searchTagsField+".*"}});
 			}
-        
+
     },
     tagsError:function(){
-    	
+
     	return Session.get('tagsError');
     }
 })
