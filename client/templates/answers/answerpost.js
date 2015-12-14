@@ -142,7 +142,7 @@
                 SessionAmplify.set('aImages',null);
                 SessionAmplify.set('aCameraImages',null);
                 SessionAmplify.set('aCameraImagesList',null);
-                Router.go('questions');
+                Router.go('main');
             }
           })
 

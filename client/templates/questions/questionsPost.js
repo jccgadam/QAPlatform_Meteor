@@ -193,7 +193,7 @@
               for(var i = 0; i < targets.length; i ++){
                 Meteor.call("serverNotification", targets[i].uMId, "NEWQUESTION");
               }
-              Router.go('questions');
+              Router.go('main');
             }
           });
      },
